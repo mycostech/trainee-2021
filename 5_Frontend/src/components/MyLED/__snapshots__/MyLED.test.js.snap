@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyLED render correctly 1`] = `
+<div
+  style={
+    Object {
+      "height": "60px",
+      "width": "100%",
+    }
+  }
+>
+  <p>
+    Success
+     : 
+    My Computer
+  </p>
+</div>
+`;
