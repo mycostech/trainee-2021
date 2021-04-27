@@ -8,18 +8,18 @@ namespace homework
         {
             try 
             {
-                Console.Write("Enter a number:  "); 
-                int num1 = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Enter another number:  ");
-                int num2 = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter a number:  "); //input number 
+                int num1 = Convert.ToInt32(Console.ReadLine()); //receive the the number 
+                Console.Write("Enter another number:  ");//input number
+                int num2 = Convert.ToInt32(Console.ReadLine()); //receive  number
 
-                Console.WriteLine(num1 / num2);
+                Console.WriteLine(num1 / num2);//divide the number
             }
-            catch (DivideByZeroException e )
+            catch (DivideByZeroException e ) //case input zero
             {
                 Console.WriteLine(e.Message);
             }
-            catch(FormatException e)
+            catch(FormatException e) //case input not a number
             {
                 Console.WriteLine(e.Message);
             }
