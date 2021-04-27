@@ -16,12 +16,15 @@ def DividTwoInput(numberA, numberB):
 if __name__ == "__main__":
 
   while(True):
-    print('-------')
-    print('calculate a/b')
-    a = int(input('enter a : '))
-    b = int(input('enter b: '))
-    
-    DividTwoInput(a,b)
+    try:
+      print('-------')
+      print('calculate a/b')
+      a = int(input('enter a : '))
+      b = int(input('enter b: '))
+
+      DividTwoInput(a,b)
+    except ValueError:
+      print('a or b is only integer')
 
   
 

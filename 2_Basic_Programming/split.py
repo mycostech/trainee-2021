@@ -1,13 +1,16 @@
 
 def SplitString(word):
 
-    _splitWord = word.split(',')
-
-    for _w in _splitWord:
-        print(_w)
+    try: 
+        _splitWord = word.split(',')
+        for _w in _splitWord:
+            print(_w)
+    
+    except ValueError:
+        print('split failed !!')
 
 
 if __name__ == "__main__":
 
-    word = 'hello,world@rcom'
+    word = input('enter word : ')
     SplitString(word)
