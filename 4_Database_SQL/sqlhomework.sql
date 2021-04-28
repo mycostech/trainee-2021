@@ -65,7 +65,7 @@ FROM Customer
 SELECT * FROM Customer ORDER BY PhoneNumber ASC;
 
 
-SELECT * FROME Customer
+SELECT * FROM Customer
 WHERE Email = Hotmail
 
 
@@ -73,7 +73,7 @@ SELECT MAX(ClassCode) AS ClassCode FROM CustomerClass
 
 
 UPDATE Customer
-SET Email = ‘FirstA@gmail.com’
+SET Email = â€˜FirstA@gmail.comâ€™
 WHERE CustomerID = 1;
 
 
