@@ -1,1 +1,7 @@
 .DS_Store
+6_Backend/Example/ApiTest/bin/
+6_Backend/Example/packages/
+6_Backend/Example/WebApplication2/bin/
+6_Backend/Example/WebApplication2/obj/Debug/
+6_Backend/Example/ApiTest/obj/Debug/netcoreapp3.1/ApiTest.assets.cache
+6_Backend/Example/ApiTest/obj/
