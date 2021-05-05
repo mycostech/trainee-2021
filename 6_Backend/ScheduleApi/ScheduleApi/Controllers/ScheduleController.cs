@@ -12,6 +12,8 @@ namespace ScheduleApi.Controllers
     public class ScheduleController : ControllerBase
     {
 
+        ScheduleDBContext db = new ScheduleDBContext();
+
         private readonly ILogger<ScheduleController> _logger;
 
         public ScheduleController(ILogger<ScheduleController> logger)
@@ -22,56 +24,94 @@ namespace ScheduleApi.Controllers
         [HttpGet]
         public IEnumerable<Schedule> GetAllSchedules()
         {
-            return Enumerable.Range(1, 4).Select(index => new Schedule
-            {
-                SchId = 10010000,
-                Title = "My Birthday",
-                UserId = 1001,
-                SchDate = new DateTime(2000,4,27),
-                BeginTime = new TimeSpan(0,0,0),
-                EndTime = new TimeSpan(0, 0, 0),
-                Note = null,
-                Category = 'B'
-            })
+            return db.Schedules.OrderBy(d => d.UserId)
             .ToArray();
         }
         
-        [HttpGet("{userId}/schedules")]
+        [HttpGet("{userId}")]
         public IEnumerable<Schedule> GetSchedules(int userId)
         {
-            return Enumerable.Range(1, 1).Select(index => new Schedule
-            {
-                SchId = 10010000,
-                Title = "My Birthday",
-                UserId = userId,
-                SchDate = new DateTime(2000, 4, 27),
-                BeginTime = new TimeSpan(0, 0, 0),
-                EndTime = new TimeSpan(0, 0, 0),
-                Note = null,
-                Category = 'B'
-            })
+            return db.Schedules.Where(e => e.UserId == userId || e.UserId == null)
             .ToArray();
         }
 
-        [HttpPost]
-        public void AddSchedule([FromBody] string value)
+        [HttpPost("add")]
+        public void AddSchedule([FromBody] Schedule value)
         {
+            db.Schedules.Add(value);
+            
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Add Schedule Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
 
-        [HttpPut("{schId}")]
-        public void UpdateSchdule(int schId, [FromBody] string value)
+        [HttpPut("{schId}/update")]
+        public void UpdateSchdule(int schId, [FromBody] Schedule sch)
         {
+            var s = db.Schedules.SingleOrDefault(e => e.SchId == schId);
+            if (sch.Title == null) { s.Title = s.Title; } else { s.Title = sch.Title; }
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Update Schedule Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
-        // DELETE api/<ValuesController>/5
         [HttpDelete("{schId}/delete")]
         public void DeleteSchedule(int schId)
         {
+
+            var sch = db.Schedules.Where(e => e.SchId == schId);
+
+            var schDetail = db.ScheduleDetails.Where(e => e.SchId == schId);
+            db.ScheduleDetails.RemoveRange(schDetail);
+
+            db.Schedules.RemoveRange(sch);  
+
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Delete Schedule Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         [HttpDelete("{userId}/delete")]
         public void DeleteAllSchedule(int userId)
         {
+            var sch = db.Schedules.Where(e => e.UserId == userId);
+
+            foreach (Schedule s in sch.ToList())
+            {
+                var schDetail = db.ScheduleDetails.Where(e => e.SchId == s.SchId);
+                db.ScheduleDetails.RemoveRange(schDetail);
+            }
+
+            db.Schedules.RemoveRange(sch);
+
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Delete Schedules Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

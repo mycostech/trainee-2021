@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\internship\\API\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj": {}
+    "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj": {}
   },
   "projects": {
-    "D:\\Work\\internship\\API\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj": {
+    "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\internship\\API\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj",
+        "projectUniqueName": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj",
         "projectName": "ScheduleApi",
-        "projectPath": "D:\\Work\\internship\\API\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj",
+        "projectPath": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj",
         "packagesPath": "C:\\Users\\WINDOWS X\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\internship\\API\\ScheduleApi\\ScheduleApi\\obj\\",
+        "outputPath": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\WINDOWS X\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,20 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"

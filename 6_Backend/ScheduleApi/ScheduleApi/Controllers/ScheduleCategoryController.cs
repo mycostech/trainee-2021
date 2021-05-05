@@ -12,6 +12,8 @@ namespace ScheduleApi.Controllers
     public class ScheduleCategoryController : ControllerBase
     {
 
+        ScheduleDBContext db = new ScheduleDBContext();
+
         private readonly ILogger<ScheduleCategoryController> _logger;
 
         public ScheduleCategoryController(ILogger<ScheduleCategoryController> logger)
@@ -22,11 +24,7 @@ namespace ScheduleApi.Controllers
         [HttpGet]
         public IEnumerable<ScheduleCategory> GetAllCategory()
         {
-            return Enumerable.Range(1, 5).Select(index => new ScheduleCategory
-            {
-                CatCode = 'A',
-                Descriptions = "Anniversary"
-            })
+            return db.ScheduleCategories
             .ToArray();
         }
 

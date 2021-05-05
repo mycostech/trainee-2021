@@ -12,6 +12,8 @@ namespace ScheduleApi.Controllers
     public class UserController : ControllerBase
     {
 
+        ScheduleDBContext db = new ScheduleDBContext();
+
         private readonly ILogger<UserController> _logger;
 
         public UserController(ILogger<UserController> logger)
@@ -22,47 +24,83 @@ namespace ScheduleApi.Controllers
         [HttpGet]
         public IEnumerable<User> GetAllUsers()
         {
-            return Enumerable.Range(1, 3).Select(index => new User
-            {
-                UserId = 1002,
-                FirstName = "MINGYU",
-                LastName = "KIM",
-                Email = "mingyu@pledis.co.kr",
-                Dob = new DateTime(1997,4,6),
-                PhoneNumber = "0917317391"
-            })
+            return db.Users
             .ToArray();
         }
 
         [HttpGet("{userId}")]
         public IEnumerable<User> GetUser(int userId)
         {
-            return Enumerable.Range(1, 1).Select(index => new User
-            {
-                UserId = 1002,
-                FirstName = "MINGYU",
-                LastName = "KIM",
-                Email = "mingyu@pledis.co.kr",
-                Dob = new DateTime(1997, 4, 6),
-                PhoneNumber = "0917317391"
-            })
+            return db.Users.Where(e => e.UserId == userId)
             .ToArray();
         }
 
-        [HttpPost("addUser")]
-        public void AddUser([FromBody] string value)
+        [HttpPost("add")]
+        public void AddUser([FromBody] User user)
         {
+            db.Users.Add(user);
+            var dob = new Schedule { SchId = user.UserId * 10000, Title = "My Birthday", UserId = user.UserId };
+            db.Schedules.Add(dob);
+            var dobDetail = new ScheduleDetail { SchId = dob.SchId, SchDate = user.Dob, Category = "B"};
+            db.ScheduleDetails.Add(dobDetail);
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Add User Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
-        [HttpPut("{userId}/edit")]
-        public void UpdateUser(int userId, [FromBody] string value)
+        [HttpPut("{userId}/update")]
+        public void UpdateUser(int userId, [FromBody] User user)
         {
+            var u = db.Users.SingleOrDefault(e => e.UserId == userId);
+
+            if (user.FirstName == null) { u.FirstName = u.FirstName; } else { u.FirstName = user.FirstName; };
+            if (user.LastName == null) { u.LastName = u.LastName; } else { u.LastName = user.LastName; };
+            if (user.Email == null) { u.Email = u.Email; } else { u.Email = user.Email; };
+            if (user.PhoneNumber == null) { u.PhoneNumber = u.PhoneNumber; } else { u.PhoneNumber = user.PhoneNumber; };
+            if (user.Dob == null) { u.Dob = u.Dob; } else { u.Dob = user.Dob; };
+            
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Update User Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         // DELETE api/<ValuesController>/5
-        [HttpDelete("{userId}/delete")]
+        [HttpDelete("delete/{userId}")]
         public void DeleteUser(int userId)
         {
+            var user = db.Users.SingleOrDefault(e => e.UserId == userId);
+            var sch = db.Schedules.Where(e => e.UserId == user.UserId);
+
+            foreach (Schedule s in sch.ToList())
+            {
+                var schDetail = db.ScheduleDetails.Where(e => e.SchId == s.SchId);
+                db.ScheduleDetails.RemoveRange(schDetail);
+            }
+
+            db.Schedules.RemoveRange(sch);
+            db.Users.Remove(user);
+
+            try
+            {
+                db.SaveChanges();
+                Console.WriteLine("Delete User Completed.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
