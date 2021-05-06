@@ -9,10 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NoteApi.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using NoteApi.Services;
 
 namespace NoteApi
 {
@@ -28,6 +25,7 @@ namespace NoteApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<INoteService, NoteService>();
             services.AddDbContext<noteDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("NoteApp")));
             services.AddControllers();

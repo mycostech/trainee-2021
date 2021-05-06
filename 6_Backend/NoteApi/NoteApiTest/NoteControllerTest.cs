@@ -2,7 +2,9 @@ using System.Threading.Tasks;
 using Xunit;
 using NoteApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
-
+using NoteApi.Services;
+using Moq;
+using NoteApi.Data;
 
 namespace NoteApiTest
 {
@@ -13,19 +15,19 @@ namespace NoteApiTest
         {
             var dbContext = DbContextMocker.CreateTestingDatabase(nameof(Get_AllNote_Success));
             DbContextMocker.SeedTestSuccess(dbContext);
-            var controller = new NotesController(dbContext);
-            var response = await controller.GetNote(1);
+            var service = new NoteService(dbContext);
+            var controller = new NotesController(service);
+            var response = await controller.GetNoteItems(1);
             dbContext.Dispose();
-            int id = response.Value.Id;
-            Assert.Equal(1, id);
+            Assert.Equal(1, response.Value.Id);
         }
         [Fact]
-        public async Task Get_AllNote_NotFound()
+        public async Task Get_Note_NotFound()
         {
-            var dbContext = DbContextMocker.CreateTestingDatabase(nameof(Get_AllNote_NotFound));
-            var controller = new NotesController(dbContext);
-            var response = await controller.GetNote(2);
-            dbContext.Dispose();
+            var moq = new Mock<INoteService>();
+            moq.Setup(_ => _.GetNoteItems(It.IsAny<int>())).ReturnsAsync((Note)null);
+            var controller = new NotesController(moq.Object);
+            var response = await controller.GetNoteItems(2);
             Assert.IsType<NotFoundResult>(response.Result);
         }
     }
