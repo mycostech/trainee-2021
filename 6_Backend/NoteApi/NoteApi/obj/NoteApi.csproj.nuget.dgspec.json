@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj": {}
+    "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj": {
+    "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj",
+        "projectUniqueName": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj",
         "projectName": "NoteApi",
-        "projectPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj",
+        "projectPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj",
         "packagesPath": "C:\\Users\\jatup\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\obj\\",
+        "outputPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jatup\\AppData\\Roaming\\NuGet\\NuGet.Config",
