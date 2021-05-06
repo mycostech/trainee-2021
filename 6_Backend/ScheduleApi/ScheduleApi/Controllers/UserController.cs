@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ScheduleApi.Services;
 
 namespace ScheduleApi.Controllers
 {
@@ -11,8 +12,46 @@ namespace ScheduleApi.Controllers
     [Route("api/user")]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _context;
 
-        ScheduleDBContext db = new ScheduleDBContext();
+        public UserController(IUserService context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<User>>> SelectAllUser()
+        {
+            return await _context.SelectAllUser();
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<User>> SelectUser(int userId)
+        {
+            return await _context.SelectUser(userId);
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult<User>> AddUser([FromBody] User user)
+        {
+            return await _context.AddUser(user);
+        }
+
+        [HttpPut("{userId}/update")]
+        public async Task<ActionResult<User>> UpdateUser(int userId, [FromBody] User user)
+        {
+
+            return await _context.UpdateUser(userId, user);
+        }
+
+        [HttpDelete("{userId}/delete")]
+        public async Task<ActionResult<User>> DeleteUser(int userId)
+        {
+
+            return await _context.DeleteUser(userId);
+        }
+
+        /*ScheduleDBContext db = new ScheduleDBContext();
 
         private readonly ILogger<UserController> _logger;
 
@@ -101,6 +140,8 @@ namespace ScheduleApi.Controllers
             {
                 Console.WriteLine(e);
             }
-        }
+        }*/
+
+
     }
 }

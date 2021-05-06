@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ScheduleApi.Services;
 
 namespace ScheduleApi.Controllers
 {
@@ -11,15 +12,38 @@ namespace ScheduleApi.Controllers
     [Route("api/schedule")]
     public class ScheduleDetailController : ControllerBase
     {
-        ScheduleDBContext db = new ScheduleDBContext();
+        private readonly IScheduleDetailService _context;
 
-        private readonly ILogger<ScheduleDetailController> _logger;
-
-        public ScheduleDetailController(ILogger<ScheduleDetailController> logger)
+        public ScheduleDetailController(IScheduleDetailService context)
         {
-            _logger = logger;
+            _context = context;
         }
-        
+
+        [HttpGet("detail")]
+        public async Task<ActionResult<IEnumerable<ScheduleDetail>>> SelectAllScheduleDetail()
+        {
+            return await _context.SelectAllScheduleDetail();
+        }
+
+        [HttpGet("{schId}/detail")]
+        public async Task<ActionResult<ScheduleDetail>> SelectScheduleDetail(int schId)
+        {
+            return await _context.SelectScheduleDetail(schId);
+        }
+
+        [HttpPost("detail/add")]
+        public async Task<ActionResult<ScheduleDetail>> AddScheduleDetail(ScheduleDetail schDetail)
+        {
+            return await _context.AddScheduleDetail(schDetail);
+
+        }
+
+        [HttpPut("{scdId}/detail/update")]
+        public async Task<ActionResult<ScheduleDetail>> UpdateScheduleDetail(int schId, ScheduleDetail schDetail)
+        {
+            return await _context.UpdateScheduleDetail(schId, schDetail);
+        }
+        /*
         [HttpGet("detail")]
         public IEnumerable<ScheduleDetail> GetAllScheduleDetail()
         {
@@ -70,7 +94,7 @@ namespace ScheduleApi.Controllers
                 Console.WriteLine(e);
             }
         }
-        
+
         /*[HttpDelete("{schId}/delete")]
         public void DeleteScheduleDetail(int schId)
         {

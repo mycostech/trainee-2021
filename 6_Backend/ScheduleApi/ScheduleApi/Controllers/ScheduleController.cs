@@ -4,23 +4,72 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ScheduleApi.Services;
 
 namespace ScheduleApi.Controllers
 {
     [ApiController]
-    [Route("api/schedule")]
+    [Route("api/")]
     public class ScheduleController : ControllerBase
     {
-
-        ScheduleDBContext db = new ScheduleDBContext();
-
-        private readonly ILogger<ScheduleController> _logger;
-
-        public ScheduleController(ILogger<ScheduleController> logger)
-        {
-            _logger = logger;
-        }
         
+        //ScheduleDBContext db = new ScheduleDBContext();
+
+        private readonly IScheduleService _context;
+
+        public ScheduleController(IScheduleService context)
+        {
+            _context = context;
+        }
+
+        [HttpGet("schedules")]
+        public async Task<ActionResult<List<Schedule>>> SelectAllSchedule()
+        {
+            return await _context.SelectAllSchedule();
+        }
+
+        [HttpGet("{userId}/schedules")]
+        public async Task<ActionResult<List<Schedule>>> SelectUserSchedule(int userId)
+        {
+            return await _context.SelectUserSchedule(userId);
+        }
+
+        [HttpGet("schedule/{schId}")]
+        public async Task<ActionResult<Schedule>> SelectSchedule(int schId)
+        {
+            return await _context.SelectSchedule(schId);
+        }
+
+        [HttpPost("schedules/add")]
+        public async Task<ActionResult<Schedule>> AddSchedule(Schedule schedule)
+        {
+            return await _context.AddSchedule(schedule);
+        }
+
+        [HttpPost("{userId}/schedules/add")]
+        public async Task<ActionResult<Schedule>> AddUserSchedule(int userId, Schedule schedule)
+        {
+            return await _context.AddUserSchedule(userId, schedule);
+        }
+
+        [HttpPut("schedules/{schId}/update")]
+        public async Task<ActionResult<Schedule>> UpdateSchedule(int schId, Schedule schedule)
+        {
+            return await _context.UpdateSchedule(schId, schedule);
+        }
+
+        [HttpDelete("{schId}/schedules/add")]
+        public async Task<ActionResult<Schedule>> DeleteSchedule(int schId)
+        {
+            return await _context.DeleteSchedule(schId);
+        }
+
+        [HttpDelete("{userId}/schedules/delete")]
+        public async Task<ActionResult<List<Schedule>>> DeleteAllUserSchedule(int userId)
+        {
+            return await _context.DeleteAllUserSchedule(userId);
+        }
+        /*
         [HttpGet]
         public IEnumerable<Schedule> GetAllSchedules()
         {
@@ -112,6 +161,6 @@ namespace ScheduleApi.Controllers
             {
                 Console.WriteLine(e);
             }
-        }
+        }*/
     }
 }

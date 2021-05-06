@@ -30,6 +30,7 @@ namespace ScheduleApi
                 optionsBuilder.UseSqlServer("Server=DESKTOP-DS1R1FU\\SQLEXPRESS;Initial Catalog=ScheduleDB; Trusted_Connection=True");
             }
         }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
