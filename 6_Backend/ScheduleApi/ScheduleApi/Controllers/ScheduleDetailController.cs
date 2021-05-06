@@ -33,8 +33,8 @@ namespace ScheduleApi.Controllers
             return db.ScheduleDetails.Where(e => e.SchId == schId)
             .ToArray();
         }
-        /*
-        [HttpPost("add")]
+        
+        [HttpPost("detail/add")]
         public void AddScheduleDetail([FromBody] ScheduleDetail value)
         {
             db.ScheduleDetails.Add(value);
@@ -48,7 +48,7 @@ namespace ScheduleApi.Controllers
                 Console.WriteLine(e);
             }
         }
-        */
+        
         [HttpPut("{schId}/detail/update")]
         public void UpdateSchduleDetail(int schId, [FromBody] ScheduleDetail schDetail)
         {
@@ -70,7 +70,7 @@ namespace ScheduleApi.Controllers
                 Console.WriteLine(e);
             }
         }
-
+        
         /*[HttpDelete("{schId}/delete")]
         public void DeleteScheduleDetail(int schId)
         {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "riZJO6XZPv1gJ+yX5793HMMu6tkZGpdjD8lZTrj2bb4GJT5lqOPl2cVF4HUAPrrMvmXMk4UipK38em6u7RSJtw==",
+  "dgSpecHash": "L36XGdCMMIY6vwkhtSE+adS3UGkFBaANqICn+FsWrFXM5u7wgi6EUQmMnjC+fx61ftaqkRrpyST/IxHAf03DHQ==",
   "success": true,
-  "projectFilePath": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj",
+  "projectFilePath": "D:\\Work\\internship\\hw\\trainee-2021\\6_Backend\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WINDOWS X\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\WINDOWS X\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

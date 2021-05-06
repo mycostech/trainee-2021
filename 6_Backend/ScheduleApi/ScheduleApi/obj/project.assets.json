@@ -5948,11 +5948,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj",
+      "projectUniqueName": "D:\\Work\\internship\\hw\\trainee-2021\\6_Backend\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj",
       "projectName": "ScheduleApi",
-      "projectPath": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\ScheduleApi.csproj",
+      "projectPath": "D:\\Work\\internship\\hw\\trainee-2021\\6_Backend\\ScheduleApi\\ScheduleApi\\ScheduleApi.csproj",
       "packagesPath": "C:\\Users\\WINDOWS X\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\internship\\API\\ScheduleAPI\\ScheduleApi\\obj\\",
+      "outputPath": "D:\\Work\\internship\\hw\\trainee-2021\\6_Backend\\ScheduleApi\\ScheduleApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\WINDOWS X\\AppData\\Roaming\\NuGet\\NuGet.Config",
