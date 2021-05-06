@@ -16,14 +16,14 @@ namespace NoteApi.Services
         {
             _context = context;
         }
-        public async Task<Note> CreateItem(Note contract)
+        public async Task<Note> CreateItem(Note data)
         {
             var note = new Note()
             {
-                Id = contract.Id,
-                TitleNote = contract.TitleNote,
-                DescriptionNote = contract.DescriptionNote,
-                DateNote = contract.DateNote
+                Id = data.Id,
+                TitleNote = data.TitleNote,
+                DescriptionNote = data.DescriptionNote,
+                DateNote = data.DateNote
             };
             try
             {
@@ -34,7 +34,7 @@ namespace NoteApi.Services
             {
                 throw err;
             }
-            return contract;
+            return data;
         }
 
         public async Task<Note> DeleteItem(int id)
@@ -59,7 +59,7 @@ namespace NoteApi.Services
             {
                 return null;
             }
-            return new Note() { Id = note.Id, TitleNote = note.TitleNote, DescriptionNote = note.DescriptionNote, DateNote = note.DateNote };
+            return note;
         }
 
         public async Task<List<Note>> GetNoteItem()
@@ -67,13 +67,13 @@ namespace NoteApi.Services
             return await _context.Notes.ToListAsync();
         }
 
-        public async Task<Note> UpdateItem(int id, Note contract)
+        public async Task<Note> UpdateItem(int id, Note data)
         {
             var note = _context.Notes.First(a => a.Id == id);
             note.Id = id;
-            note.TitleNote = contract.TitleNote;
-            note.DescriptionNote = contract.DescriptionNote;
-            note.DateNote = contract.DateNote;
+            note.TitleNote = data.TitleNote;
+            note.DescriptionNote = data.DescriptionNote;
+            note.DateNote = data.DateNote;
             try
             {
                 await _context.SaveChangesAsync();
@@ -82,7 +82,7 @@ namespace NoteApi.Services
             {
                 throw err;
             }
-            return contract;
+            return data;
         }
     }
 }
