@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NoteApi.Data;
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -73,7 +73,7 @@ namespace NoteApi.Services
             note.Id = id;
             note.TitleNote = data.TitleNote;
             note.DescriptionNote = data.DescriptionNote;
-            note.DateNote = data.DateNote;
+            note.DateNote = DateTime.Now;
             try
             {
                 await _context.SaveChangesAsync();
