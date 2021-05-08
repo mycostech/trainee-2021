@@ -17,11 +17,13 @@ namespace diaryApp_backend.Controllers
         private readonly IEventService _eventService;
         private diaryAppContext dbContext;
 
+        // Constructor
         public EventController(IEventService eventService)
         {
             _eventService = eventService;
         }
 
+        // GET: Event of uid
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{uid}")]
         public async Task<ActionResult<IEnumerable<Events>>> GetEvents(string uid) {
@@ -29,7 +31,7 @@ namespace diaryApp_backend.Controllers
             return await _eventService.GetEvents(uid);
         }
 
-   
+        // GET: Event Detail od eventID
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("detail/{id}")]
         public async Task<ActionResult<Events>> GetEventDetail(int id) {
@@ -42,7 +44,7 @@ namespace diaryApp_backend.Controllers
             return task;
         }
 
-
+        // GET: Search Event by event name
         [HttpGet("search/{name}")]
         public async Task<ActionResult<IEnumerable<Events>>> SearchByName(string name) {
 
@@ -50,7 +52,7 @@ namespace diaryApp_backend.Controllers
         }
 
 
-
+        // POST: Add Event
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("add")]
         public async Task<ActionResult<Events>> AddEvent([FromBody]Events newEvent) {
@@ -78,7 +80,7 @@ namespace diaryApp_backend.Controllers
         }
 
 
-
+        // PUT: edit Event
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut("edit/{id}")]
         public async Task<ActionResult<Events>> ModifyEvent(int id,[FromBody]Events edit_event) {
@@ -102,6 +104,7 @@ namespace diaryApp_backend.Controllers
             }
         }
 
+        // DELETE: Delete Event
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Events>> DelEvent(int id) {

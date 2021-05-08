@@ -23,5 +23,7 @@
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Data\ViewModel\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

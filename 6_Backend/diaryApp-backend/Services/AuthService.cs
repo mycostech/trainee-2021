@@ -109,7 +109,8 @@ namespace diaryApp_backend.Services
                 Nickname = newUser.Nickname,
                 Birthdate = newUser.Birthdate,
                 Email = newUser.Email,
-                Password = newUser.Password
+                Password = newUser.Password,
+                ProfileImage = newUser.ProfileImage
             };
 
 

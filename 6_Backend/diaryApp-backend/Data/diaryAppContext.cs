@@ -19,6 +19,7 @@ namespace diaryApp_backend
 
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Images> Images { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -106,6 +107,21 @@ namespace diaryApp_backend
                    .IsUnicode(false)
                    .HasColumnName("ProfileImage");
 
+            });
+
+            modelBuilder.Entity<Images>(entity =>
+            {
+                entity.Property(e => e.ImageId)
+                .HasColumnName("id");
+                
+
+                entity.Property(e => e.Title)
+                    .HasColumnType("nvarchar(50)")
+                    .HasColumnName("title");
+
+                entity.Property(e => e.Imagename)
+                    .HasColumnType("nvarchar(100)")
+                    .HasColumnName("name");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 
 #nullable disable
@@ -33,6 +35,9 @@ namespace diaryApp_backend
         public string ProfileImage { get; set; }
 
         public DateTime Birthdate { get; set; }
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
 
         public virtual ICollection<Events> Events { get; set; }
     }
