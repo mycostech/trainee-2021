@@ -9,16 +9,22 @@ namespace budgetAPI.Service
 {
     public class TransactionDetailService : ITransactionDetailService
     {
-        private readonly budgetDBContext _contaxt = new budgetDBContext();
-        public async Task<List<TransactionDetail>> SelectTranDetail(int tranid)
-        {
-            var trandeList = _contaxt.TransactionDetails.Where(td => td.TransactionId == tranid);
+        private readonly budgetDBv2Context _context;
 
-            if (trandeList == null)
+        public TransactionDetailService(budgetDBv2Context context)
+        {
+            _context = context;
+        }
+
+        public async Task<List<TransactionDetail>> SelectTranDetail(int tranId)
+        {
+            var tranDeList = _context.TransactionDetails.Where(td => td.TransactionId == tranId);
+            if(tranDeList == null)
             {
                 return null;
             }
-            return trandeList.Select(td => new TransactionDetail()
+
+            return tranDeList.Select(td => new TransactionDetail()
             {
                 TransactionId = td.TransactionId,
                 TransactionDeId = td.TransactionDeId,
@@ -40,55 +46,56 @@ namespace budgetAPI.Service
 
             try
             {
-                _contaxt.Add(tranDe);
-                _contaxt.SaveChanges();
+                _context.Add(tranDe);
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException e)
             {
                 throw e;
             }
-            return trande;
+            return tranDe;
         }
 
         public async Task<TransactionDetail> DeleteTranDetail(int tranid, int trandeId)
         {
-            var deltranDe = _contaxt.TransactionDetails.Where(dt => dt.TransactionId == tranid && dt.TransactionDeId == trandeId).FirstOrDefault();
+            var delTd = _context.TransactionDetails.Single(dTd => dTd.TransactionId == tranid && dTd.TransactionDeId == trandeId);
+            if(delTd == null)
+            {
+                return null;
+            }
+
             try
             {
-                _contaxt.Remove(deltranDe);
-                _contaxt.SaveChanges();
+                _context.Remove(delTd);
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException e)
             {
                 throw e;
             }
-
-            return new TransactionDetail()
-            {
-                Amount = deltranDe.Amount,
-                Note = deltranDe.Note,
-                TransactionId = deltranDe.TransactionId,
-                TypeId = deltranDe.TypeId,
-                TransactionDeId = deltranDe.TransactionDeId
-            };
+            return delTd;
         }
 
         public async Task<TransactionDetail> ModifyTranDetail(int tranid, int trandeId, TransactionDetail trande)
         {
-            var motranDe = _contaxt.TransactionDetails.Where(mtd => mtd.TransactionId == tranid && mtd.TransactionDeId == trandeId).FirstOrDefault();
-            motranDe.Amount = trande.Amount;
-            motranDe.Note = trande.Note;
+            var moTd = _context.TransactionDetails.Single(moTd => moTd.TransactionId == tranid && moTd.TransactionDeId == trandeId);
+
+            moTd.Amount = trande.Amount;
+            moTd.Note = trande.Note;
+            moTd.TypeId = trande.TypeId;
 
             try
             {
-                _contaxt.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException e)
             {
-                throw e;
+                throw e; //Not Found & Bad request
             }
 
             return trande;
+
+
         }
     }
 }

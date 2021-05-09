@@ -7,7 +7,7 @@ namespace budgetAPI.Service.Interface
 {
     public interface ITransactionDetailService
     {
-        public Task<List<TransactionDetail>> SelectTranDetail(int tranid);
+        public Task<List<TransactionDetail>> SelectTranDetail(int tranId);
         public Task<TransactionDetail> InsertTranDetail(TransactionDetail trande);
         public Task<TransactionDetail> DeleteTranDetail(int tranid, int trandeId);
         public Task<TransactionDetail> ModifyTranDetail(int tranid, int trandeId, TransactionDetail trande);

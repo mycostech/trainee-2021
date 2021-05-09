@@ -36,13 +36,14 @@ namespace budgetAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "budgetAPI", Version = "v1" });
             });
 
-            services.AddDbContext<budgetDBContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MyBudgetApp")));
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ITransactionService, TransactionService>();
-            services.AddScoped<ITransactionDetailService, TransactionDetailService>();
-            services.AddScoped<ICatagoryService, CatagoryService>();
-            services.AddScoped<ITypeService, TypeService>();
+            services.AddDbContext<budgetDBv2Context>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("BudgetApp")));
+
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ITransactionService, TransactionService>();
+        services.AddScoped<ITransactionDetailService, TransactionDetailService>();
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<ITypeService, TypeService>();
 
         }
 

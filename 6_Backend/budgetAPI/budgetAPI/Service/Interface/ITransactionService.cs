@@ -9,6 +9,6 @@ namespace budgetAPI.Service.Interface
     {
         public Task<List<Transaction>> SelectTransaction(int userid);
         public Task<Transaction> InsertTransaction(Transaction tran);
-        public Task<Transaction> DeleteTransaction(int userid, int tranid);
+        public Task<Transaction> DeleteTransaction(int tranid);
     }
 }

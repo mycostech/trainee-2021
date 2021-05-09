@@ -1,78 +1,78 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using budgetAPI.Service.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-namespace budgetAPI.Service.Interface
+namespace budgetAPI.Service
 {
     public class TransactionService : ITransactionService
     {
-        private readonly budgetDBContext _context = new budgetDBContext();
+        private readonly budgetDBv2Context _context;
+        public TransactionService(budgetDBv2Context context)
+        {
+            _context = context;
+        }
 
+        //Select Transaction
         public async Task<List<Transaction>> SelectTransaction(int userid)
         {
-
             var tranList = _context.Transactions.Where(t => t.UserId == userid);
-
+         
             if (tranList == null)
             {
                 return null;
             }
-            return tranList.Select(t => new Transaction()
+
+            return tranList.Select(tl => new Transaction()
             {
-                TransactionId = t.TransactionId,
-                Date = t.Date,
-                UserId = t.UserId
+                TransactionId = tl.TransactionId,
+                Date = tl.Date,
+                UserId = tl.UserId
             }).ToList();
         }
 
+        //Insert Transaction
         public async Task<Transaction> InsertTransaction(Transaction tran)
         {
-            var transac = new Transaction()
+            var t = new Transaction()
             {
-                TransactionId = tran.TransactionId,
                 Date = tran.Date,
                 UserId = tran.UserId
             };
 
             try
             {
-                _context.Add(transac);
+                _context.Add(t);
                 _context.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException e)
+            catch(DbUpdateConcurrencyException e)
             {
                 throw e;
             }
-            return tran;
+            return t;
         }
 
-        public async Task<Transaction> DeleteTransaction(int userid, int tranid)
+        public async Task<Transaction> DeleteTransaction(int tranid)
         {
-            var deltran = _context.Transactions.Where(d => d.UserId == userid && d.TransactionId == tranid).FirstOrDefault();
-            //var deltran = _context.Transactions.Find(tranid);
+            var delTran = _context.Transactions.Single(dt => dt.TransactionId == tranid);
+
+            if(delTran == null)
+            {
+                return null;
+            }
 
             try
             {
-                _context.Remove(deltran);
-                _context.SaveChanges();          
-                
+                _context.Remove(delTran);
+                _context.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException e)
+            catch(DbUpdateConcurrencyException e)
             {
                 throw e;
             }
-
-            return new Transaction()
-            {
-                TransactionId = deltran.TransactionId,
-                Date = deltran.Date,
-                UserId = deltran.UserId
-
-            };
+            return delTran;
         }
-
     }
 }

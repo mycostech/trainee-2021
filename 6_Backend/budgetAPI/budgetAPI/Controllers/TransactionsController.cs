@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using budgetAPI;
 using budgetAPI.Service.Interface;
-//using budgetAPI.budgetDBContext;
+//using budgetAPI.budgetDBv2Context;
 
 namespace budgetAPI.Controllers
 {
@@ -17,86 +17,136 @@ namespace budgetAPI.Controllers
     {
         private readonly ITransactionService _tranService;
         private readonly ITransactionDetailService _tranDeService;
-        private readonly ICatagoryService _catagoryService;
+        private readonly ICategoryService _categoryService;
         private readonly ITypeService _typeService;
-
-        public TransactionsController(ITransactionService tranService, ITransactionDetailService tranDeService, ICatagoryService catagoryService, ITypeService typeService)
+        public TransactionsController(ITransactionService tranService, ITransactionDetailService tranDeService, ICategoryService categoryService, ITypeService typeService)
         {
             _tranService = tranService;
             _tranDeService = tranDeService;
-            _catagoryService = catagoryService;
+            _categoryService = categoryService;
             _typeService = typeService;
         }
 
-
-        // GET: api/Transactions/5
+        // GET: api/Transactions/1
         [HttpGet("{userid}")]
-        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransaction(int userid)
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions(int userid)
         {
-            return await _tranService.SelectTransaction(userid);
-
+            return await _tranService.SelectTransaction(userid); //ไม่เจอ return null
         }
 
-        // POST: api/Transactions
+        // POST: api/Transaction
         [HttpPost]
         public async Task<ActionResult<Transaction>> PostTransaction([FromBody] Transaction tran)
         {
-            return await _tranService.InsertTransaction(tran);
+            try
+            {
+                return await _tranService.InsertTransaction(tran);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+            
         }
 
-        // DELETE: api/Transactions/5/2
-        [HttpDelete("{userid}/{tranid}")]
-        public async Task<ActionResult<Transaction>> DeleteTransaction(int userid, int tranid)
+        // DELETE: api/Transactions/1
+        [HttpDelete("{tranid}")]
+        public async Task<ActionResult<Transaction>> DeleteTransaction(int tranid)
         {
-            return await _tranService.DeleteTransaction(userid, tranid);
+            try
+            {
+                return await _tranService.DeleteTransaction(tranid);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+            
         }
 
-        // GET: api/TransactionsDetail/5
-        [HttpGet("TransactionDetail/{tranid}")]
-        public async Task<ActionResult<IEnumerable<TransactionDetail>>> GetTransactionDetail(int tranid)
+        //************************************************************************************************
+
+        // GET: api/TransactionsDetail
+        [HttpGet("TransactionDetail/{trandeId}")]
+        public async Task<ActionResult<IEnumerable<TransactionDetail>>> SelectTranDetail(int trandeId)
         {
-            return await _tranDeService.SelectTranDetail(tranid);
-
+            return await _tranDeService.SelectTranDetail(trandeId); //ไม่เจอ return null
         }
 
-        // POST: api/TransactionsDetail
+        // POST: api/TransactionsDetail/1
         [HttpPost("TransactionDetail")]
-        public async Task<ActionResult<TransactionDetail>> PostTransactionDetail([FromBody] TransactionDetail trande)
+        public async Task<ActionResult<TransactionDetail>> PostTransactionDe([FromBody] TransactionDetail trande)
         {
-            return await _tranDeService.InsertTranDetail(trande);
+            //return await _tranDeService.InsertTranDetail(trande);
+            try
+            {
+                return await _tranDeService.InsertTranDetail(trande);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+
         }
 
-        // DELETE: api/TransactionsDetail/5/2
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpDelete("TransactionDetail/{tranid}/{trandeId}")]
-        public async Task<ActionResult<TransactionDetail>> DeleteTranDetail(int tranid, int trandeId)
+        // DELETE: api/Transactions/1/2
+        [HttpDelete("{tranid}/{trandeId}")]
+        public async Task<ActionResult<TransactionDetail>> DeleteTranDe(int tranid, int trandeId)
         {
-            //if (_tranDeService.DeleteTranDetail(tranid, trandeId) == null)
-            //{
-            //    return NotFound();
-            //}
-            return await _tranDeService.DeleteTranDetail(tranid, trandeId);
-        } 
+            try
+            {
+                return await _tranDeService.DeleteTranDetail(tranid, trandeId);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+
+        }
 
         // PUT: api/TransactionsDetail/3/5
         [HttpPut("TransactionDetail/{tranid}/{trandeId}")]
         public async Task<ActionResult<TransactionDetail>> ModifyTranDetail(int tranid, int trandeId, [FromBody] TransactionDetail trande)
         {
-            return await _tranDeService.ModifyTranDetail(tranid, trandeId, trande);
+
+            try
+            {
+                return await _tranDeService.ModifyTranDetail(tranid, trandeId, trande);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+           
         }
+
+        //************************************************************************************************
 
         // GET: api/Catagory
         [HttpGet("Catagory")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCatagory()
         {
-            return await _catagoryService.SelectCategory();
+            var res = await _categoryService.SelectCategory();
+            if (res == null)
+            {
+                return null;
+            }
+            return res;
         }
+
+        //************************************************************************************************
 
         // GET: api/Type
         [HttpGet("Type")]
         public async Task<ActionResult<IEnumerable<Type>>> GetType()
         {
-            return await _typeService.SelectType();
+            var res = await _typeService.SelectType();
+            if (res == null)
+            {
+                return null;
+            }
+            return res;
         }
+
     }
 }
