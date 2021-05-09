@@ -19,7 +19,7 @@ namespace budgetAPI.Service
         public async Task<List<TransactionDetail>> SelectTranDetail(int tranId)
         {
             var tranDeList = _context.TransactionDetails.Where(td => td.TransactionId == tranId);
-            if(tranDeList == null)
+            if (tranDeList == null)
             {
                 return null;
             }

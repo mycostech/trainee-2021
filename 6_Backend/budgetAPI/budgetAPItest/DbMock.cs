@@ -18,6 +18,7 @@ namespace budgetAPItest
             // ADD CUSTOMER
             dbContext.Customers.Add(new Customer
             {
+                UserId = 1,
                 Firstname = "Yeo",
                 Lastname = "Lowbatt",
                 Username = "yeolowbatt",
@@ -27,6 +28,7 @@ namespace budgetAPItest
 
             dbContext.Customers.Add(new Customer
             {
+                UserId = 2,
                 Firstname = "Pong",
                 Lastname = "Pongngi",
                 Username = "pongngi",
@@ -34,8 +36,46 @@ namespace budgetAPItest
                 Password = HashPassword("12345")
             });
 
+            //dbContext.SaveChanges();
+
+            // ADD TRANSACTION
+            dbContext.Transactions.Add(new Transaction
+            {
+                TransactionId = 1,
+                Date = new DateTime(2021-05-07),
+                UserId = 1
+            });
+
+            // ADD TRANSACTION DETAIL
+            dbContext.TransactionDetails.Add(new TransactionDetail
+            {
+                TransactionDeId = 1,
+                Amount = 300,
+                Note = "เงินเดือนออกแล้วจ้า",
+                TransactionId = 2,
+                TypeId = 1
+            });
+
+            //ADD CATEGORY
+            dbContext.Categories.Add(new Category
+            {
+                CategoryId = 1,
+                CategoryName = "รายรับ"
+            });
+
+            //ADD TYPE
+            dbContext.Types.Add(new budgetAPI.Type //** ambiguous reference
+            {
+                TypeId = 1,
+                TypeName = "เงินเดือน",
+                CategoryId = 1
+            });
+
+
             dbContext.SaveChanges();
         }
+
+
 
         //Hash Password Function (Used in DB MOCK, hash password)
         public static string HashPassword(string password)

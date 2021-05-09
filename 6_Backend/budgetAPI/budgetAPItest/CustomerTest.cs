@@ -51,7 +51,8 @@ namespace budgetAPItest
             return (controller, dbContext);
         }
 
-        //**************************************************************************************
+        //***********************************************************************************************************************************************
+
 
         // CUSTOMER TEST
 
@@ -74,6 +75,7 @@ namespace budgetAPItest
         //    //Assert.Equal(null, response.Value.ElementAt(1).Firstname);
         //}
 
+
         [Fact(DisplayName = "Login Success")]
         public async Task GetLogin_S()
         {
@@ -90,6 +92,44 @@ namespace budgetAPItest
             var response = await controller.GetLogin("yeolowbatt@gmail.com", "12345678");
             dbContext.Dispose();
             Assert.IsType<NotFoundResult>(response.Result);
+        }
+
+
+        [Fact(DisplayName = "Register Success")]
+        public async Task PostRegister_S()
+        {
+            var (controller, dbContext) = GetCusConSer("Get Register Success");
+
+            var newUser = new Customer()
+            {
+                Firstname = "Namu",
+                Lastname = "Cat",
+                Email = "namu@gmail.com",
+                Password = "12345"
+            };
+
+            var response = await controller.PostUser(newUser);
+            dbContext.Dispose();
+            Assert.Equal("Namu", response.Value.Firstname);
+        }
+
+        [Fact(DisplayName = "Register Failed")]
+        public async Task PostRegister_F()
+        {
+            var (controller, dbContext) = GetCusConSer("Get Register Failed");
+
+            var newUser = new Customer()
+            {
+                Firstname = "Namu",
+                Lastname = "Cat",
+                Email = "yeolowbatt@gmail.com", //dup
+                Password = "12345"
+            };
+
+            var response = await controller.PostUser(newUser);
+            dbContext.Dispose();
+            //Assert.Equal(500, ((StatusCodeResult)response.Result).StatusCode);
+            Assert.Null(response.Result);
         }
 
     }

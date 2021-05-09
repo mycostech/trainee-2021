@@ -67,10 +67,17 @@ namespace budgetAPI.Controllers
         //************************************************************************************************
 
         // GET: api/TransactionsDetail
-        [HttpGet("TransactionDetail/{trandeId}")]
-        public async Task<ActionResult<IEnumerable<TransactionDetail>>> SelectTranDetail(int trandeId)
+        [HttpGet("TransactionDetail/{tranId}")]
+        public async Task<ActionResult<IEnumerable<TransactionDetail>>> SelectTranDetail(int tranId)
         {
-            return await _tranDeService.SelectTranDetail(trandeId); //ไม่เจอ return null
+            return await _tranDeService.SelectTranDetail(tranId); //ไม่เจอ return null
+
+            //var res = await _tranDeService.SelectTranDetail(tranId);
+            //if (res == null)
+            //{
+            //    return StatusCode(404);
+            //}
+            //return res;
         }
 
         // POST: api/TransactionsDetail/1
@@ -129,7 +136,7 @@ namespace budgetAPI.Controllers
             var res = await _categoryService.SelectCategory();
             if (res == null)
             {
-                return null;
+                return StatusCode(404);
             }
             return res;
         }
@@ -143,7 +150,7 @@ namespace budgetAPI.Controllers
             var res = await _typeService.SelectType();
             if (res == null)
             {
-                return null;
+                return StatusCode(404);
             }
             return res;
         }
