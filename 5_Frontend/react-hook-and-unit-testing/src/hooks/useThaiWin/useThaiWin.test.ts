@@ -19,7 +19,20 @@ describe('useThaiWin', () => {
         ])
     })
 
-    it('when enter once then exit once, should working correctly', () => {
+    it('when no enter but call exit, should not call Exit API', () => {
+        const { result } = renderHook(useThaiWin)
+        const mockEnterThaiWinAPI = enterThaiWinAPI
+        const mockExitThaiWinAPI = exitThaiWinAPI
+
+        act(() => {
+            result.current[2]()
+        })
+        expect(mockEnterThaiWinAPI).toHaveBeenCalledTimes(0)
+        expect(mockExitThaiWinAPI).toHaveBeenCalledTimes(0)
+        expect(result.current[0]).toEqual(false)
+    })
+
+    it('when once entered then once exited, should working correctly', () => {
         const { result } = renderHook(useThaiWin)
         const mockEnterThaiWinAPI = enterThaiWinAPI
         const mockExitThaiWinAPI = exitThaiWinAPI
@@ -36,12 +49,11 @@ describe('useThaiWin', () => {
             result.current[2]()
         })
 
-        expect(mockEnterThaiWinAPI).toHaveBeenCalledTimes(1)
         expect(mockExitThaiWinAPI).toHaveBeenCalledTimes(1)
         expect(result.current[0]).toEqual(false)
     })
 
-    it('when enter three times then exit once, should working correctly with call once Enter API then once Exit API', () => {
+    it('when enter 3 times then exit 1 time, should working correctly with call only once Enter API then once Exit API', () => {
         const { result } = renderHook(useThaiWin)
         const mockEnterThaiWinAPI = enterThaiWinAPI
         const mockExitThaiWinAPI = exitThaiWinAPI
