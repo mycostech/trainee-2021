@@ -87,6 +87,7 @@ namespace budgetAPI.Service
         //Register
         public async Task<Customer> Register(Customer user)
         {
+         
             var cus = new Customer()
             {
                 Firstname = user.Firstname,

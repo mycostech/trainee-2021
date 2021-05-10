@@ -34,7 +34,7 @@ namespace budgetAPI.Controllers
             return res;
         }
 
-        // POST: api/Customers
+        // POST: api/Customers/Register
         [HttpPost("Register")]
         public async Task<ActionResult<Customer>> PostUser([FromBody] Customer user)
         {

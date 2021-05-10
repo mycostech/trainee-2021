@@ -36,7 +36,15 @@ namespace budgetAPI.Service
 
         public async Task<TransactionDetail> InsertTranDetail(TransactionDetail trande)
         {
-            var tranDe = new TransactionDetail()
+            //try
+            //{
+            //    _context.TransactionDetails.Single(td => td.TransactionId == trande.TransactionId); //check TransactionId ก่อน
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e; //ถ้าไม่มี TransactionId นั้น
+            //}
+            var tranDe = new TransactionDetail() //ถ้ามี ลงมานี่
             {
                 Amount = trande.Amount,
                 Note = trande.Note,

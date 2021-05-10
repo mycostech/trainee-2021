@@ -36,6 +36,14 @@ namespace budgetAPI.Service
         //Insert Transaction
         public async Task<Transaction> InsertTransaction(Transaction tran)
         {
+            try
+            {
+                _context.Transactions.Single(t => t.UserId == tran.UserId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             var t = new Transaction()
             {
                 Date = tran.Date,

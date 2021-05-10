@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function App() {
+
+  const [name, setstate] = useState('Yeo')
   return (
     <div>
-      MyCos
+      Mycos Hello {name}
+
+      <input type={"text"} onChange={(e) => console.log(e.target.value)}></input>
     </div>
   );
 }

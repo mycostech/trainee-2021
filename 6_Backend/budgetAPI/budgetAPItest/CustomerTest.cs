@@ -105,6 +105,7 @@ namespace budgetAPItest
                 Firstname = "Namu",
                 Lastname = "Cat",
                 Email = "namu@gmail.com",
+                Username = "namuya",
                 Password = "12345"
             };
 
@@ -123,6 +124,7 @@ namespace budgetAPItest
                 Firstname = "Namu",
                 Lastname = "Cat",
                 Email = "yeolowbatt@gmail.com", //dup
+                Username = "namuya",
                 Password = "12345"
             };
 
