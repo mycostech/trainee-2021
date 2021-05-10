@@ -1,6 +1,14 @@
-import React from 'react'
 
-const MyLED = ({ isDanger = false, text }) => {
+interface MyLEDProps {
+    isDanger?: boolean
+    text?: string
+}
+
+function MyLED({
+    isDanger,
+    text
+}: MyLEDProps) {
+
     return (
         <div
             style={{
