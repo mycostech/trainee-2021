@@ -8,14 +8,14 @@ namespace ScheduleApi.Services
     public interface IScheduleService
     {
         
-        public Task<List<ScheduleContract>> SelectAllSchedule();
-        public Task<List<ScheduleContract>> SelectUserSchedule(int userId);
-        public Task<ScheduleContract> SelectSchedule(int schId);
-        public Task<ScheduleContract> AddSchedule(ScheduleContract schedule);
-        public Task<ScheduleContract> AddUserSchedule(int userId, ScheduleContract s);
-        public Task<ScheduleContract> UpdateSchedule(int schId, ScheduleContract s);
-        public Task<ScheduleContract> DeleteSchedule(int schId);
-        public Task<List<ScheduleContract>> DeleteAllUserSchedule(int userId);
+        public Task<List<Schedule>> SelectAllSchedule();
+        public Task<List<Schedule>> SelectUserSchedule(int userId);
+        public Task<Schedule> SelectSchedule(int schId);
+        public Task<Schedule> AddSchedule(Schedule schedule);
+        public Task<Schedule> AddUserSchedule(int userId, Schedulet s);
+        public Task<Schedule> UpdateSchedule(int schId, Schedule s);
+        public Task<Schedule> DeleteSchedule(int schId);
+        public Task<List<Schedule>> DeleteAllUserSchedule(int userId);
         
     }
 
