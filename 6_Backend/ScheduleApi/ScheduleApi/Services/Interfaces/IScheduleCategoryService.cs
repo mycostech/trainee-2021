@@ -7,7 +7,7 @@ namespace ScheduleApi.Services
 {
     public interface IScheduleCategoryService
     {
-        public Task<List<ScheduleCategoryContract>> SelectAllCategory();
+        public Task<List<ScheduleCategory>> SelectAllCategory();
     }
 
 }
