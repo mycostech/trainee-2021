@@ -40,9 +40,6 @@ namespace diaryApp_backend
                 options.UseSqlServer(Configuration.GetConnectionString("MydiaryApp2Context"))
             );
 
-     
-
-
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IimageService, ImageService>();
