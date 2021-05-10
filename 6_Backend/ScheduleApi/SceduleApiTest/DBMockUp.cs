@@ -19,14 +19,14 @@ namespace SceduleApiTest
                 Dob = new DateTime(2000,01,01)
             });  
             
-            dbContext.Schedules.Add(new Schedule
+            dbContext.Schedules.Add(new ScheduleContract
             {
                 SchId = 10000000,
                 Title = "Default",
                 UserId = 1000
             });
 
-            dbContext.ScheduleDetails.Add(new ScheduleDetail
+            dbContext.ScheduleDetails.Add(new ScheduleDetailContract
             {
                 SchId = 10000000,
                 SchDate = new DateTime(2000, 01, 01),
@@ -36,14 +36,14 @@ namespace SceduleApiTest
                 Category = "D"
             });
 
-            dbContext.Schedules.Add(new Schedule
+            dbContext.Schedules.Add(new ScheduleContract
             {
                 SchId = 10000002,
                 Title = "Natural",
                 UserId = null
             });
 
-            dbContext.ScheduleDetails.Add(new ScheduleDetail
+            dbContext.ScheduleDetails.Add(new ScheduleDetailContract
             {
                 SchId = 10000002,
                 SchDate = new DateTime(2021, 01, 01),

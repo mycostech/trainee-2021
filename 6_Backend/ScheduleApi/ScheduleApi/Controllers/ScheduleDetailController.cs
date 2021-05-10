@@ -20,26 +20,26 @@ namespace ScheduleApi.Controllers
         }
 
         [HttpGet("detail")]
-        public async Task<ActionResult<IEnumerable<ScheduleDetail>>> SelectAllScheduleDetail()
+        public async Task<ActionResult<IEnumerable<ScheduleDetailContract>>> SelectAllScheduleDetail()
         {
             return await _context.SelectAllScheduleDetail();
         }
 
         [HttpGet("{schId}/detail")]
-        public async Task<ActionResult<ScheduleDetail>> SelectScheduleDetail(int schId)
+        public async Task<ActionResult<ScheduleDetailContract>> SelectScheduleDetail(int schId)
         {
             return await _context.SelectScheduleDetail(schId);
         }
 
         [HttpPost("detail/add")]
-        public async Task<ActionResult<ScheduleDetail>> AddScheduleDetail(ScheduleDetail schDetail)
+        public async Task<ActionResult<ScheduleDetailContract>> AddScheduleDetail(ScheduleDetailContract schDetail)
         {
             return await _context.AddScheduleDetail(schDetail);
 
         }
 
         [HttpPut("{scdId}/detail/update")]
-        public async Task<ActionResult<ScheduleDetail>> UpdateScheduleDetail(int schId, ScheduleDetail schDetail)
+        public async Task<ActionResult<ScheduleDetailContract>> UpdateScheduleDetail(int schId, ScheduleDetailContract schDetail)
         {
             return await _context.UpdateScheduleDetail(schId, schDetail);
         }

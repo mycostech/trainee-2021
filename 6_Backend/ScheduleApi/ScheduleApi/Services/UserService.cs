@@ -15,22 +15,22 @@ namespace ScheduleApi.Services
             _context = context;
         }
 
-        public async Task<List<User>> SelectAllUser()
+        public async Task<List<UserContract>> SelectAllUser()
         {
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> SelectUser(int userId)
+        public async Task<UserContract> SelectUser(int userId)
         {
             return await _context.Users.FindAsync(userId);
         }
 
-        public async Task<User> AddUser(User user)
+        public async Task<UserContract> AddUser(UserContract user)
         {
             int max;
             var nUser = _context.Users.Select(e => e.UserId).ToList();
             if (nUser.Count() == 0) { max = 1001; } else { max = nUser.Max() + 1; }
-            User u = new User()
+            UserContract u = new User()
             {
                 UserId = max,
                 FirstName = user.FirstName,
@@ -41,10 +41,10 @@ namespace ScheduleApi.Services
             };
             _context.Add(u);
             
-            Schedule dob = new Schedule { SchId = u.UserId * 10000, Title = "My Birthday", UserId = user.UserId };
+            ScheduleContract dob = new ScheduleContract { SchId = u.UserId * 10000, Title = "My Birthday", UserId = user.UserId };
             _context.Schedules.Add(dob);
 
-            var dobDetail = new ScheduleDetail { SchId = dob.SchId, SchDate = user.Dob, Category = "B" };
+            var dobDetail = new ScheduleDetailContract { SchId = dob.SchId, SchDate = user.Dob, Category = "B" };
             _context.ScheduleDetails.Add(dobDetail);
             
             try
@@ -59,7 +59,7 @@ namespace ScheduleApi.Services
             return u;
         }
 
-        public async Task<User> UpdateUser(int userId, User user)
+        public async Task<UserContract> UpdateUser(int userId, UserContract user)
         {
             var u = _context.Users.Find(userId);
 
@@ -82,12 +82,12 @@ namespace ScheduleApi.Services
             return u;
         }
 
-        public async Task<User> DeleteUser(int userId)
+        public async Task<UserContract> DeleteUser(int userId)
         {
             var user = _context.Users.Find(userId);
             var sch = _context.Schedules.Where(e => e.UserId == user.UserId).ToList();
 
-            foreach (Schedule s in sch)
+            foreach (ScheduleContract s in sch)
             {
                 var schDetail = _context.ScheduleDetails.Where(e => e.SchId == s.SchId);
                 _context.ScheduleDetails.RemoveRange(schDetail);

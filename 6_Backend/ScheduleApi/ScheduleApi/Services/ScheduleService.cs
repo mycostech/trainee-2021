@@ -14,19 +14,19 @@ namespace ScheduleApi.Services
         {
             _context = context;
         }
-        public async Task<List<Schedule>> SelectAllSchedule()
+        public async Task<List<ScheduleContract>> SelectAllSchedule()
         {
             return await _context.Schedules.ToListAsync();
         }
-        public async Task<List<Schedule>> SelectUserSchedule(int userId)
+        public async Task<List<ScheduleContract>> SelectUserSchedule(int userId)
         {
             return await _context.Schedules.Where(e => e.UserId == userId || e.UserId == null).ToListAsync();
         }
-        public async Task<Schedule> SelectSchedule(int schId)
+        public async Task<ScheduleContract> SelectSchedule(int schId)
         {
             return await _context.Schedules.FindAsync(schId);
         }
-        public async Task<Schedule> AddSchedule(Schedule schedule)
+        public async Task<ScheduleContract> AddSchedule(ScheduleContract schedule)
         {
             _context.Schedules.Add(schedule);
             if (schedule.ScheduleDetail != null)
@@ -46,12 +46,12 @@ namespace ScheduleApi.Services
             }
             return schedule;
         }
-        public async Task<Schedule> AddUserSchedule(int userId, Schedule s)
+        public async Task<ScheduleContract> AddUserSchedule(int userId, ScheduleContract s)
         {
             var schedules = _context.Schedules.Where(e => e.SchId < (userId + 1) * 10000).Select(e => e.SchId).ToList().Max();
             int max;
             if (schedules < userId * 10000) { max = userId * 10000; } else { max = schedules + 1; };
-            Schedule sch = new Schedule()
+            ScheduleContract sch = new ScheduleContract()
             {
                 SchId = max,
                 Title = s.Title,
@@ -76,7 +76,7 @@ namespace ScheduleApi.Services
             }
             return sch;
         }
-        public async Task<Schedule> UpdateSchedule(int schId, Schedule s)
+        public async Task<ScheduleContract> UpdateSchedule(int schId, ScheduleContract s)
         {
             var sch = _context.Schedules.Find(schId);
 
@@ -104,7 +104,7 @@ namespace ScheduleApi.Services
             }
             return sch;
         }
-        public async Task<Schedule> DeleteSchedule(int schId)
+        public async Task<ScheduleContract> DeleteSchedule(int schId)
         {
             var sch = _context.Schedules.Find(schId);
 
@@ -125,11 +125,11 @@ namespace ScheduleApi.Services
             }
             return sch;
         }
-        public async Task<List<Schedule>> DeleteAllUserSchedule(int userId)
+        public async Task<List<ScheduleContract>> DeleteAllUserSchedule(int userId)
         {
             var sch = _context.Schedules.Where(e => e.UserId == userId).ToList();
 
-            foreach (Schedule s in sch)
+            foreach (ScheduleContract s in sch)
             {
                 var schDetail = await _context.ScheduleDetails.FindAsync(s.SchId);
                 _context.ScheduleDetails.RemoveRange(schDetail);

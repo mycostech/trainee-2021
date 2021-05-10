@@ -16,15 +16,15 @@ namespace ScheduleApi.Services
             _context = context;
         }
     
-        public async Task<List<ScheduleDetail>> SelectAllScheduleDetail()
+        public async Task<List<ScheduleDetailContract>> SelectAllScheduleDetail()
         {
             return await _context.ScheduleDetails.ToListAsync();
         }
-        public async Task<ScheduleDetail> SelectScheduleDetail(int schId)
+        public async Task<ScheduleDetailContract> SelectScheduleDetail(int schId)
         {
             return await _context.ScheduleDetails.FindAsync(schId);
         }
-        public async Task<ScheduleDetail> AddScheduleDetail(ScheduleDetail schDetail)
+        public async Task<ScheduleDetailContract> AddScheduleDetail(ScheduleDetailContract schDetail)
         {
             _context.ScheduleDetails.Add(schDetail);
 
@@ -40,7 +40,7 @@ namespace ScheduleApi.Services
             }
             return schDetail;
         }
-        public async Task<ScheduleDetail> UpdateScheduleDetail(int schId, ScheduleDetail schDetail)
+        public async Task<ScheduleDetailContract> UpdateScheduleDetail(int schId, ScheduleDetailContract schDetail)
         {
             var s = await _context.ScheduleDetails.FindAsync(schId);
 

@@ -23,49 +23,49 @@ namespace ScheduleApi.Controllers
         }
 
         [HttpGet("schedules")]
-        public async Task<ActionResult<List<Schedule>>> SelectAllSchedule()
+        public async Task<ActionResult<List<ScheduleContract>>> SelectAllSchedule()
         {
             return await _context.SelectAllSchedule();
         }
 
         [HttpGet("{userId}/schedules")]
-        public async Task<ActionResult<List<Schedule>>> SelectUserSchedule(int userId)
+        public async Task<ActionResult<List<ScheduleContract>>> SelectUserSchedule(int userId)
         {
             return await _context.SelectUserSchedule(userId);
         }
 
         [HttpGet("schedule/{schId}")]
-        public async Task<ActionResult<Schedule>> SelectSchedule(int schId)
+        public async Task<ActionResult<ScheduleContract>> SelectSchedule(int schId)
         {
             return await _context.SelectSchedule(schId);
         }
 
         [HttpPost("schedules/add")]
-        public async Task<ActionResult<Schedule>> AddSchedule(Schedule schedule)
+        public async Task<ActionResult<ScheduleContract>> AddSchedule(ScheduleContract schedule)
         {
             return await _context.AddSchedule(schedule);
         }
 
         [HttpPost("{userId}/schedules/add")]
-        public async Task<ActionResult<Schedule>> AddUserSchedule(int userId, Schedule schedule)
+        public async Task<ActionResult<ScheduleContract>> AddUserSchedule(int userId, ScheduleContract schedule)
         {
             return await _context.AddUserSchedule(userId, schedule);
         }
 
         [HttpPut("schedules/{schId}/update")]
-        public async Task<ActionResult<Schedule>> UpdateSchedule(int schId, Schedule schedule)
+        public async Task<ActionResult<ScheduleContract>> UpdateSchedule(int schId, ScheduleContract schedule)
         {
             return await _context.UpdateSchedule(schId, schedule);
         }
 
         [HttpDelete("{schId}/schedules/add")]
-        public async Task<ActionResult<Schedule>> DeleteSchedule(int schId)
+        public async Task<ActionResult<ScheduleContract>> DeleteSchedule(int schId)
         {
             return await _context.DeleteSchedule(schId);
         }
 
         [HttpDelete("{userId}/schedules/delete")]
-        public async Task<ActionResult<List<Schedule>>> DeleteAllUserSchedule(int userId)
+        public async Task<ActionResult<List<ScheduleContract>>> DeleteAllUserSchedule(int userId)
         {
             return await _context.DeleteAllUserSchedule(userId);
         }

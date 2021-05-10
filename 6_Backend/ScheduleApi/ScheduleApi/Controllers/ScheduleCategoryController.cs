@@ -38,7 +38,7 @@ namespace ScheduleApi.Controllers
         }*/
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ScheduleCategory>>> SelectAllCategory()
+        public async Task<ActionResult<IEnumerable<ScheduleCategoryContract>>> SelectAllCategory()
         {
 
             return await _context.SelectAllCategory();

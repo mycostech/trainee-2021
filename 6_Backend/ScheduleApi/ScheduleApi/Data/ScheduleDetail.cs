@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ScheduleApi
 {
-    public partial class ScheduleDetail
+    public partial class ScheduleDetailContract
     {
         public int SchId { get; set; }
         public DateTime? SchDate { get; set; }
@@ -14,8 +14,8 @@ namespace ScheduleApi
         public string Note { get; set; }
         public string Category { get; set; }
         
-        public virtual ScheduleCategory CategoryNavigation { get; set; }
-        public virtual Schedule Sch { get; set; }
+        public virtual ScheduleCategoryContract CategoryNavigation { get; set; }
+        public virtual ScheduleContract Sch { get; set; }
         
     }
 }

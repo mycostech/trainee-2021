@@ -16,7 +16,7 @@ namespace ScheduleApi.Services
             _context = context;
         }
 
-        public async Task<List<ScheduleCategory>> SelectAllCategory()
+        public async Task<List<ScheduleCategoryContract>> SelectAllCategory()
         {
             return await _context.ScheduleCategories.ToListAsync();
         }
