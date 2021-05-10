@@ -17,10 +17,10 @@ namespace ScheduleApi
         {
         }
 
-        public virtual DbSet<ScheduleContract> Schedules { get; set; }
-        public virtual DbSet<ScheduleCategoryContract> ScheduleCategories { get; set; }
-        public virtual DbSet<ScheduleDetailContract> ScheduleDetails { get; set; }
-        public virtual DbSet<UserContract> Users { get; set; }
+        public virtual DbSet<Schedule> Schedules { get; set; }
+        public virtual DbSet<ScheduleCategory> ScheduleCategories { get; set; }
+        public virtual DbSet<ScheduleDetail> ScheduleDetails { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,7 +36,7 @@ namespace ScheduleApi
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Thai_CI_AS");
 
-            modelBuilder.Entity<ScheduleContract>(entity =>
+            modelBuilder.Entity<Schedule>(entity =>
             {
                 entity.HasKey(e => e.SchId)
                     .HasName("PK__Schedule__CAD9872B88BD252A");
@@ -57,7 +57,7 @@ namespace ScheduleApi
                     .HasConstraintName("FK_UserSch");
             });
 
-            modelBuilder.Entity<ScheduleCategoryContract>(entity =>
+            modelBuilder.Entity<ScheduleCategory>(entity =>
             {
                 entity.HasKey(e => e.CatCode)
                     .HasName("PK__Schedule__5E593E4F01CF40A6");
@@ -74,7 +74,7 @@ namespace ScheduleApi
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<ScheduleDetailContract>(entity =>
+            modelBuilder.Entity<ScheduleDetail>(entity =>
             {
                 entity.HasKey(e => e.SchId)
                     .HasName("PK__Schedule__CAD9872B3D377EFA");
@@ -103,12 +103,12 @@ namespace ScheduleApi
 
                 entity.HasOne(d => d.Sch)
                     .WithOne(p => p.ScheduleDetail)
-                    .HasForeignKey<ScheduleDetailContract>(d => d.SchId)
+                    .HasForeignKey<ScheduleDetail>(d => d.SchId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SchDetail");
             });
 
-            modelBuilder.Entity<UserContract>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.UserId)
                     .ValueGeneratedNever()

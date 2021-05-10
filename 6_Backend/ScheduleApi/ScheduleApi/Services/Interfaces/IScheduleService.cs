@@ -12,7 +12,7 @@ namespace ScheduleApi.Services
         public Task<List<Schedule>> SelectUserSchedule(int userId);
         public Task<Schedule> SelectSchedule(int schId);
         public Task<Schedule> AddSchedule(Schedule schedule);
-        public Task<Schedule> AddUserSchedule(int userId, Schedulet s);
+        public Task<Schedule> AddUserSchedule(int userId, Schedule s);
         public Task<Schedule> UpdateSchedule(int schId, Schedule s);
         public Task<Schedule> DeleteSchedule(int schId);
         public Task<List<Schedule>> DeleteAllUserSchedule(int userId);

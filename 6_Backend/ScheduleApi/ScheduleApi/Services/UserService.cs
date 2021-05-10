@@ -17,7 +17,9 @@ namespace ScheduleApi.Services
 
         public async Task<List<User>> SelectAllUser()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .OrderBy(e => e.UserId)
+                .ToListAsync();
         }
 
         public async Task<User> SelectUser(int userId)
@@ -39,17 +41,21 @@ namespace ScheduleApi.Services
                 PhoneNumber = user.PhoneNumber,
                 Dob = user.Dob
             };
-            _context.Add(u);
-            
-            Schedule dob = new Schedule { SchId = u.UserId * 10000, Title = "My Birthday", UserId = user.UserId };
-            _context.Schedules.Add(dob);
 
-            var dobDetail = new ScheduleDetail { SchId = dob.SchId, SchDate = user.Dob, Category = "B" };
-            _context.ScheduleDetails.Add(dobDetail);
-            
+            _context.Users.Add(u);
+
+            if (u.Dob != null) 
+            { 
+                Schedule dob = new Schedule { SchId = u.UserId * 10000, Title = "My Birthday", UserId = u.UserId };
+                _context.Schedules.Add(dob);
+
+                var dobDetail = new ScheduleDetail { SchId = dob.SchId, SchDate = u.Dob, Category = "B" };
+                _context.ScheduleDetails.Add(dobDetail);
+            }
             try
             {
                 await _context.SaveChangesAsync();
+                Console.WriteLine("Add User Completed.");
             }
             catch (Exception e)
             {
@@ -61,13 +67,16 @@ namespace ScheduleApi.Services
 
         public async Task<User> UpdateUser(int userId, User user)
         {
-            var u = _context.Users.Find(userId);
+            var u = _context.Users.SingleOrDefault(e => e.UserId == userId);
 
             if (user.FirstName == null) { u.FirstName = u.FirstName; } else { u.FirstName = user.FirstName; };
             if (user.LastName == null) { u.LastName = u.LastName; } else { u.LastName = user.LastName; };
             if (user.Email == null) { u.Email = u.Email; } else { u.Email = user.Email; };
             if (user.PhoneNumber == null) { u.PhoneNumber = u.PhoneNumber; } else { u.PhoneNumber = user.PhoneNumber; };
-            if (user.Dob == default(DateTime)) { u.Dob = u.Dob; } else { u.Dob = user.Dob; };
+            if (user.Dob == null) { u.Dob = u.Dob; } else { u.Dob = user.Dob;
+                var updateDob = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == userId * 10000);
+                updateDob.SchDate = u.Dob;
+            };
 
             try
             {
@@ -106,7 +115,7 @@ namespace ScheduleApi.Services
                 Console.WriteLine(e);
                 throw e;
             }
-            return null;
+            return null ;
         }
     }
 }

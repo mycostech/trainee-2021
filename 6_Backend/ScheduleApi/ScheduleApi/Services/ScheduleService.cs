@@ -16,22 +16,43 @@ namespace ScheduleApi.Services
         }
         public async Task<List<Schedule>> SelectAllSchedule()
         {
-            return await _context.Schedules.ToListAsync();
+            return await _context.Schedules
+                .OrderBy(e => e.UserId)
+                .ThenBy(e => e.ScheduleDetail.SchDate)
+                .ThenBy(e => e.ScheduleDetail.BeginTime)
+                .ThenBy(e => e.ScheduleDetail.EndTime)
+                .ToListAsync();
         }
         public async Task<List<Schedule>> SelectUserSchedule(int userId)
         {
-            return await _context.Schedules.Where(e => e.UserId == userId || e.UserId == null).ToListAsync();
+            return await _context.Schedules.Where(e => e.UserId == userId || e.UserId == null)
+                .OrderBy(e => e.ScheduleDetail.SchDate)
+                .ThenBy(e => e.ScheduleDetail.BeginTime)
+                .ThenBy(e => e.ScheduleDetail.EndTime)
+                .ToListAsync();
         }
         public async Task<Schedule> SelectSchedule(int schId)
         {
             return await _context.Schedules.FindAsync(schId);
         }
+
+        //Add by Admin aka UserId == null
         public async Task<Schedule> AddSchedule(Schedule schedule)
-        {
-            _context.Schedules.Add(schedule);
+        {           
+            var schedules = _context.Schedules.Where(e => e.SchId < 10010000).Select(e => e.SchId).ToList().Max();
+            int max;
+            if (schedules < 10010000) { max = 10010000; } else { max = schedules + 1; };
+            Schedule sch = new Schedule()
+            {
+                SchId = max,
+                Title = schedule.Title,
+                ScheduleDetail = schedule.ScheduleDetail
+            };
+            _context.Schedules.Add(sch);
+
             if (schedule.ScheduleDetail != null)
             {
-                _context.ScheduleDetails.Add(schedule.ScheduleDetail);
+                _context.ScheduleDetails.Add(sch.ScheduleDetail);
             }
 
             try
@@ -46,11 +67,13 @@ namespace ScheduleApi.Services
             }
             return schedule;
         }
+
+        //Add by User
         public async Task<Schedule> AddUserSchedule(int userId, Schedule s)
         {
             var schedules = _context.Schedules.Where(e => e.SchId < (userId + 1) * 10000).Select(e => e.SchId).ToList().Max();
             int max;
-            if (schedules < userId * 10000) { max = userId * 10000; } else { max = schedules + 1; };
+            if (schedules < userId * 10000) { max = (userId * 10000) + 1; } else { max = schedules + 1; };
             Schedule sch = new Schedule()
             {
                 SchId = max,
@@ -78,12 +101,13 @@ namespace ScheduleApi.Services
         }
         public async Task<Schedule> UpdateSchedule(int schId, Schedule s)
         {
-            var sch = _context.Schedules.Find(schId);
+            var sch = _context.Schedules.SingleOrDefault(e => e.SchId == schId);
 
             if (s.Title == null) { sch.Title = sch.Title; } else { sch.Title = s.Title; }
+
             if (s.ScheduleDetail!=null)
             {
-                var schDetail = _context.ScheduleDetails.Find(schId);
+                var schDetail = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == schId);
                 var schD = s.ScheduleDetail;
                 if (schD.SchDate == null) { schDetail.SchDate = schDetail.SchDate; } else { schDetail.SchDate = schD.SchDate; };
                 if (schD.BeginTime == null) { schDetail.BeginTime = schDetail.BeginTime; } else { schDetail.BeginTime = schD.BeginTime; };
@@ -123,11 +147,11 @@ namespace ScheduleApi.Services
             {
                 Console.WriteLine(e);
             }
-            return sch;
+            return null;
         }
         public async Task<List<Schedule>> DeleteAllUserSchedule(int userId)
         {
-            var sch = _context.Schedules.Where(e => e.UserId == userId).ToList();
+            var sch = _context.Schedules.Where(e => e.UserId == userId && e.SchId != userId * 10000).ToList();
 
             foreach (Schedule s in sch)
             {
@@ -146,7 +170,7 @@ namespace ScheduleApi.Services
             {
                 Console.WriteLine(e);
             }
-            return sch;
+            return null;
         }
     }
 

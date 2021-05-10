@@ -5,16 +5,17 @@ using System.Collections.Generic;
 
 namespace ScheduleApi
 {
-    public partial class ScheduleCategoryContract
+    public partial class ScheduleCategory
     {
-        public ScheduleCategoryContract()
+
+        public ScheduleCategory()
         {
-            ScheduleDetails = new HashSet<ScheduleDetailContract>();
+            ScheduleDetails = new HashSet<ScheduleDetail>();
         }
 
         public string CatCode { get; set; }
         public string Descriptions { get; set; }
 
-        public virtual ICollection<ScheduleDetailContract> ScheduleDetails { get; set; }
+        public virtual ICollection<ScheduleDetail> ScheduleDetails { get; set; }
     }
 }

@@ -5,11 +5,12 @@ using System.Collections.Generic;
 
 namespace ScheduleApi
 {
-    public partial class UserContract
+    public partial class User
     {
-        public UserContract()
+        
+        public User()
         {
-            Schedules = new HashSet<ScheduleContract>();
+            Schedules = new HashSet<Schedule>();
         }
 
         public int UserId { get; set; }
@@ -17,8 +18,8 @@ namespace ScheduleApi
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime Dob { get; set; }
+        public DateTime? Dob { get; set; }
 
-        public virtual ICollection<ScheduleContract> Schedules { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

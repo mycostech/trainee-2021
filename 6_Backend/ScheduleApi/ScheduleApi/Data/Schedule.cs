@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace ScheduleApi
 {
-    public partial class ScheduleContract
+    public partial class Schedule
     {
         public int SchId { get; set; }
         public string Title { get; set; }
         public int? UserId { get; set; }
 
-        public virtual UserContract User { get; set; }
-        public virtual ScheduleDetailContract ScheduleDetail { get; set; }
+        public virtual User User { get; set; }
+        public virtual ScheduleDetail ScheduleDetail { get; set; }
 
     }
 }

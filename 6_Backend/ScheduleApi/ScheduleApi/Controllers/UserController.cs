@@ -20,32 +20,32 @@ namespace ScheduleApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserContract>>> SelectAllUser()
+        public async Task<ActionResult<IEnumerable<User>>> SelectAllUser()
         {
             return await _context.SelectAllUser();
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<UserContract>> SelectUser(int userId)
+        public async Task<ActionResult<User>> SelectUser(int userId)
         {
             return await _context.SelectUser(userId);
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<UserContract>> AddUser([FromBody] UserContract user)
+        public async Task<ActionResult<User>> AddUser([FromBody] User user)
         {
             return await _context.AddUser(user);
         }
 
         [HttpPut("{userId}/update")]
-        public async Task<ActionResult<UserContract>> UpdateUser(int userId, [FromBody] UserContract user)
+        public async Task<ActionResult<User>> UpdateUser(int userId, [FromBody] User user)
         {
 
             return await _context.UpdateUser(userId, user);
         }
 
         [HttpDelete("{userId}/delete")]
-        public async Task<ActionResult<UserContract>> DeleteUser(int userId)
+        public async Task<ActionResult<User>> DeleteUser(int userId)
         {
 
             return await _context.DeleteUser(userId);
