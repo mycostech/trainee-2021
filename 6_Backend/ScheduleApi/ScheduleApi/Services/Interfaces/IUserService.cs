@@ -7,10 +7,10 @@ namespace ScheduleApi.Services
 {
     public interface IUserService
     {
-        public Task<List<UserContract>> SelectAllUser();
-        public Task<UserContract> SelectUser(int userId);
-        public Task<UserContract> AddUser(UserContract user);
-        public Task<UserContract> UpdateUser(int userId, UserContract user);
-        public Task<UserContract> DeleteUser(int userId);
+        public Task<List<User>> SelectAllUser();
+        public Task<User> SelectUser(int userId);
+        public Task<User> AddUser(User user);
+        public Task<User> UpdateUser(int userId, User user);
+        public Task<User> DeleteUser(int userId);
     }
 }
