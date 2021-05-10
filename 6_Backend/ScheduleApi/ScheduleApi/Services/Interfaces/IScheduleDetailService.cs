@@ -7,10 +7,10 @@ namespace ScheduleApi.Services
 {
     public interface IScheduleDetailService
     {
-        public Task<List<ScheduleDetailContract>> SelectAllScheduleDetail();
-        public Task<ScheduleDetailContract> SelectScheduleDetail(int schId);
-        public Task<ScheduleDetailContract> AddScheduleDetail(ScheduleDetailContract schDetail);
-        public Task<ScheduleDetailContract> UpdateScheduleDetail(int schId, ScheduleDetailContract schDetail);
+        public Task<List<ScheduleDetail>> SelectAllScheduleDetail();
+        public Task<ScheduleDetail> SelectScheduleDetail(int schId);
+        public Task<ScheduleDetail> AddScheduleDetail(ScheduleDetail schDetail);
+        public Task<ScheduleDetail> UpdateScheduleDetail(int schId, ScheduleDetail schDetail);
     }
 
 
