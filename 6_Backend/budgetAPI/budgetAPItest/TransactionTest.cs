@@ -94,8 +94,8 @@ namespace budgetAPItest
 
             var response = await controller.PostTransaction(tran);
             dbContext.Dispose();
-            Assert.Equal(500, ((StatusCodeResult)response.Result).StatusCode);
-            //Assert.Null(response.Result);
+            //Assert.Equal(500, ((StatusCodeResult)response.Result).StatusCode);
+            Assert.Null(response.Result);
         }
 
 
@@ -173,8 +173,8 @@ namespace budgetAPItest
 
             var response = await controller.PostTransactionDe(tranDe);
             dbContext.Dispose();
-            Assert.Equal(500, ((StatusCodeResult)response.Result).StatusCode);
-            //Assert.Null(response.Result);
+            //Assert.Equal(500, ((StatusCodeResult)response.Result).StatusCode);
+            Assert.Null(response.Result);
         }
 
 

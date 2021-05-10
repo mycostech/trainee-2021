@@ -134,5 +134,25 @@ namespace budgetAPItest
             Assert.Null(response.Result);
         }
 
+
+        [Fact(DisplayName = "Delete User Success")]
+        public async Task DeleteUser_S()
+        {
+            var (controller, dbContext) = GetCusConSer("Delete User Success");
+
+            var response = await controller.DeleteCus(2);
+            dbContext.Dispose();
+            Assert.Equal("Pong", response.Value.Firstname);
+        }
+
+        [Fact(DisplayName = "Delete User Failed")]
+        public async Task DeleteUser_F()
+        {
+            var (controller, dbContext) = GetCusConSer("Delete User Failed");
+
+            var response = await controller.DeleteCus(5);
+            dbContext.Dispose();
+            Assert.Equal(500, ((StatusCodeResult)response.Result).StatusCode);
+        }
     }
 }

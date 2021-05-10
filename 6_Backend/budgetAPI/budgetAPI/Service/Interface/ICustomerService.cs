@@ -11,5 +11,6 @@ namespace budgetAPI.Service.Interface
         public Task<Customer> Register(Customer user);
         public Task<Customer> Login(string email, string password);
         public Task<Customer> GetUser(string email); //ใช้กับ Login -> หาว่ามี user คนนี้ ?
+        public Task<Customer> DeleteUser(int userid);
     }
 }

@@ -68,6 +68,21 @@ namespace budgetAPI.Controllers
             return NotFound();
         }
 
+        // DELETE: api/Customers/1
+        [HttpDelete("{userid}")]
+        public async Task<ActionResult<Customer>> DeleteCus(int userid)
+        {
+            try
+            {
+                return await _userService.DeleteUser(userid);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+
+        }
+
     }
 
 }

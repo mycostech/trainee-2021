@@ -143,6 +143,28 @@ namespace budgetAPI.Service
 
             return cus;
         }
+
+        //DELETE USER
+        public async Task<Customer> DeleteUser(int userid)
+        {
+            var cus = _context.Customers.Single(c => c.UserId == userid);
+
+            if (cus == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                _context.Remove(cus);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw e;
+            }
+            return cus;
+        }
     }
 
 }
