@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import ShowScore from "./ShowScore"
 
 
@@ -7,6 +7,8 @@ function Profile () {
 
     const [score, setScore] = useState<number>(0)
     const [name, setName] = useState<string>('')
+
+    //const testRef = useRef(null)
 
     const calScore = useCallback(() => {
         return score * 5
