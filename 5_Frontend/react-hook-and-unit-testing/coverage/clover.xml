@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1608099195271" clover="3.2.0">
+  <project timestamp="1608099195271" name="All files">
+    <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5" elements="26" coveredelements="26" complexity="0" loc="17" ncloc="17" packages="2" files="3" classes="3"/>
+    <package name="api">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="enterThaiWin.js" path="/Users/nook/Documents/code/mycos/intern/react-hook-intern-q4-2020/src/api/enterThaiWin.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="exitThaiWin.js" path="/Users/nook/Documents/code/mycos/intern/react-hook-intern-q4-2020/src/api/exitThaiWin.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.usePrimeNumber">
+      <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="usePrimeNumber.js" path="/Users/nook/Documents/code/mycos/intern/react-hook-intern-q4-2020/src/hooks/usePrimeNumber/usePrimeNumber.js">
+        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="16" type="stmt"/>
+        <line num="6" count="16" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="9" count="16" type="stmt"/>
+        <line num="11" count="16" type="stmt"/>
+        <line num="12" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="143" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="25" count="16" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

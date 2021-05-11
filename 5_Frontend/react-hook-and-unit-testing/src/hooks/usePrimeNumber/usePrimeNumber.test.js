@@ -12,49 +12,73 @@ describe('usePrimeNumber', () => {
         ])
     })
 
-    it('should check is Prime number correctly', () => {
-        const { result } = renderHook(usePrimeNumber)
-
-        act(() => {
-            result.current[1](2)
+    describe('should check is Prime number correctly', () => {
+        let result: any
+        beforeEach(() => {
+            result = renderHook(usePrimeNumber).result
         })
-        expect(result.current[0]).toEqual(true)
-        expect(result.current[2]).toEqual(2)
 
-        act(() => {
-            result.current[1](13)
+        test('2 is Prime', () => {
+            act(() => {
+                result.current[1](2)
+            })
+            expect(result.current[0]).toEqual(true)
+            expect(result.current[2]).toEqual(2)
         })
-        expect(result.current[0]).toEqual(true)
-        expect(result.current[2]).toEqual(13)
 
-        act(() => {
-            result.current[1](0)
-        })
-        expect(result.current[0]).toEqual(false)
-        expect(result.current[2]).toEqual(0)
 
-        act(() => {
-            result.current[1](99)
+        test('13 is Prime', () => {
+            act(() => {
+                result.current[1](13)
+            })
+            expect(result.current[0]).toEqual(true)
+            expect(result.current[2]).toEqual(13)
         })
-        expect(result.current[0]).toEqual(false)
-        expect(result.current[2]).toEqual(99)
 
-        act(() => {
-            result.current[1](103)
-        })
-        expect(result.current[0]).toEqual(true)
-        expect(result.current[2]).toEqual(103)
 
-        act(() => {
-            result.current[1](27)
+        test('0 not Prime', () => {
+            act(() => {
+                result.current[1](0)
+            })
+            expect(result.current[0]).toEqual(false)
+            expect(result.current[2]).toEqual(0)
         })
-        expect(result.current[0]).toEqual(false)
-        expect(result.current[2]).toEqual(27)
 
-        act(() => {
-            result.current[1](29)
+
+        test('99 not Prime', () => {
+            act(() => {
+                result.current[1](99)
+            })
+            expect(result.current[0]).toEqual(false)
+            expect(result.current[2]).toEqual(99)
         })
-        expect(result.current[0]).toEqual(true)
-        expect(result.current[2]).toEqual(29)
+
+
+        test('103 is Prime', () => {
+            act(() => {
+                result.current[1](103)
+            })
+            expect(result.current[0]).toEqual(true)
+            expect(result.current[2]).toEqual(103)
+        })
+
+
+        test('27 not Prime', () => {
+            act(() => {
+                result.current[1](27)
+            })
+            expect(result.current[0]).toEqual(false)
+            expect(result.current[2]).toEqual(27)
+        })
+
+
+        test('29 is Prime', () => {
+            act(() => {
+                result.current[1](29)
+            })
+            expect(result.current[0]).toEqual(true)
+            expect(result.current[2]).toEqual(29)
+        })
+
     })
 })
