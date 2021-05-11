@@ -34,37 +34,37 @@ namespace ScheduleApi.Controllers
             return await _context.SelectUserSchedule(userId);
         }
 
-        [HttpGet("schedule/{schId}")]
+        [HttpGet("schedules/{schId}")]
         public async Task<ActionResult<Schedule>> SelectSchedule(int schId)
         {
             return await _context.SelectSchedule(schId);
         }
 
-        [HttpPost("schedules/add")]
+        [HttpPost("schedules")]
         public async Task<ActionResult<Schedule>> AddSchedule(Schedule schedule)
         {
             return await _context.AddSchedule(schedule);
         }
 
-        [HttpPost("{userId}/schedules/add")]
+        [HttpPost("{userId}/schedules")]
         public async Task<ActionResult<Schedule>> AddUserSchedule(int userId, Schedule schedule)
         {
             return await _context.AddUserSchedule(userId, schedule);
         }
 
-        [HttpPut("schedules/{schId}/update")]
+        [HttpPut("schedules/{schId}")]
         public async Task<ActionResult<Schedule>> UpdateSchedule(int schId, Schedule schedule)
         {
             return await _context.UpdateSchedule(schId, schedule);
         }
 
-        [HttpDelete("{schId}/schedules/add")]
+        [HttpDelete("schedule/{schId}")]
         public async Task<ActionResult<Schedule>> DeleteSchedule(int schId)
         {
             return await _context.DeleteSchedule(schId);
         }
 
-        [HttpDelete("{userId}/schedules/delete")]
+        [HttpDelete("{userId}/schedules")]
         public async Task<ActionResult<List<Schedule>>> DeleteAllUserSchedule(int userId)
         {
             return await _context.DeleteAllUserSchedule(userId);

@@ -37,14 +37,14 @@ namespace ScheduleApi.Controllers
             return await _context.AddUser(user);
         }
 
-        [HttpPut("{userId}/update")]
+        [HttpPut("{userId}")]
         public async Task<ActionResult<User>> UpdateUser(int userId, [FromBody] User user)
         {
 
             return await _context.UpdateUser(userId, user);
         }
 
-        [HttpDelete("{userId}/delete")]
+        [HttpDelete("{userId}")]
         public async Task<ActionResult<User>> DeleteUser(int userId)
         {
 
