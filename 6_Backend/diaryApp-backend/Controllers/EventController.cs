@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using diaryApp_backend;
 using diaryApp_backend.Services.Interfaces;
+using diaryApp_backend.Data;
 
 namespace diaryApp_backend.Controllers
 {
@@ -24,38 +25,37 @@ namespace diaryApp_backend.Controllers
         }
 
         // GET: Event of uid
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{uid}")]
-        public async Task<ActionResult<IEnumerable<Events>>> GetEvents(string uid) {
+        public async Task<ActionResult<IEnumerable<EventInfo>>> GetEvents(string uid) {
 
             return await _eventService.GetEvents(uid);
         }
 
         // GET: Event Detail od eventID
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("detail/{id}")]
-        public async Task<ActionResult<Events>> GetEventDetail(int id) {
+        public async Task<ActionResult<EventInfo>> GetEventDetail(int id) {
 
             var task = await _eventService.GetEventDetail(id);
+
             if (task == null)
             {
                 return NotFound();
             }
+
             return task;
         }
 
         // GET: Search Event by event name
         [HttpGet("search/{name}")]
-        public async Task<ActionResult<IEnumerable<Events>>> SearchByName(string name) {
+        public async Task<ActionResult<IEnumerable<EventInfo>>> SearchByName(string name) {
 
             return await _eventService.SearchByEventName(name);
         }
 
 
         // POST: Add Event
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("add")]
-        public async Task<ActionResult<Events>> AddEvent([FromBody]Events newEvent) {
+        public async Task<ActionResult<Events>> AddEvent([FromBody]AddEvent newEvent) {
 
 
             try
@@ -81,9 +81,8 @@ namespace diaryApp_backend.Controllers
 
 
         // PUT: edit Event
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut("edit/{id}")]
-        public async Task<ActionResult<Events>> ModifyEvent(int id,[FromBody]Events edit_event) {
+        public async Task<ActionResult<EditEvent>> ModifyEvent(int id,[FromBody]EditEvent edit_event) {
 
             try
             {
@@ -105,7 +104,6 @@ namespace diaryApp_backend.Controllers
         }
 
         // DELETE: Delete Event
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Events>> DelEvent(int id) {
 
@@ -117,8 +115,6 @@ namespace diaryApp_backend.Controllers
             catch (Exception) {
                 return NotFound();
             }
-
-            
 
         }
 

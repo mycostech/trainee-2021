@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
-
-#nullable disable
-
-namespace diaryApp_backend
+namespace diaryApp_backend.Data
 {
-    public partial class Users
+    public class Reg
     {
-        public Users()
+        public Reg()
         {
-            Events = new HashSet<Events>();
-        }
 
-        public string Id { get; set; }
+        }
 
         [Required]
         public string Fname { get; set; }
@@ -27,20 +21,18 @@ namespace diaryApp_backend
         [Required]
         public string Nickname { get; set; }
 
+        [Required]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
 
         [Required]
         public string Password { get; set; }
 
-        public string ProfileImage { get; set; }
 
         [Required]
         public DateTime Birthdate { get; set; }
 
         [NotMapped]
         public IFormFile ImageFile { get; set; }
-
-        public virtual ICollection<Events> Events { get; set; }
     }
 }

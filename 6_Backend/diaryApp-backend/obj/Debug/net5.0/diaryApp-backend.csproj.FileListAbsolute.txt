@@ -154,3 +154,6 @@
 /Users/macbook/Projects/diaryApp-backend/diaryApp-backend/obj/Debug/net5.0/diaryApp-backend.pdb
 /Users/macbook/Projects/diaryApp-backend/diaryApp-backend/obj/Debug/net5.0/diaryApp-backend.genruntimeconfig.cache
 /Users/macbook/Projects/diaryApp-backend/diaryApp-backend/obj/Debug/net5.0/diaryApp-backend.csprojAssemblyReference.cache
+/Users/macbook/Projects/diaryApp-backend/diaryApp-backend/bin/Debug/net5.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/macbook/Projects/diaryApp-backend/diaryApp-backend/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/macbook/Projects/diaryApp-backend/diaryApp-backend/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll

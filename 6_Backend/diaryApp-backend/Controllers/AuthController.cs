@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using diaryApp_backend;
 using diaryApp_backend.Services.Interfaces;
+using diaryApp_backend.Data;
 
 namespace diaryApp_backend.Controllers
 {
@@ -26,22 +27,16 @@ namespace diaryApp_backend.Controllers
             _iimageService = iimageService;
         }
 
-        // Contructor
-        //public AuthController(IAuthService authService)
-        //{
-        //    _authService = authService;
-        //}
-
 
         // GET: Login
-        [HttpGet("login/{email}/{password}")]
-        public async Task<ActionResult<Users>> Login(string email, string password)
+        [HttpGet("login")]
+        public async Task<ActionResult<Users>> Login(UserLogin userLogin)
         {
-            var user = await _authService.GetUser(email);
+            var user = await _authService.GetUser(userLogin.Email);
 
             if (user != null)
             {
-                if (_authService.Verifypassword(password, user.Password))
+                if (_authService.Verifypassword(userLogin.Password, user.Password))
                 {
                     return user;
                 }
@@ -58,17 +53,24 @@ namespace diaryApp_backend.Controllers
 
         // POST: register new user
         [HttpPost("register")]
-        public async Task<ActionResult<Users>> Register([FromForm]Users user) {
+        public async Task<ActionResult<Users>> Register([FromForm]Reg Reguser) {
 
+            var user = new Users() {
+                Fname = Reguser.Fname,
+                Lname = Reguser.Lname,
+                Nickname = Reguser.Nickname,
+                Birthdate = Reguser.Birthdate,
+                Email = Reguser.Email
+            };
 
-            if (user.ImageFile != null)
+            if (Reguser.ImageFile != null)
             {
 
-                user.ProfileImage = await _iimageService.UploadImage(user.ImageFile);
+                user.ProfileImage = await _iimageService.UploadImage(Reguser.ImageFile);
             }
 
 
-            string savepassword = _authService.GetHashpassword(user.Password);
+            string savepassword = _authService.GetHashpassword(Reguser.Password);
 
             user.Password = savepassword;
             return await _authService.Register(user);

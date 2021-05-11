@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using diaryApp_backend.Data;
 
 namespace diaryApp_backend.Services
 {
@@ -15,50 +16,56 @@ namespace diaryApp_backend.Services
         {
             db = dbContext;
         }
-        public async Task<List<Events>> GetEvents(string uid) {
+        public async Task<List<EventInfo>> GetEvents(string uid) {
 
             var events = await db.Events.Where(e => e.UserId == uid).ToListAsync();
 
      
-            return events.Select(e => new Events()
+            return events.Select(e => new EventInfo()
             {
-                Id = e.Id,
                 DateTime = e.DateTime,
                 EventName = e.EventName,
-                Memo = e.Memo,
-                UserId = e.UserId
+                Memo = e.Memo
 
             }).ToList();
                 
         }
 
 
-        public async Task<Events> GetEventDetail(int id)
+        public async Task<EventInfo> GetEventDetail(int id)
         {
             var detail = await db.Events.Where(d => d.Id == id).FirstOrDefaultAsync();
+
 
             if (detail == null) {
                 return null;
             }
             else {
-                return detail;
+                var info = new EventInfo()
+                {
+                    DateTime = detail.DateTime,
+                    EventName = detail.EventName,
+                    Memo = detail.Memo
+                };
+                return info;
             }
         }
 
-        public async Task<List<Events>> SearchByEventName(string name) {
+        public async Task<List<EventInfo>> SearchByEventName(string name) {
 
             var content = await db.Events.Where(e => e.EventName == name).ToListAsync();
 
-            if (content == null) {
-                return null;
-            }
-            else {
-                return content;
-            }
+            return content.Select(e => new EventInfo()
+            {
+                DateTime = e.DateTime,
+                EventName = e.EventName,
+                Memo = e.Memo
+
+            }).ToList();
 
         }
 
-        public async Task<Events> addEvent(Events eventObj)
+        public async Task<Events> addEvent(AddEvent eventObj)
         {
        
             try
@@ -87,7 +94,7 @@ namespace diaryApp_backend.Services
 
         }
 
-        public async Task<Events> editEvent(int id, Events newEvent)
+        public async Task<EditEvent> editEvent(int id, EditEvent newEvent)
         {
             try
             {
