@@ -10,6 +10,7 @@ import useWeather from './hooks/useWeather';
 import useRealTimeWeather from './hooks/useRealTimeWeather';
 import useCalMuti from './hooks/useCalMuti/useCalMulti';
 import usePrimeNumber from './hooks/usePrimeNumber/usePrimeNumber';
+import useThaiWin from './hooks/useThaiWin/useThaiWin';
 
 function App() {
 
@@ -29,14 +30,20 @@ function App() {
 
   const [isPrime, calPrime, num] = usePrimeNumber()
 
+  const [isStay, enter, exit] = useThaiWin()
+
   return (
     <div>
-      <input type="number" onChange={ e => calPrime(Number(e.target.value))} />
-      {isPrime ? <p>{num} is prime</p>
-        :
-        <p>{num} is not prime</p>
-      }
+      <button onClick={enter}>enter</button>
+      <button onClick={exit}>wxit</button>
     </div>
+    // <div>
+    //   <input type="number" onChange={ e => calPrime(Number(e.target.value))} />
+    //   {isPrime ? <p>{num} is prime</p>
+    //     :
+    //     <p>{num} is not prime</p>
+    //   }
+    // </div>
     // <div>
     //   <div>
     //     <p>
@@ -44,15 +51,15 @@ function App() {
     //     </p>
     //   </div>
 
-    //   <div>
-    //     {loading ? <p>Loading...</p>
-    //       :
-    //       <p>Weather: {weather}</p>
-    //     }
-    //     <button onClick={getWeather} disabled={loading}>
-    //       GET
-    //     </button>
-    //   </div>
+      // <div>
+      //   {loading ? <p>Loading...</p>
+      //     :
+      //     <p>Weather: {weather}</p>
+      //   }
+      //   <button onClick={getWeather} disabled={loading}>
+      //     GET
+      //   </button>
+      // </div>
 
 
     //   My Max Heart Rate : {maxHeartRate}

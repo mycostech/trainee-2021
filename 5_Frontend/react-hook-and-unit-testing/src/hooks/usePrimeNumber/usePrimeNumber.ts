@@ -18,11 +18,13 @@ const usePrimeNumber = () => {
         if (CheckPrime(input) == true) {
             setNum(input)
             setIsPrime(true)
+            console.log(isPrime)
         } else {
             setNum(input)
             setIsPrime(false)
+            console.log(isPrime)
         }
-    }, [setIsPrime,setNum])
+    }, [setIsPrime, setNum])
 
     return [isPrime, calPrime, num] as const
 }
