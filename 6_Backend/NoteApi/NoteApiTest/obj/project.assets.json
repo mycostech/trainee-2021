@@ -9953,11 +9953,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApiTest\\NoteApiTest.csproj",
+      "projectUniqueName": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApiTest\\NoteApiTest.csproj",
       "projectName": "NoteApiTest",
-      "projectPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApiTest\\NoteApiTest.csproj",
+      "projectPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApiTest\\NoteApiTest.csproj",
       "packagesPath": "C:\\Users\\jatup\\.nuget\\packages\\",
-      "outputPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApiTest\\obj\\",
+      "outputPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApiTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jatup\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9974,8 +9974,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj": {
-              "projectPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj"
+            "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj": {
+              "projectPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj"
             }
           }
         }

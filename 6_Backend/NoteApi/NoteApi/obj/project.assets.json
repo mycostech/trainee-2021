@@ -7336,11 +7336,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj",
+      "projectUniqueName": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj",
       "projectName": "NoteApi",
-      "projectPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\NoteApi.csproj",
+      "projectPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\NoteApi.csproj",
       "packagesPath": "C:\\Users\\jatup\\.nuget\\packages\\",
-      "outputPath": "E:\\mYcos\\test\\C#\\NoteApi\\NoteApi\\obj\\",
+      "outputPath": "C:\\Users\\jatup\\Desktop\\mYcos\\6_Backend\\NoteApi\\NoteApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jatup\\AppData\\Roaming\\NuGet\\NuGet.Config",

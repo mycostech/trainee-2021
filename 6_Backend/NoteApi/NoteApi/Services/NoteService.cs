@@ -51,7 +51,7 @@ namespace NoteApi.Services
             return null;
         }
 
-        public async Task<Note> GetNoteItems(int id)
+        public async Task<Note> GetNoteItem(int id)
         {
             var note = await _context.Notes.FindAsync(id);
 
@@ -62,7 +62,7 @@ namespace NoteApi.Services
             return note;
         }
 
-        public async Task<List<Note>> GetNoteItem()
+        public async Task<List<Note>> GetNoteItems()
         {
             return await _context.Notes.ToListAsync();
         }

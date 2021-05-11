@@ -19,16 +19,16 @@ namespace NoteApi.Controllers
 
         // GET: api/Notes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Note>>> GetNoteItem()
+        public async Task<ActionResult<IEnumerable<Note>>> GetNoteItems()
         {
-            return await _context.GetNoteItem();
+            return await _context.GetNoteItems();
         }
 
-        // GET: api/Notes/5
+        // GET: api/Notes/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Note>> GetNoteItems(int id)
+        public async Task<ActionResult<Note>> GetNoteItem(int id)
         {
-            var noteItem = await _context.GetNoteItems(id);
+            var noteItem = await _context.GetNoteItem(id);
 
             if (noteItem == null)
             {
@@ -38,7 +38,7 @@ namespace NoteApi.Controllers
             return noteItem;
         }
 
-        // PUT: api/Notes/5
+        // PUT: api/Notes/{id}
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<ActionResult<Note>> UpdateItem(int id, Note note)
@@ -54,7 +54,7 @@ namespace NoteApi.Controllers
             return await _context.CreateItem(note);
         }
 
-        // DELETE: api/Notes/5
+        // DELETE: api/Notes/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult<Note>> DeleteItem(int id)
         {
