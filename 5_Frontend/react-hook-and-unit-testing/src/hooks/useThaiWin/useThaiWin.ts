@@ -9,6 +9,8 @@ const useThaiWin = () => {
 
     useEffect(() => {
         return () => {
+            // Components destroyed
+            console.log("terminate")
             exit()
         }
     },[])

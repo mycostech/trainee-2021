@@ -35,7 +35,11 @@ function App() {
   return (
     <div>
       <button onClick={enter}>enter</button>
-      <button onClick={exit}>wxit</button>
+      <button onClick={exit}>exit</button>
+      {isStay ? <p>API enterThaiWin</p>
+        :
+        <p> exit API enterThaiWin</p>
+      }
     </div>
     // <div>
     //   <input type="number" onChange={ e => calPrime(Number(e.target.value))} />
@@ -51,15 +55,15 @@ function App() {
     //     </p>
     //   </div>
 
-      // <div>
-      //   {loading ? <p>Loading...</p>
-      //     :
-      //     <p>Weather: {weather}</p>
-      //   }
-      //   <button onClick={getWeather} disabled={loading}>
-      //     GET
-      //   </button>
-      // </div>
+    // <div>
+    //   {loading ? <p>Loading...</p>
+    //     :
+    //     <p>Weather: {weather}</p>
+    //   }
+    //   <button onClick={getWeather} disabled={loading}>
+    //     GET
+    //   </button>
+    // </div>
 
 
     //   My Max Heart Rate : {maxHeartRate}
