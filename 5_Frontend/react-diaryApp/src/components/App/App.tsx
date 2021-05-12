@@ -25,21 +25,30 @@ function App() {
 
   return (
     <div className="App">
-      {
-        event.eventList.map(e => {
 
-          return(
-            <>
-              <div>
-                <div>date time: {e.dateTime}</div>
-                <div>event name: {e.eventName}</div>
-                <div>memo: {e.memo}</div>
-                <hr></hr>
-              </div>
-            </>
-          )
-        })
-      }
+      <div className="header-container">
+
+      </div>
+
+      <div className="event-container">
+        {
+          event.eventList.map(e => {
+
+            return(
+              <>
+                <div>
+                  <div>date time: {e.dateTime}</div>
+                  <div>event name: {e.eventName}</div>
+                  <div>memo: {e.memo}</div>
+                  <hr></hr>
+                </div>
+              </>
+            )
+          })
+        }
+      </div>
+
+      
     </div>
   );
 }
