@@ -5,7 +5,7 @@ import enterThaiWin from '../../api/enterThaiWin'
 import exitThaiWin from '../../api/exitThaiWin'
 
 const useThaiWin = () => {
-
+    const inputEl = useRef(true);
     const [isStay,setIsStay] = useState(false)
     const enter = () => {
         if(!isStay){
@@ -13,8 +13,16 @@ const useThaiWin = () => {
             setIsStay(true)
         }
     }
+
+    useEffect(() => {
+        return () => {
+            inputEl.current = false
+            exit()
+        }
+    },[])
+
     const exit = () => {
-        if(isStay){
+        if(isStay || !inputEl.current){
             exitThaiWin()
             setIsStay(false)
         }
