@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { getAllUser } from './Action/UserAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './Store'
+import Form from './Form'
 
 function App() {
   let dispatch = useDispatch()
@@ -19,20 +19,25 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form/>
+      <hr/>
+      {
+        user.userList.map(m => {
+          console.log(m)
+          return (
+            <>
+              <p key={m.id}>
+                {m.id}
+                <br/>
+                { m.title }
+                <br/>
+                {m.body}
+              </p>
+              <hr/>
+            </>
+          )
+        })
+      }
     </div>
   );
 }
