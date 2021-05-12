@@ -1,22 +1,22 @@
 import { useState } from "react"
+import useNoteApi from "../hooks/useNoteApi"
 import Note from "../models/Note"
 interface UserFormProps {
-    deleteUser: any
-}
-const defaultUser = {
-    id: 0,
+    deleteUsers: any
 }
 function UserForm({
-    deleteUser
+    deleteUsers
 }: UserFormProps) {
 
-    const [deleteNote, setDeleteNote] = useState<Note>(defaultUser)
+    const [deleteNote, setDeleteNote] = useState<Note>()
+    
+    const [users, loading, getAllUser,insertUser,deleteUser] = useNoteApi()
+
 
     return (
         <form onSubmit={(e) => {
             e.preventDefault()
-            deleteUser(deleteNote)
-            setDeleteNote(defaultUser)
+            deleteUser(deleteUsers)
         }}>
             <div>
                 {
@@ -25,15 +25,10 @@ function UserForm({
                      */
                 }
                 <div>
-                    1: <input type="text" value={deleteNote?.id} onChange={(e) => {
-                        setDeleteNote(pre => ({...pre, id: Number(e.target.value)}))
-                    }} />
+                <button onClick={() => deleteUsers}>aaaa</button>
                 </div>
             </div>
             <div>
-                <button type="submit">
-                    Add
-                </button>
             </div>
         </form>
     )

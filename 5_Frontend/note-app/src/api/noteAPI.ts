@@ -11,12 +11,8 @@ const userApi = {
     postUser: (note: Note) => {
         return axios.post<Note>(API_URL + 'Notes', {...note})
     },
-    // getUser: (note: Note) => {
-    //     return  axios.get<Note>(API_URL + 'Notes', + note.id)
-    // },
-    
     deleteUser: (note :any) => {
-        return axios.delete<Note>(API_URL + 'Notes/'+note.id)
+        return axios.delete<Note>(API_URL + 'Notes/'+note)
     }
 }
 

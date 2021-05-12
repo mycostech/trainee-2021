@@ -11,7 +11,6 @@ function App() {
     <div >
       <NoteList getNotes={getAllUser} notes={users} loading = {loading} />
       <NotePost insertUser= {insertUser} />
-      <NoteDelete deleteUser={deleteUser} />
     </div>
   );
 }

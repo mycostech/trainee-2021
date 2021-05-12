@@ -64,7 +64,3 @@ function UserForm({
 }
 
 export default UserForm
-
-function dateFormat(arg0: Date, arg1: string) {
-    throw new Error("Function not implemented.");
-}

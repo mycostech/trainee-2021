@@ -21,6 +21,7 @@ const useNoteApi = () => {
         async (newNote: Note) => {
             setLoading(true)
             const updatedUser = await noteApi.postUser(newNote)
+            console.log(updatedUser.data)
             setUsers(users => [...users, updatedUser.data])
             setLoading(false)
         },
@@ -28,18 +29,14 @@ const useNoteApi = () => {
     )
 
     const deleteUser = useCallback(
-        async (deleteNote: Note) => {
+        async (deleteNote: number) => {
             setLoading(true)
-            const deletedUser = await noteApi.deleteUser(deleteNote)
-            // setUsers([deletedUser.data])
+            await noteApi.deleteUser(deleteNote)
             setLoading(false)
         },
         [setUsers, setLoading],
     )
 
-    // getNote
-    // updateNote
-    
     return [
         users,
         loading,
