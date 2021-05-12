@@ -8,6 +8,7 @@ import Form from './Form'
 function App() {
   let dispatch = useDispatch()
   let user = useSelector((state: RootState) => state.UserReducer)
+  
 
   React.useEffect(() => {
     dispatch(getAllUser())
@@ -20,10 +21,10 @@ function App() {
   return (
     <div className="App">
       <Form/>
+     
       <hr/>
       {
         user.userList.map(m => {
-          console.log(m)
           return (
             <>
               <p key={m.id}>

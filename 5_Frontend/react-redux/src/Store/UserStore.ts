@@ -16,7 +16,14 @@ export function UserReducer(state: UserState = initialState, action: UserActionI
         case UserActionType.ADD_NEW_USER: 
             return {
                 ...state,
-                userList: [ action.payload, ...state.userList ]
+                userList: [ action.payload, ...state.userList ],
+                loading: false
+            }
+        
+        case UserActionType.SHOW_LOADING:
+            return{
+                ...state,
+                loading: true
             }
 
         default:

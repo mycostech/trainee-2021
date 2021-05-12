@@ -10,6 +10,7 @@ const getAllUser = () => async(dispatch: Dispatch<UserActionInterface>) =>  {
         type: UserActionType.GET_ALL_USER,
         payload: result.data
     })
+ 
 }
 
 const addNewUser = (newUser: User) => async(dispatch: any) => {
@@ -23,10 +24,18 @@ const addNewUser = (newUser: User) => async(dispatch: any) => {
             type: UserActionType.ADD_NEW_USER,
             payload: res.data
         })
+
+    })
+}
+
+const showLoading = () => async(dispatch: Dispatch<UserActionInterface>) => {
+    dispatch({
+        type: UserActionType.SHOW_LOADING
     })
 }
 
 export {  
     getAllUser,
-    addNewUser
+    addNewUser,
+    showLoading
 }

@@ -1,17 +1,24 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addNewUser } from './Action/UserAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { addNewUser, showLoading } from './Action/UserAction'
+import { RootState } from './Store'
 
 const Form = () => {
     const [title, setTitle] = React.useState('');
     const [body, setbody] = React.useState('')
     const [userId, setUserId] = React.useState('')
-
+    
+    const loading = useSelector((state: RootState) => state.UserReducer.loading)
     const dispatch = useDispatch()
 
     const onSubmitForm = () => {
+        dispatch(showLoading())
         dispatch(addNewUser({ title, body, userId: parseInt(userId) }))
     }
+
+    React.useEffect(() => {
+        console.log("Now Loading is : ", loading)
+    }, [loading])
 
     return (
         <>
@@ -25,6 +32,8 @@ const Form = () => {
             <br/>
             <br/>
             <button onClick={onSubmitForm}>Submit</button>
+            <br/>
+             { loading && <p>Loading....</p> }
         </>
     )
 }

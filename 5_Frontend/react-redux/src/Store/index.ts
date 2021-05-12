@@ -4,7 +4,7 @@ import { UserReducer } from './UserStore'
 import {createLogger} from 'redux-logger'
 
 const rootReducer = combineReducers({
-    UserReducer
+    UserReducer,
 })
 
 const logger = createLogger({
