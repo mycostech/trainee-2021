@@ -1,0 +1,2 @@
+exitThaiWin();
+      setStay(false);
