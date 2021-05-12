@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 
 import { getAllUser } from '../../Action/UserAction'
 import { getEventList } from '../../Action/EventAction'
@@ -27,7 +27,15 @@ function App() {
     <div className="App">
 
       <div className="header-container">
-
+        <h1>
+          My diary App
+        </h1>
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Add Event</li>
+          </ul>
+        </nav>
       </div>
 
       <div className="event-container">

@@ -1,0 +1,40 @@
+$primary_color: #FFFF;
+$darkfont_color: #565656;
+$highlightfont_color: #2d63f6;
+$success_color: #3CC47C;
+$danger_color: #FF3B3F;
+
+.App{
+  padding: 0% 10% 0% 10%;
+}
+
+.header-container {
+  padding: 5% 0% 5% 0%;
+}
+
+.header-container h1{
+  text-align: center;
+}
+
+.header-container nav{
+  padding: .5% 0% .5% 0%;
+}
+
+
+.header-container nav ul{
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.header-container nav ul li {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-container nav ul li:hover {
+  text-decoration: underline;
+  color: $highlightfont_color;
+}
+
+

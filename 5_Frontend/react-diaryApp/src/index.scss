@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap');
+
+$light_color: #FFFF;
+$darkfont_color: #565656;
+
+
+body {
+  top: 0;
+  margin: 0;
+  font-family: 'Recursive', sans-serif;
+  background-color: $light_color;
+  color: $darkfont_color;
+}
