@@ -3,7 +3,7 @@ import noteApi from "../api/noteAPI"
 import Note from "../models/Note"
 
 const useNoteApi = () => {
- 
+
     const [users, setUsers] = useState<Note[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -20,9 +20,10 @@ const useNoteApi = () => {
     const insertUser = useCallback(
         async (newNote: Note) => {
             setLoading(true)
-            const updatedUser = await noteApi.postUser(newNote)
-            console.log(updatedUser.data)
-            setUsers(users => [...users, updatedUser.data])
+            await noteApi.postUser(newNote)
+            // (edit) , identity(1,1) must get new value id 
+            const result = await noteApi.getUsers()
+            setUsers(result.data)
             setLoading(false)
         },
         [setUsers, setLoading],
@@ -32,6 +33,18 @@ const useNoteApi = () => {
         async (deleteNote: number) => {
             setLoading(true)
             await noteApi.deleteUser(deleteNote)
+            // (edit) , update column 
+            setLoading(false)
+        },
+        [setUsers, setLoading],
+    )
+
+    const updateUser = useCallback(
+        async (updateNote: Note) => {
+            setLoading(true)
+            // (edit) , Change the value , get value to input update 
+            const result = await noteApi.updateUser(updateNote)
+            // setUsers(users => [...users, result.data])
             setLoading(false)
         },
         [setUsers, setLoading],
@@ -42,7 +55,8 @@ const useNoteApi = () => {
         loading,
         getAllUsers,
         insertUser,
-        deleteUser
+        deleteUser,
+        updateUser
     ] as const
 }
 

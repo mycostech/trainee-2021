@@ -1,5 +1,7 @@
+import React from 'react'
 import Note from '../../models/Note'
 import NoteDelete from '../NoteDelete'
+import NoteUpdate from '../NoteUpdate'
 import './user-detail.css'
 interface NoteDetailProps {
     note: Note
@@ -10,11 +12,11 @@ function UserDetail({
 }: NoteDetailProps) {
     return (
         <div className="user-detail">
-            {/* <div style={{
+            <div style={{
                 flex: 1
             }}>
                 id: {note.id}
-            </div> */}
+            </div>
             <div style={{
                 flex: 1
             }}>
@@ -31,6 +33,7 @@ function UserDetail({
                 dateNote: {note.dateNote}
             </div>
             <NoteDelete deleteUsers={note.id}/>
+            <NoteUpdate updateUsers={note}/>
         </div>
 
     )

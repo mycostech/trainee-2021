@@ -13,6 +13,9 @@ const userApi = {
     },
     deleteUser: (note :any) => {
         return axios.delete<Note>(API_URL + 'Notes/'+note)
+    },
+    updateUser: (note :Note) => {
+        return axios.put<Note>(API_URL + 'Notes/' + note.id + '/' ,{...note})
     }
 }
 
