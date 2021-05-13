@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 
-import { getEventList } from '../../Action/EventAction'
+import { deleteEvent, getEventList } from '../../Action/EventAction'
 import { RootState } from '../../Reducer'
 
 
@@ -10,13 +10,21 @@ function EventList(){
 
 
     let dispatch = useDispatch()
-    const event = useSelector((state: RootState) => state.EventReducer.eventList)|| []
-    // const event: any[] = []
+
+    
+    const event = useSelector((state: RootState) => state.EventReducer.eventList) || []
+
+    const onDelete = (id?: number) => {
+        if(id){
+            dispatch(deleteEvent(id))
+        }
+        
+    }
+
     React.useEffect(() => {
         
         dispatch(getEventList('e961b9f4-9292-438e-b902-d7cfacd852cc'))
-        
-        // console.log(typeof(event))
+
         return(
             console.log('terminate')
         )
@@ -44,9 +52,8 @@ function EventList(){
                         </Link>
 
                        
-                        <button>Del</button>
+                        <button onClick={() => onDelete(e.id)}>Del</button>
                 
-                        
                         <hr></hr>
                     </div>
                 </>

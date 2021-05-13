@@ -119,12 +119,24 @@ const editEvent = (eventId: number,newEvent: IEvent) => async(dispatch: any) => 
 
 
 const deleteEvent = (eventId: number) => async(dispatch: any) => {
-    let api = API + `api/${eventId}`
+    let api = API + `api/event/${eventId}`
+    dispatch({ type: IEventActionType.DELETE_EVENT_START })
+    
     try{
-
+        axios.delete(api)
+        .then(res => {
+            console.log('delete ', res.data)
+            dispatch({
+                type: IEventActionType.DELETE_EVENT_SUCCESS,
+                payload: res.data
+            })
+        })
     }
     catch(err){
-
+        dispatch({
+            type: IEventActionType.GET_ALL_EVENT_ERROR,
+            payload: err
+        })
     }
 }
 
