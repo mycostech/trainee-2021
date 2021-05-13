@@ -1,0 +1,14 @@
+.user-detail {
+    display: flex;
+    border: 1px solid salmon;
+    flex-wrap: wrap;
+    min-height: 50px;
+    align-items: center;
+    
+}
+
+
+.user-detail:hover {
+    background-color: sandybrown;
+    cursor: pointer;
+}

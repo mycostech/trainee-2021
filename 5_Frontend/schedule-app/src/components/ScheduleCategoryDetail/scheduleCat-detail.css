@@ -1,0 +1,43 @@
+.Acat {
+    display: flex;
+    background-color: rgb(243, 126, 190);
+    flex-wrap: wrap;
+    min-height: 50px;
+    align-items: center;
+    
+}
+
+.Bcat {
+    display: flex;
+    background-color: rgb(149, 141, 253);
+    flex-wrap: wrap;
+    min-height: 50px;
+    align-items: center;
+    
+}
+
+.Icat {
+    display: flex;
+    background-color: rgb(255, 68, 68);
+    flex-wrap: wrap;
+    min-height: 50px;
+    align-items: center;
+    
+}
+
+.Hcat {
+    display: flex;
+    background-color: rgb(248, 201, 100);
+    flex-wrap: wrap;
+    min-height: 50px;
+    align-items: center;
+    
+}
+
+.Ncat {
+    display: flex;
+    background-color: rgb(87, 170, 115);
+    flex-wrap: wrap;
+    min-height: 50px;
+    align-items: center;
+}
