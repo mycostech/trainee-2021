@@ -1,5 +1,5 @@
 import { Dispatch } from 'react'
-import { UserActionType, UserActionInterface, User } from '../Store/type'
+import { UserActionType, UserActionInterface, User } from '../Reducer/type'
 import axios from 'axios'
 
 const API = process.env.REACT_APP_APP_URL

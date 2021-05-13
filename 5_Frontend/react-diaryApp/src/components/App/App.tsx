@@ -1,61 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 
-import { getAllUser } from '../../Action/UserAction'
+import { 
+  Route,
+  Link, 
+  Switch
+} from "react-router-dom";
+
+
 import { getEventList } from '../../Action/EventAction'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../Store'
+import { RootState } from '../../Reducer'
+import AddEventForm from '../AddEventForm/AddEventForm';
+import EventList from '../EventList/EventList';
+import EventDetail from '../EventDetail/EventDetail';
+import EditEventForm from '../EditEventForm/EditEventForm';
 
 
 function App() {
 
-  let dispatch = useDispatch()
-  let user = useSelector((state: RootState) => state.UserReducer)
-  let event = useSelector((state: RootState) => state.EventReducer)
-
   React.useEffect(() => {
-    dispatch(getAllUser())
-  }, [dispatch])
 
-  React.useEffect(() => {
-    dispatch(getEventList('e961b9f4-9292-438e-b902-d7cfacd852cc'))
-  },[dispatch])
+    return(
+      console.log('terminate')
+    )
+
+  },[])
 
 
   return (
-    <div className="App">
+    <div className="App"> 
 
       <div className="header-container">
-        <h1>
-          My diary App
-        </h1>
-        <nav>
-          <ul>
-            <li>Home</li>
-            <li>Add Event</li>
-          </ul>
-        </nav>
+        <h1>My diary App</h1>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/events">
+                  <a>My Events</a>
+                </Link>
+              </li>
+              <li>
+                <Link to="/addEvent">
+                  <a>New Event</a>
+                </Link>
+              </li>
+            </ul>
+          </nav>
       </div>
 
-      <div className="event-container">
-        {
-          event.eventList.map(e => {
+      <Switch>
+        {/* <Route path="/">
+          <EventList/>
+        </Route> */}
+        <Route path="/events">
+          <EventList/>
+        </Route>
 
-            return(
-              <>
-                <div>
-                  <div>date time: {e.dateTime}</div>
-                  <div>event name: {e.eventName}</div>
-                  <div>memo: {e.memo}</div>
-                  <hr></hr>
-                </div>
-              </>
-            )
-          })
-        }
-      </div>
+        <Route path="/addEvent">
+          <AddEventForm/>
+        </Route>
 
+        <Route path="/detail/:eventId">
+          <EventDetail/>
+        </Route>
+
+        <Route path="/edit/:eventId">
+          <EditEventForm/>
+        </Route> 
+
+      </Switch>
+          
       
     </div>
   );
