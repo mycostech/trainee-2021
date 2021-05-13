@@ -1,4 +1,5 @@
 import React from 'react'
+import { Card } from 'react-bootstrap'
 import Note from '../../models/Note'
 import NoteDelete from '../NoteDelete'
 import NoteUpdate from '../NoteUpdate'
@@ -11,29 +12,19 @@ function UserDetail({
     note
 }: NoteDetailProps) {
     return (
-        <div className="user-detail">
-            <div style={{
-                flex: 1
-            }}>
-                id: {note.id}
-            </div>
-            <div style={{
-                flex: 1
-            }}>
-                titleNote: {note.titleNote}
-            </div>
-            <div style={{
-                flex: 1
-            }}>
-                descriptionNote: {note.descriptionNote}
-            </div>
-            <div style={{
-                flex: 1
-            }}>
-                dateNote: {note.dateNote}
-            </div>
-            <NoteDelete deleteUsers={note.id}/>
-            <NoteUpdate updateUsers={note}/>
+        <div>
+            <Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title>{note.titleNote}</Card.Title>
+                    <Card.Text>
+                        {note.descriptionNote}
+                    </Card.Text>
+                    <Card.Subtitle className="mb-2 text-muted">{note.dateNote}</Card.Subtitle>
+                    <NoteDelete deleteUsers={note.id} />
+                    <NoteUpdate updateUsers={note} />
+                </Card.Body>
+            </Card>
+
         </div>
 
     )

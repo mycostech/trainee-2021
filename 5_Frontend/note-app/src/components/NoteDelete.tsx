@@ -1,8 +1,10 @@
+import React from "react"
+import { Button, Form } from "react-bootstrap"
 import useNoteApi from "../hooks/useNoteApi"
 
 interface UserFormProps {
     deleteUsers: any
-    
+
 }
 function UserForm({
     deleteUsers,
@@ -10,23 +12,19 @@ function UserForm({
 
     const [, , , , deleteUser] = useNoteApi()
     return (
-        <form onSubmit={(e) => {
-            e.preventDefault()
-            deleteUser(deleteUsers)
-        }}>
-            <div>
-                {
-                    /**
-                     * JS: newUser ? newUser.name : ''
-                     */
-                }
-                <div>
-                    <button onClick={() => deleteUsers}>delete</button>
-                </div>
-            </div>
-            <div>
-            </div>
-        </form>
+        <div>
+            <Form onSubmit={(e) => {
+                e.preventDefault()
+                deleteUser(deleteUsers)
+                console.log(deleteUsers)
+            }}>
+                <Button variant="danger" type="submit" onClick={() => deleteUsers}>
+                    Delete
+                </Button>
+            </Form>
+
+        </div>
+
     )
 }
 
