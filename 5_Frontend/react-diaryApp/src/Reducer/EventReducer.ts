@@ -112,7 +112,9 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
             return{
                 ...state,
                 loading: false,
-                event: payload
+                event: payload,
+                eventList: state.eventList.filter(i => i.id == payload.id)
+
             }
 
         case IEventActionType.DELETE_EVENT_ERORR:

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { useHistory, useLocation } from 'react-router';
 import { addEvent } from '../../Action/EventAction';
 import { IEvent } from '../../model/IEventType';
 import { RootState } from '../../Reducer'
@@ -13,7 +14,7 @@ function AddEventForm(){
     
     const dispatch = useDispatch()
     const event = useSelector((state: RootState) => state.EventReducer)
-
+    const history = useHistory()
     const onSubmitForm = () => {
 
         console.log('Subbit event form')
@@ -26,6 +27,7 @@ function AddEventForm(){
         }
 
         dispatch(addEvent(newEvent))
+        history.push('/events')
 
     }
 

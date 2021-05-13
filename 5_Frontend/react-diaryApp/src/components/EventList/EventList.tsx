@@ -18,7 +18,6 @@ function EventList(){
         if(id){
             dispatch(deleteEvent(id))
         }
-        
     }
 
     React.useEffect(() => {
