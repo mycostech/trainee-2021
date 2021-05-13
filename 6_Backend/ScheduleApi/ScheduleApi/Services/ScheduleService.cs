@@ -16,19 +16,14 @@ namespace ScheduleApi.Services
         }
         public async Task<List<Schedule>> SelectAllSchedule()
         {
-            return await _context.Schedules
-                .OrderBy(e => e.UserId)
-                .ThenBy(e => e.ScheduleDetail.SchDate)
-                .ThenBy(e => e.ScheduleDetail.BeginTime)
-                .ThenBy(e => e.ScheduleDetail.EndTime)
+           return await _context.Schedules
+                .OrderBy(e => e.SchId)
                 .ToListAsync();
         }
         public async Task<List<Schedule>> SelectUserSchedule(int userId)
         {
             return await _context.Schedules.Where(e => e.UserId == userId || e.UserId == null)
                 .OrderBy(e => e.ScheduleDetail.SchDate)
-                .ThenBy(e => e.ScheduleDetail.BeginTime)
-                .ThenBy(e => e.ScheduleDetail.EndTime)
                 .ToListAsync();
         }
         public async Task<Schedule> SelectSchedule(int schId)
@@ -38,22 +33,41 @@ namespace ScheduleApi.Services
 
         //Add by Admin aka UserId == null
         public async Task<Schedule> AddSchedule(Schedule schedule)
-        {           
-            var schedules = _context.Schedules.Where(e => e.SchId < 10010000).Select(e => e.SchId).ToList().Max();
+        {
+            var schedules = _context.Schedules.Where(e => e.SchId < 10010000).Select(e => e.SchId).ToList();
             int max;
-            if (schedules < 10010000) { max = 10010000; } else { max = schedules + 1; };
+            if (schedules.Count() == 0) { max = 10000000; } else { max = schedules.Max() + 1; };
+            ScheduleDetail schDetail = schedule.ScheduleDetail;
+
             Schedule sch = new Schedule()
             {
                 SchId = max,
                 Title = schedule.Title,
-                ScheduleDetail = schedule.ScheduleDetail
+                ScheduleDetail = new ScheduleDetail
+                {
+                    SchId = max,
+                    SchDate = schDetail.SchDate,
+                    Note = schDetail.Note,
+                    Category = schDetail.Category
+                }
             };
+
             _context.Schedules.Add(sch);
 
-            if (schedule.ScheduleDetail != null)
+            _context.ScheduleDetails.Add(sch.ScheduleDetail);
+
+            /*if (schedule.ScheduleDetail != null)
             {
-                _context.ScheduleDetails.Add(sch.ScheduleDetail);
-            }
+                ScheduleDetail schD = new ScheduleDetail
+                {
+                    SchId = sch.SchId,
+                    SchDate = schDetail.SchDate,
+                    Note = schDetail.Note,
+                    Category = schDetail.Category
+                };
+                
+            }*/
+
 
             try
             {
@@ -71,22 +85,39 @@ namespace ScheduleApi.Services
         //Add by User
         public async Task<Schedule> AddUserSchedule(int userId, Schedule s)
         {
-            var schedules = _context.Schedules.Where(e => e.SchId < (userId + 1) * 10000).Select(e => e.SchId).ToList().Max();
+            var schedules = _context.Schedules.Where(e => e.SchId > userId * 10000 && e.SchId < (userId + 1) * 10000).Select(e => e.SchId).ToList();
             int max;
-            if (schedules < userId * 10000) { max = (userId * 10000) + 1; } else { max = schedules + 1; };
+            if (schedules.Count() == 0) { max = (userId * 10000) + 1; } else { max = schedules.Max() + 1; };
+            ScheduleDetail schDetail = s.ScheduleDetail;
             Schedule sch = new Schedule()
             {
                 SchId = max,
                 Title = s.Title,
                 UserId = userId,
-                ScheduleDetail = s.ScheduleDetail
+                ScheduleDetail = new ScheduleDetail
+                {
+                    SchId = max,
+                    SchDate = schDetail.SchDate,
+                    Note = schDetail.Note,
+                    Category = schDetail.Category
+                }
             };
             _context.Schedules.Add(sch);
-            if (sch.ScheduleDetail != null)
-            {
-                _context.ScheduleDetails.Add(sch.ScheduleDetail);
-            }
 
+            _context.ScheduleDetails.Add(sch.ScheduleDetail);
+
+            /*if (schDetail != null)
+            {
+                ScheduleDetail schD = new ScheduleDetail
+                {
+                    SchId = sch.SchId,
+                    SchDate = schDetail.SchDate,
+                    Note = schDetail.Note,
+                    Category = schDetail.Category
+                };
+                
+            }
+            */
             try
             {
                 await _context.SaveChangesAsync();
@@ -97,7 +128,7 @@ namespace ScheduleApi.Services
                 Console.WriteLine(e);
                 throw e;
             }
-            return sch;
+            return s;
         }
         public async Task<Schedule> UpdateSchedule(int schId, Schedule s)
         {
@@ -110,8 +141,6 @@ namespace ScheduleApi.Services
                 var schDetail = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == schId);
                 var schD = s.ScheduleDetail;
                 if (schD.SchDate == null) { schDetail.SchDate = schDetail.SchDate; } else { schDetail.SchDate = schD.SchDate; };
-                if (schD.BeginTime == null) { schDetail.BeginTime = schDetail.BeginTime; } else { schDetail.BeginTime = schD.BeginTime; };
-                if (schD.EndTime == null) { schDetail.EndTime = schDetail.EndTime; } else { schDetail.EndTime = schD.EndTime; };
                 if (schD.Note == null) { schDetail.Note = schDetail.Note; } else { schDetail.Note = schD.Note; };
                 if (schD.Category == null) { schDetail.Category = schDetail.Category; } else { schDetail.Category = schD.Category; };
             }

@@ -58,7 +58,7 @@ namespace ScheduleApi.Controllers
             return await _context.UpdateSchedule(schId, schedule);
         }
 
-        [HttpDelete("schedule/{schId}")]
+        [HttpDelete("schedules/{schId}")]
         public async Task<ActionResult<Schedule>> DeleteSchedule(int schId)
         {
             return await _context.DeleteSchedule(schId);

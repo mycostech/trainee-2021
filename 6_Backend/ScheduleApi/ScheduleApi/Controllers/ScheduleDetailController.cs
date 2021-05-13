@@ -9,7 +9,7 @@ using ScheduleApi.Services;
 namespace ScheduleApi.Controllers
 {
     [ApiController]
-    [Route("api/schedule")]
+    [Route("api/schedules")]
     public class ScheduleDetailController : ControllerBase
     {
         private readonly IScheduleDetailService _context;

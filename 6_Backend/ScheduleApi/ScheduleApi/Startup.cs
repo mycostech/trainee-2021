@@ -29,10 +29,15 @@ namespace ScheduleApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddJsonOptions(options =>
+            /*services.AddCors(options =>
+                {
+                    options.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                });*/
+            services.AddCors();
+            /*services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-            });
+            });*/
             services.AddScoped<IScheduleCategoryService, ScheduleCategoryService>();
             services.AddScoped<IScheduleService, ScheduleService>();
             services.AddScoped<IScheduleDetailService, ScheduleDetailService>();
@@ -40,6 +45,7 @@ namespace ScheduleApi
             services.AddDbContext<ScheduleDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ScheduleApi")));
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ScheduleApi", Version = "v1" });
@@ -49,6 +55,14 @@ namespace ScheduleApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseCors(OptionsBuilderConfigurationExtensions => OptionsBuilderConfigurationExtensions.AllowAnyOrigin());
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,6 +80,8 @@ namespace ScheduleApi
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

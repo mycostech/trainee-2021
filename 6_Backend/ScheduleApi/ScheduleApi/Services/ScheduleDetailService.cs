@@ -20,8 +20,6 @@ namespace ScheduleApi.Services
         {
             return await _context.ScheduleDetails
                 .OrderBy(e => e.SchDate)
-                .ThenBy(e => e.BeginTime)
-                .ThenBy(e => e.EndTime)
                 .ToListAsync();
         }
         public async Task<ScheduleDetail> SelectScheduleDetail(int schId)
@@ -49,8 +47,6 @@ namespace ScheduleApi.Services
             var s = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == schId);
 
             if (schDetail.SchDate == null) { s.SchDate = s.SchDate; } else { s.SchDate = schDetail.SchDate; };
-            if (schDetail.BeginTime == null) { s.BeginTime = s.BeginTime; } else { s.BeginTime = schDetail.BeginTime; };
-            if (schDetail.EndTime == null) { s.EndTime = s.EndTime; } else { s.EndTime = schDetail.EndTime; };
             if (schDetail.Note == null) { s.Note = s.Note; } else { s.Note = schDetail.Note; };
             if (schDetail.Category == null) { s.Category = s.Category; } else { s.Category = schDetail.Category; };
 

@@ -9,7 +9,7 @@ using ScheduleApi.Services;
 namespace ScheduleApi.Controllers
 {
     [ApiController]
-    [Route("api/user")]
+    [Route("api/users")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _context;
@@ -31,7 +31,7 @@ namespace ScheduleApi.Controllers
             return await _context.SelectUser(userId);
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<ActionResult<User>> AddUser([FromBody] User user)
         {
             return await _context.AddUser(user);

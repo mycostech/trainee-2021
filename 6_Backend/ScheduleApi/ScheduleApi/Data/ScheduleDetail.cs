@@ -9,8 +9,6 @@ namespace ScheduleApi
     {
         public int SchId { get; set; }
         public DateTime? SchDate { get; set; }
-        public TimeSpan? BeginTime { get; set; }
-        public TimeSpan? EndTime { get; set; }
         public string Note { get; set; }
         public string Category { get; set; }
         
