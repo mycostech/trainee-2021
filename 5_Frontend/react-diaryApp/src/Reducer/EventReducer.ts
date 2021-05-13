@@ -75,7 +75,29 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
                 loading: false,
                 error: payload
             }
-            
+        
+
+        // edit event !!!
+        case IEventActionType.UPDATE_EVENT_START:
+            return {
+                ...state,
+                loading: true,
+                error: undefined
+            }
+        
+        case IEventActionType.UPDATE_EVENT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                event: payload
+            }
+        
+        case IEventActionType.ADD_NEW_EVENT_ERROR:
+            return{
+                ...state,
+                loading: false,
+                error: payload
+            }
             
         // case IEventActionType.DELETE_EVENT:
         //     return{

@@ -93,7 +93,8 @@ const addEvent = (newEvent: IEvent) => async(dispatch: any) => {
 }
 
 const editEvent = (eventId: number,newEvent: IEvent) => async(dispatch: any) => {
-    let api = API + `api/${eventId}`
+    let api = API + `api/event/${eventId}`
+    dispatch({ type: IEventActionType.UPDATE_EVENT_START })
     try{
         axios({
             url:api,
@@ -103,15 +104,19 @@ const editEvent = (eventId: number,newEvent: IEvent) => async(dispatch: any) => 
             console.log("edit Event", res.data)
 
             dispatch({
-                type: IEventActionType.UPDATE_EVENT,
+                type: IEventActionType.UPDATE_EVENT_SUCCESS,
                 payload: res.data
             })
         })
     }
     catch(err){
-
+        dispatch({
+            type: IEventActionType.UPDATE_EVENT_ERROR,
+            error: err
+        })
     }
 }
+
 
 const deleteEvent = (eventId: number) => async(dispatch: any) => {
     let api = API + `api/${eventId}`

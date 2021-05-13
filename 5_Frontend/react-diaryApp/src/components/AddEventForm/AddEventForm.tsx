@@ -41,33 +41,31 @@ function AddEventForm(){
 
     return (
         <div>
-      
-                <div>
-                    <label>date time</label>
-                    <input type="datetime-local"
-                        onChange={
-                            e => {setDateTime(e.target.value)}
-                        }
-                    />
-                </div>
-                <div>
-                    <label>Event name</label>
-                    <input type="text" placeholder="Event Name"
-                        onChange= {
-                            e => setEventName(e.target.value)
-                        }
-                    />
-                </div>
-                <div>
-                    <label>Memo</label>
-                    <textarea onChange={
-                        e => setMemo(e.target.value)
-                    }></textarea>
-                </div>
-                <div>
-                    <button onClick={onSubmitForm}>Submit</button>
-                </div>
-                
+            <div>
+                <label>date time</label>
+                <input type="datetime-local"
+                    onChange={
+                        e => {setDateTime(e.target.value)}
+                    }
+                />
+            </div>
+            <div>
+                <label>Event name</label>
+                <input type="text" placeholder="Event Name"
+                    onChange= {
+                        e => setEventName(e.target.value)
+                    }
+                />
+            </div>
+            <div>
+                <label>Memo</label>
+                <textarea onChange={
+                    e => setMemo(e.target.value)
+                }></textarea>
+            </div>
+            <div>
+                <button onClick={onSubmitForm}>Submit</button>
+            </div>    
         </div>
     )
 }
