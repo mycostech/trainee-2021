@@ -16,11 +16,10 @@ function ScheduleCategoryList({
 }: ScheduleCategoryListProps) {
     useEffect(() => {
         getAllScheduleCategory()
-
     }, [getAllScheduleCategory])
-
     return (
         <div>
+            <h1>Schedule Category</h1>
             {loading ? <Loading /> :
                 scheduleCat.map(m => {
                     return (

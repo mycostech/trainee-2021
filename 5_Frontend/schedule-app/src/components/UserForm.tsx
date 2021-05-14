@@ -20,7 +20,6 @@ function UserForm({
     return (
         <form onSubmit={(e) => {
             {newUser.firstName!=='' && newUser.lastName!=='' && newUser.email!=='' &&
-                // e.preventDefault()
                 addUser(newUser)
                 setNewUser(DEFAULT_USER)
             }
@@ -29,6 +28,7 @@ function UserForm({
             }
 
         }}>
+            <h3>Add</h3>
             <div>
                 *First Name: <input type="text" value={newUser?.firstName} onChange={(e) => {
                     setNewUser(pre => ({

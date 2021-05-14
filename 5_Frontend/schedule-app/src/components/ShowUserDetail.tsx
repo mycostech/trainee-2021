@@ -1,5 +1,5 @@
 import dateFormat from 'dateformat';
-import DeleteButton from './DeleteButton';
+import DeleteButton from './Buttons/DeleteButton';
 
 interface ShowUserDetailProps {
     id: number
@@ -16,7 +16,7 @@ function ShowUserDetail({id, email, phone, dob}: ShowUserDetailProps) {
             flex: 1
         }}>
             Email: {email}
-        {phone!==null && 
+        {phone!==null && phone!=='' && 
             <div>
                 Phone: {phone}
             </div>

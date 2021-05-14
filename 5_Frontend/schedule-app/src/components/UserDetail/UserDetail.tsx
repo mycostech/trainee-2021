@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import User from '../../models/User'
-import DeleteButton from '../DeleteButton'
+import DeleteButton from '../Buttons/DeleteButton'
 import ShowUserDetail from '../ShowUserDetail'
 import UserUpdateForm from '../UserUpdateForm'
 import './user-detail.css'
+import Button from '../Buttons/PageButton'
 
 interface UserDetailProps {
     user: User
@@ -39,7 +40,7 @@ function UserDetail({
                         <ShowUserDetail id={user.userId} email={user.email} phone={user.phoneNumber} dob={user.dob}/>
                     }
                     <DeleteButton deleteFunc={deleteFunc} id={user.userId}/>   
-                    <button onClick={() => setEdit(prev => !prev)}>Edit</button> 
+                    <Button handleClick={() => setEdit(prev => !prev)} buttonText="Edit"/>   
                 </div>
             }
             {edit && 
@@ -47,14 +48,16 @@ function UserDetail({
                     <div style={{
                         flex: 1
                     }}>
-                        <UserUpdateForm updateUser={updateFunc} user={user}/>
+                        <h2>Edit</h2>
                     </div>
                     <div style={{
                         flex: 1
                     }}>
-                        <DeleteButton deleteFunc={deleteFunc} id={user.userId}/>   
-                        <button onClick={() => setEdit(prev => !prev)}>Edit</button> 
+                        <UserUpdateForm updateUser={updateFunc} user={user}/>
                     </div>
+
+                        <DeleteButton deleteFunc={deleteFunc} id={user.userId}/>   
+                        <Button handleClick={() => setEdit(prev => !prev)} buttonText="Edit"/>   
                     
                 </div>
             }

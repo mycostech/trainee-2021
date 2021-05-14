@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Schedule from '../../models/Schedule'
 import ScheduleDetail from '../../models/ScheduleDetail'
-import DeleteButton from '../DeleteButton'
+import DeleteButton from '../Buttons/DeleteButton'
 import ScheduleUpdateForm from '../ScheduleUpdateForm'
 import ShowScheduleDetail from '../ShowScheduleDetail'
+import Button from '../Buttons/PageButton'
 import './schedule-detail.css'
 
 interface SchedulesDetailProps {
@@ -49,7 +50,7 @@ function SchedulesDetail({
                         <ShowScheduleDetail scheduleDetail={scheduleDetail}/>
                     }
                     <DeleteButton deleteFunc={deleteFunc} id={schedule.schId}/>
-                    <button onClick={() => setEdit(prev => !prev)}>Edit</button>        
+                    <Button handleClick={() => setEdit(prev => !prev)} buttonText="Edit"/>       
                 </div>
             }
             {edit && 
@@ -57,14 +58,15 @@ function SchedulesDetail({
                     <div style={{
                         flex: 1
                     }}>
-                        <ScheduleUpdateForm updateSchedule={updateSchedule} sch={schedule} schDetail={scheduleDetail}/>
+                        <h2>Edit</h2>
                     </div>
                     <div style={{
                         flex: 1
                     }}>
-                        <DeleteButton deleteFunc={deleteFunc} id={schedule.schId}/>   
-                        <button onClick={() => setEdit(prev => !prev)}>Edit</button> 
+                        <ScheduleUpdateForm updateSchedule={updateSchedule} sch={schedule} schDetail={scheduleDetail}/>
                     </div>
+                    <DeleteButton deleteFunc={deleteFunc} id={schedule.schId}/> 
+                    <Button handleClick={() => setEdit(prev => !prev)} buttonText="Edit"/>   
                     
                 </div>
             }

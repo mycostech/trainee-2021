@@ -7,6 +7,7 @@ interface UserListProps {
     getAllUsers: any
     loading: boolean
     users: User[]
+    user: User
     deleteUser: any
     updateUser: (id: number, user: User) => any
 }
@@ -15,16 +16,18 @@ function UserList({
     getAllUsers,
     loading,
     users,
+    user,
     deleteUser,
     updateUser
 }: UserListProps) {
     
     useEffect(() => {
         getAllUsers()
-    }, [getAllUsers])
+    }, [getAllUsers, user])
 
     return (
         <div>
+            <h1>Users</h1>
             {loading ? <Loading /> :
                 users.map(m => {
                     return <UserDetail user={m} key={m.userId} deleteFunc={deleteUser} updateFunc={updateUser}/>

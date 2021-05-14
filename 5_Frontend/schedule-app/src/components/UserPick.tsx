@@ -23,12 +23,11 @@ function UserPick({
     
     useEffect(() => {
         getUser(id)
-
     }, [id])
 
     return (
         <div>
-            <h1>Profile</h1>
+            <h1>{user.firstName}'s Profile</h1>
             {loading ? <Loading /> :
                     <UserDetail user={user} key={user.userId} deleteFunc={deleteUser} updateFunc={updateUser}/>
             }

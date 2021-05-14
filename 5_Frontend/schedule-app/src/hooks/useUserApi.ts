@@ -40,10 +40,10 @@ const useUserApi = () => {
             setLoading(true)
             const newUser = await userApi.postUser(u)
             console.log("addUser : ", newUser)
-            // setUser(newUser.data)
+            setUser(newUser.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setUser]
     )
 
     const updateUser = useCallback(
@@ -51,21 +51,21 @@ const useUserApi = () => {
             setLoading(true)
             const nUser = await userApi.putUser(id,u)
             console.log("updateUser : ", nUser)
-            // setUser(newUser.data)
+            setUser(nUser.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setUser]
     )
 
     const deleteUser = useCallback(
         async (uId: number) => {
             setLoading(true)
-            await userApi.deleteUser(uId)
+            const newUser = await userApi.deleteUser(uId)
             console.log("deleteUser : ", uId)
-            // setUser(newUser.data)
+            setUser(newUser.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setUser]
     )
     
     return [users, user, loading, getAllUsers, getUser, addUser, updateUser, deleteUser] as const

@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Schedule from "../models/Schedule";
 import ScheduleDetail from "../models/ScheduleDetail";
 import Loading from "./Loading";
 import SchedulesDetail from "./SchedulesDetail/SchedulesDetail";
+import Button from "./Buttons/PageButton"
+import UserScheduleForm from "./UserScheduleForm";
+import User from "../models/User";
 
 interface UserScheduleListProps {
     getUserSchedule: any
     getAllScheduleDetail: any
     loading: boolean
     schedules: Schedule[]
-    scheduleDetail: ScheduleDetail[]
+    scheduleDetails: ScheduleDetail[]
+    schedule: Schedule
     deleteSchedule: any
     id: number
     updateFunc: any
+    addUserSchedule: any
+    user: User
 }
 
 function UserScheduleList({
@@ -20,28 +26,35 @@ function UserScheduleList({
     getAllScheduleDetail,
     loading,
     schedules,
-    scheduleDetail,
+    scheduleDetails,
+    schedule,
     deleteSchedule,
     id,
-    updateFunc
+    updateFunc,
+    addUserSchedule,
+    user
 }: UserScheduleListProps) {
 
     useEffect(() => {
         getUserSchedule(id)
         getAllScheduleDetail()
-    }, [id])
+    }, [id, schedule, user])
 
+    const [add,setAdd] = useState<boolean>(false)
+    
     return (
         <div>
             <h1>Schedule</h1>
             {loading ? <Loading /> :
                 schedules.map(m => {
                     return (
-                        <div key={m.schId}>
-                            <SchedulesDetail schedule={m} scheduleDetail={scheduleDetail.find(e => e.schId === m.schId)} deleteFunc={deleteSchedule} updateSchedule={updateFunc}/>
-                        </div>
+                        <SchedulesDetail schedule={m} scheduleDetail={scheduleDetails.find(e => e.schId === m.schId)} deleteFunc={deleteSchedule} updateSchedule={updateFunc} key={m.schId}/>
                     )
                 })
+            }
+            <Button handleClick={() => setAdd(prev => !prev)} buttonText='+'/>
+            {add && 
+              <UserScheduleForm addUserSchedule={addUserSchedule} userId={id}/>
             }
         </div>
     )

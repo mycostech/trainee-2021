@@ -29,7 +29,7 @@ function ScheduleUpdateForm({
             {newSchedule.title!=='' && 
                 //e.preventDefault()
                 updateSchedule(sch.schId, newSchedule) 
-                setNewSchedule(DEFAULT_SCHEDULE)
+                //setNewSchedule(DEFAULT_SCHEDULE)
             }               
 
             {newSchedule.title==='' &&

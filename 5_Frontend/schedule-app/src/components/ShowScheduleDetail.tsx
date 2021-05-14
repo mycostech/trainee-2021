@@ -1,5 +1,5 @@
 import dateFormat from 'dateformat';
-import DeleteButton from './DeleteButton'
+import DeleteButton from './Buttons/DeleteButton'
 import ScheduleDetail from '../models/ScheduleDetail';
 
 interface ShowScheduleDetailProps {
@@ -20,7 +20,7 @@ function ShowScheduleDetail({scheduleDetail = DEFAULT_SCHEDULEDETAIL}: ShowSched
             flex: 1
         }}>
             Date: {dateFormat(scheduleDetail.schDate, "dS mmmm yyyy")}
-        {scheduleDetail.note !==null && 
+        {scheduleDetail.note !==null && scheduleDetail.note!=='' && 
             <div>
                 Note: {scheduleDetail.note}
             </div>

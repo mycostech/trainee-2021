@@ -33,6 +33,7 @@ function UserScheduleForm({
                 alert('Try Again.')
             }
         }}>
+            <h2>Add</h2>
             <div>
                 *Title: <input type="text" value={newSchedule.title} onChange={(e) => {
                     setNewSchedule(pre => ({

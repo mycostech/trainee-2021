@@ -56,10 +56,10 @@ const useScheduleApi = () => {
             setLoading(true)
             const newSchedule = await scheduleApi.postSchedule(s)
             console.log("addSchedule : ", newSchedule)
-            //setSchedules(newSchedule.data)
+            setSchedule(newSchedule.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setSchedule]
     )
 
     const addUserSchedule = useCallback(
@@ -67,10 +67,10 @@ const useScheduleApi = () => {
             setLoading(true)
             const newSchedule = await scheduleApi.postUserSchedule(id,s)
             console.log("addSchedule : ", newSchedule)
-            //setSchedules(newSchedule.data)
+            setSchedule(newSchedule.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setSchedule]
     )
 
     const updateSchedule = useCallback(
@@ -78,21 +78,21 @@ const useScheduleApi = () => {
             setLoading(true)
             const nSchedule = await scheduleApi.putSchedule(id,s)
             console.log("updateUser : ", nSchedule)
-            // setUser(newUser.data)
+            setSchedule(nSchedule.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setSchedule]
     )
 
     const deleteSchedule = useCallback(
         async (schId: number) => {
             setLoading(true)
-            await scheduleApi.deleteSchedule(schId)
+            const newSchedule = await scheduleApi.deleteSchedule(schId)
             console.log("deleteSchedule : ", schId)
-            //setSchedule(newSchedule.data)
+            setSchedule(newSchedule.data)
             setLoading(false)
         },
-        [setLoading]
+        [setLoading, setSchedule]
     )
     
     return [schedules, schedule, loading, getAllSchedules, getSchedule, getUserSchedule, addSchedule, addUserSchedule, updateSchedule, deleteSchedule] as const
