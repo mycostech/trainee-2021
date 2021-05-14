@@ -1,6 +1,7 @@
-import { useState } from "react"
+import React, { useState } from "react"
+import { Form, Button, Row, Container, Col } from "react-bootstrap"
 import Note from "../models/Note"
-interface UserFormProps {
+interface NotePostProps {
     insertUser: any
 }
 const defaultUser = {
@@ -9,58 +10,68 @@ const defaultUser = {
     descriptionNote: '',
     dateNote: ''
 }
-function UserForm({
+function NotePost({
     insertUser,
-}: UserFormProps) {
+}: NotePostProps) {
 
     const [newUser, setNewUser] = useState<Note>(defaultUser)
 
-    // date no auto
-    const date = "2021-05-12T10:09:27.77"
+    const today = new Date();
+    var date = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
+    var result = date.toISOString().split('T')[0];
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+    var dateTime = result + 'T' + time;
 
     return (
-        <form onSubmit={(e) => {
+        <Form onSubmit={(e) => {
             e.preventDefault()
-            insertUser(newUser)
-            setNewUser(defaultUser)
+            if (newUser.titleNote != '' && newUser.descriptionNote != '') {
+                insertUser(newUser)
+                setNewUser(defaultUser)
+            }
         }}>
             <div>
-                {
-                    /**
-                     * JS: newUser ? newUser.name : ''
-                     */
-                }
-                <div>
-                    1: <input type="text" value={newUser?.titleNote} onChange={(e) => {
-                        setNewUser(pre => ({
-                            ...pre,
-                            titleNote: e.target.value
-                        }))
-                    }} />
-                </div>
-                <div>
-                    2: <input type="text" value={newUser?.descriptionNote} onChange={(e) => {
-                        setNewUser(pre => ({
-                            ...pre,
-                            descriptionNote: e.target.value
-                        }))
-                    }} />
-                </div>
-
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control type="text" value={newUser?.titleNote} onChange={(e) => {
+                            setNewUser(pre => ({
+                                ...pre,
+                                titleNote: e.target.value
+                            }))
+                        }} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control as="textarea" rows={4} value={newUser?.descriptionNote} onChange={(e) => {
+                            setNewUser(pre => ({
+                                ...pre,
+                                descriptionNote: e.target.value
+                            }))
+                        }} />
+                    </Form.Group>
+                </Form>
             </div>
 
             <div>
-                <button type="submit" onClick={(e) => {
-                    setNewUser(pre => ({
-                        ...pre,
-                        dateNote: date
-                    }))
-                }}>
-                    Add
-                </button>
+                <Row className="justify-content-md-center">
+                    <Col md="auto">
+
+                        <Button type="submit" onClick={(e) => {
+                            setNewUser(pre => ({
+                                ...pre,
+                                dateNote: dateTime
+                            }))
+                        }}>
+                            Submit
+                        </Button>
+                    </Col>
+
+                </Row>
             </div>
-        </form>
+            <br />
+        </Form>
     )
 }
 
-export default UserForm
+export default NotePost

@@ -7,6 +7,7 @@ const useNoteApi = () => {
     const [users, setUsers] = useState<Note[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
+
     const getAllUsers = useCallback(
         async () => {
             setLoading(true)
@@ -18,11 +19,12 @@ const useNoteApi = () => {
     )
 
     const insertUser = useCallback(
-        async (newNote: Note) => {
+        async (postNote: Note) => {
             setLoading(true)
-            await noteApi.postUser(newNote)
-            // (edit) , identity(1,1) must get new value id 
+            await noteApi.postUser(postNote)
+            // (edit) , identity(0,0)
             const result = await noteApi.getUsers()
+            console.log(result.data)
             setUsers(result.data)
             setLoading(false)
         },
@@ -30,10 +32,13 @@ const useNoteApi = () => {
     )
 
     const deleteUser = useCallback(
-        async (deleteNote: number) => {
+        async (deleteNote: any) => {
             setLoading(true)
-            await noteApi.deleteUser(deleteNote)
-            // (edit) , update column 
+            const remove = await noteApi.deleteUser(deleteNote.id)
+            // (edit) delete column
+            //setUsers(users => [...users, deleteNote.data])
+            const newList = users.filter((line) => line.id !== deleteNote.id)
+            setUsers(newList)
             setLoading(false)
         },
         [setUsers, setLoading],
@@ -44,7 +49,7 @@ const useNoteApi = () => {
             setLoading(true)
             // (edit) , Change the value , get value to input update 
             const result = await noteApi.updateUser(updateNote)
-            // setUsers(users => [...users, result.data])
+            setUsers(users => [...users, result.data])
             setLoading(false)
         },
         [setUsers, setLoading],
@@ -56,7 +61,7 @@ const useNoteApi = () => {
         getAllUsers,
         insertUser,
         deleteUser,
-        updateUser
+        updateUser,
     ] as const
 }
 

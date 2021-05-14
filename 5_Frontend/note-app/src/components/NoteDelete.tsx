@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Form } from "react-bootstrap"
+import { Button, Col, Form } from "react-bootstrap"
 import useNoteApi from "../hooks/useNoteApi"
 
 interface UserFormProps {
@@ -11,6 +11,7 @@ function UserForm({
 }: UserFormProps) {
 
     const [, , , , deleteUser] = useNoteApi()
+    
     return (
         <div>
             <Form onSubmit={(e) => {
@@ -18,9 +19,11 @@ function UserForm({
                 deleteUser(deleteUsers)
                 console.log(deleteUsers)
             }}>
-                <Button variant="danger" type="submit" onClick={() => deleteUsers}>
-                    Delete
+                <Col md={{ span: 3}}>
+                    <Button size="sm" variant="danger" type="submit" onClick={() => deleteUsers}>
+                        Delete
                 </Button>
+                </Col>
             </Form>
 
         </div>

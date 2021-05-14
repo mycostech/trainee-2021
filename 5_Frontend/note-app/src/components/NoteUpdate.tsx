@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { Modal, Button, Form } from "react-bootstrap"
 import useNoteApi from "../hooks/useNoteApi"
 import Note from "../models/Note"
-interface UserFormProps {
+
+interface NoteUpdateProps {
     updateUsers: any
 }
 
@@ -13,66 +14,73 @@ const defaultUser = {
     dateNote: ''
 }
 
-function UserForm({
+function NoteUpdate({
     updateUsers,
-}: UserFormProps) {
+}: NoteUpdateProps) {
 
     const [newUser, setNewUser] = useState<Note>(defaultUser)
 
     const [, , , , , updateUser] = useNoteApi()
-
-    const date = "2021-05-12T10:09:27.77"
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const today = new Date();
+    var date = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
+    var result = date.toISOString().split('T')[0];
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+    var dateTime = result + 'T' + time;
+
     const update = function () {
         newUser.id = updateUsers.id
-        newUser.dateNote = date
-        updateUser(newUser)
-        setNewUser(defaultUser)
-        handleClose()
+        newUser.dateNote = dateTime
+        if (newUser.titleNote != '' && newUser.descriptionNote != '') {
+            updateUser(newUser)
+            setNewUser(defaultUser)
+            handleClose()
+        }
     }
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button size="sm" variant="primary" onClick={handleShow}>
                 Edit
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Update Note</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    1: <input type="text" value={newUser?.titleNote} onChange={(e) => {
-                        setNewUser(pre => ({
-                            ...pre,
-                            titleNote: e.target.value
-                        }))
-                    }} />
-                </Modal.Body>
-                <Modal.Body>
-                    2: <input type="text" value={newUser?.descriptionNote} onChange={(e) => {
-                        setNewUser(pre => ({
-                            ...pre,
-                            descriptionNote: e.target.value
-                        }))
-                    }} />
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="Title" value={newUser?.titleNote} onChange={(e) => {
+                            setNewUser(pre => ({
+                                ...pre,
+                                titleNote: e.target.value
+                            }))
+                        }} />
+                        <br />
+                        <Form.Control type="text" placeholder="Description" value={newUser?.descriptionNote} onChange={(e) => {
+                            setNewUser(pre => ({
+                                ...pre,
+                                descriptionNote: e.target.value
+                            }))
+                        }} />
+                    </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="primary" type="submit" onClick={update}>
+                        Update
+                    </Button>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="danger" type="submit" onClick={update}>
-                        Edit
-                </Button>
                 </Modal.Footer>
             </Modal>
         </>
     )
 }
 
-export default UserForm
+export default NoteUpdate
 
