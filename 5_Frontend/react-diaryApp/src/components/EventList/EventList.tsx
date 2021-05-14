@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { deleteEvent, getEventList } from '../../Action/EventAction'
 import { RootState } from '../../Reducer'
@@ -10,6 +10,8 @@ function EventList(){
 
 
     let dispatch = useDispatch()
+
+
 
     
     const event = useSelector((state: RootState) => state.EventReducer.eventList) || []

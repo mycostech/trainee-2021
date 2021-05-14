@@ -1,11 +1,9 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
-import { UserReducer } from './UserStore'
 import { EventReducer } from './EventReducer'
-import {createLogger} from 'redux-logger'
+import { createLogger } from 'redux-logger'
 
 const rootReducer = combineReducers({
-    UserReducer,
     EventReducer
 })
 

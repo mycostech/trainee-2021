@@ -4,7 +4,10 @@ const initailState: IEventsState = {
     eventList: [],
     event: undefined,
     loading: false,
-    error: undefined
+    error: undefined,
+    addSuccess: false,
+    getSuccess: false,
+    deleteSuccess: false
 }
 
 export function EventReducer(state: IEventsState = initailState, action: IEventAction): IEventsState {
@@ -17,19 +20,22 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
             return {
                 ...state,
                 loading: true,
-                error: undefined
+                error: undefined,
+                getSuccess: false
             }
         case IEventActionType.GET_ALL_EVENT_SUCESS:
             return{
                 ...state,
                 loading: false,
-                eventList: payload
+                eventList: payload,
+                getSuccess: true
             }
         case IEventActionType.GET_ALL_EVENT_ERROR:
             return {
                 ...state,
                 loading: false,
-                error: payload
+                error: payload,
+                getSuccess: false
             }
         
         // get event detail
@@ -37,21 +43,24 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
             return{
                 ...state,
                 loading: true,
-                error: undefined
+                error: undefined,
+                getSuccess: false
             }
 
         case IEventActionType.GET_EVENT_DETAIL_SUCCESS:
             return{
                 ...state,
                 loading: false,
-                event: payload
+                event: payload,
+                getSuccess: true
             }
 
         case IEventActionType.GET_EVENT_DETAIL_ERROR:
             return{
                 ...state,
                 loading: false,
-                error: payload
+                error: payload,
+                getSuccess: false
             }
 
         // add event
@@ -59,21 +68,24 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
             return{
                 ...state,
                 loading: true,
-                error: undefined
+                error: undefined,
+                addSuccess: false
             }
 
         case IEventActionType.ADD_NEW_EVENT_SUCESS:
             return{
                 ...state,
                 loading: false,
-                event: payload
+                event: payload,
+                addSuccess: true
             }
 
         case IEventActionType.ADD_NEW_EVENT_ERROR:
             return{
                 ...state,
                 loading: false,
-                error: payload
+                error: payload,
+                addSuccess: false
             }
         
 
@@ -82,30 +94,34 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
             return {
                 ...state,
                 loading: true,
-                error: undefined
+                error: undefined,
+                updateSuccess: false
             }
         
         case IEventActionType.UPDATE_EVENT_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                event: payload
+                event: payload,
+                updateSuccess: true
             }
-        
-        case IEventActionType.ADD_NEW_EVENT_ERROR:
+
+        case IEventActionType.UPDATE_EVENT_ERROR:
             return{
                 ...state,
                 loading: false,
-                error: payload
+                error: payload,
+                updateSuccess: false
             }
-        
+
 
         // delete event
         case IEventActionType.DELETE_EVENT_START:
             return{
                 ...state,
                 loading: true,
-                error: undefined
+                error: undefined,
+                deleteSuccess: false
             }
         
         case IEventActionType.DELETE_EVENT_SUCCESS:
@@ -113,15 +129,16 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
                 ...state,
                 loading: false,
                 event: payload,
-                eventList: state.eventList.filter(i => i.id == payload.id)
-
+                eventList: state.eventList.filter(i => i.id !== payload.id),
+                deleteSuccess: true
             }
 
         case IEventActionType.DELETE_EVENT_ERORR:
             return{
                 ...state,
                 loading: false,
-                error: payload
+                error: payload,
+                deleteSuccess: false
             }
 
 

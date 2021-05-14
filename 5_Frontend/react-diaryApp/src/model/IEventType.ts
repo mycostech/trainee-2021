@@ -4,6 +4,7 @@ export interface IEvent {
     eventName: string;
     memo: string;
     userId?: string;
+    
 }
 
 export interface IEventsState{
@@ -11,6 +12,10 @@ export interface IEventsState{
     loading: boolean;
     event?: IEvent;
     error?: Error;
+    addSuccess?: boolean;
+    getSuccess?: boolean;
+    updateSuccess?: boolean;
+    deleteSuccess?: boolean;
 }
 
 
@@ -35,7 +40,6 @@ export enum IEventActionType {
     DELETE_EVENT_SUCCESS = "DELETE_EVENT_SUCCESS",
     DELETE_EVENT_ERORR = "DELETE_EVENT_ERORR",
 
-    SHOW_LOADING = "SHOW_LOADING"
 }
 
 export type EventAction = IEventActionType

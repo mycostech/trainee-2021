@@ -5,16 +5,12 @@ import axios from 'axios'
 
 const API = process.env.REACT_APP_APP_URL
 
-const showLoading = () => async(dispatch: Dispatch<IEventAction>) => {
-    dispatch({
-        type: IEventActionType.SHOW_LOADING
-    })
-}
 
 const getEventList = (uid: string) => async(dispatch: Dispatch<IEventAction>) => {
     
     let api = API + `api/event/${uid}`
     dispatch({type: IEventActionType.GET_ALL_EVENT_START})
+    
     try{
 
         let result:any = await axios.get<any>(api)
@@ -28,6 +24,7 @@ const getEventList = (uid: string) => async(dispatch: Dispatch<IEventAction>) =>
     }
     catch (err){
         console.log("get event list err : ",err)
+        
         dispatch({
             type: IEventActionType.GET_ALL_EVENT_ERROR,
             payload: err
@@ -67,8 +64,9 @@ const addEvent = (newEvent: IEvent) => async(dispatch: any) => {
     let api = API + `api/event/add`
     dispatch({ type:IEventActionType.ADD_NEW_EVENT_START})
 
+
     try{
-        axios({
+        await axios({
             url: api,
             method: 'POST',
             data: newEvent
@@ -79,7 +77,7 @@ const addEvent = (newEvent: IEvent) => async(dispatch: any) => {
 
             dispatch({
                 type: IEventActionType.ADD_NEW_EVENT_SUCESS,
-                payload: res.data
+                payload: res.data,
             })
         })
     }
@@ -95,6 +93,7 @@ const addEvent = (newEvent: IEvent) => async(dispatch: any) => {
 const editEvent = (eventId: number,newEvent: IEvent) => async(dispatch: any) => {
     let api = API + `api/event/${eventId}`
     dispatch({ type: IEventActionType.UPDATE_EVENT_START })
+    
     try{
         axios({
             url:api,
@@ -141,7 +140,6 @@ const deleteEvent = (eventId: number) => async(dispatch: any) => {
 }
 
 export {
-    showLoading,
     getEventList,
     getEventDetail,
     addEvent,

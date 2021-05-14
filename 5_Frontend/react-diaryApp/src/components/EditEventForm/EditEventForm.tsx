@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {useParams}  from 'react-router-dom'
+import {Link, useHistory, useParams}  from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../Reducer'
@@ -8,10 +8,10 @@ import { IEvent } from '../../model/IEventType';
 
 function EditEventForm(){
 
-    let {eventId} = useParams<{eventId?: string}>();
-    let dispatch = useDispatch()
-    let event = useSelector((state: RootState) => state.EventReducer)
-
+    const {eventId} = useParams<{eventId?: string}>();
+    const dispatch = useDispatch()
+    const event = useSelector((state: RootState) => state.EventReducer)
+    
     console.log("eventId, ",Number(eventId))
 
     const [_dateTime, setDateTime] = useState<any>();
@@ -28,8 +28,9 @@ function EditEventForm(){
     }
 
     console.log("==> ",_eventId)
+
     const onSubmitForm = () => {
-        window.alert(_eventId)
+
         dispatch(editEvent(_eventId, newEvent))
     }
 
@@ -45,6 +46,12 @@ function EditEventForm(){
         
     return (
         <div>
+            <Link to="/events">
+                <a>Back</a>
+            </Link>
+            {event.loading &&
+                <p>Loading ...</p>
+            }
             <div>
                 <h3>old info</h3>
                 <p>date time: {event.event?.dateTime}</p>

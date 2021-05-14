@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { addEvent } from '../../Action/EventAction';
 import { IEvent } from '../../model/IEventType';
 import { RootState } from '../../Reducer'
@@ -15,6 +16,7 @@ function AddEventForm(){
     const dispatch = useDispatch()
     const event = useSelector((state: RootState) => state.EventReducer)
     const history = useHistory()
+
     const onSubmitForm = () => {
 
         console.log('Subbit event form')
@@ -27,22 +29,31 @@ function AddEventForm(){
         }
 
         dispatch(addEvent(newEvent))
-        history.push('/events')
 
     }
 
     console.log("==> ",event)
 
     React.useEffect(() => {
-        // console.log("date time :",_dateTime)
-        // console.log("event name :",_eventName)
-        // console.log("memo :",_memo)
         
-    },[])
+        if(event.addSuccess){
+
+            history.push('/events')
+        }
+        
+    },[event])
 
 
     return (
         <div>
+            <Link to="/events">
+                <a>Back</a>
+            </Link>
+            <div>
+                {event.loading &&
+                    <p>Loading ...</p>
+                }
+            </div>
             <div>
                 <label>date time</label>
                 <input type="datetime-local"
