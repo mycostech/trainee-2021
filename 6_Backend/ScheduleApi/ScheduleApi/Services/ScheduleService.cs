@@ -139,6 +139,7 @@ namespace ScheduleApi.Services
             if (s.ScheduleDetail!=null)
             {
                 var schDetail = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == schId);
+
                 var schD = s.ScheduleDetail;
                 if (schD.SchDate == null) { schDetail.SchDate = schDetail.SchDate; } else { schDetail.SchDate = schD.SchDate; };
                 if (schD.Note == null) { schDetail.Note = schDetail.Note; } else { schDetail.Note = schD.Note; };
@@ -155,7 +156,7 @@ namespace ScheduleApi.Services
                 Console.WriteLine(e);
                 throw e;
             }
-            return sch;
+            return s;
         }
         public async Task<Schedule> DeleteSchedule(int schId)
         {
