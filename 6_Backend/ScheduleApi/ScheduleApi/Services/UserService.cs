@@ -84,8 +84,11 @@ namespace ScheduleApi.Services
                     var dobDetail = new ScheduleDetail { SchId = dob.SchId, SchDate = user.Dob, Category = "B" };
                     _context.ScheduleDetails.Add(dobDetail);
                 }
-                ScheduleDetail upSchD = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == u.UserId * 10000);
-                upSchD.SchDate = user.Dob;
+                else
+                {
+                    ScheduleDetail upSchD = _context.ScheduleDetails.SingleOrDefault(e => e.SchId == u.UserId * 10000);
+                    upSchD.SchDate = user.Dob;
+                }
                 u.Dob = user.Dob;
             };
 
@@ -126,7 +129,7 @@ namespace ScheduleApi.Services
                 Console.WriteLine(e);
                 throw e;
             }
-            return null ;
+            return new User { UserId=userId }; ;
         }
     }
 }

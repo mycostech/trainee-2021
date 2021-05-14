@@ -177,7 +177,7 @@ namespace ScheduleApi.Services
             {
                 Console.WriteLine(e);
             }
-            return null;
+            return new Schedule{SchId=schId};
         }
         public async Task<List<Schedule>> DeleteAllUserSchedule(int userId)
         {
