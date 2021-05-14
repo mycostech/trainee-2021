@@ -32,7 +32,6 @@ function EventDetail(){
             </Link>
 
             <div>
-                <div>ID: {event.event?.id}</div>
                 <div>event name: {event.event?.eventName}</div>
                 <div>date time: {event.event?.dateTime}</div>
                 <div>memo: {event.event?.memo}</div>

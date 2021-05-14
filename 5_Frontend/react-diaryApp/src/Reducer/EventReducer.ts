@@ -80,6 +80,13 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
                 addSuccess: true
             }
 
+        case IEventActionType.ADD_NEW_EVENT_END:
+            return{
+                ...state,
+                loading: false,
+                addSuccess: false
+            }
+
         case IEventActionType.ADD_NEW_EVENT_ERROR:
             return{
                 ...state,
@@ -104,6 +111,13 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
                 loading: false,
                 event: payload,
                 updateSuccess: true
+            }
+
+        case IEventActionType.UPDATE_EVENT_END:
+            return {
+                ...state,
+                loading: false,
+                updateSuccess: false
             }
 
         case IEventActionType.UPDATE_EVENT_ERROR:

@@ -8,48 +8,62 @@ import { IEvent } from '../../model/IEventType';
 
 function EditEventForm(){
 
+    const history = useHistory();
     const {eventId} = useParams<{eventId?: string}>();
+    
     const dispatch = useDispatch()
+    const [count, setCount] = useState<number>(0);
+
     const event = useSelector((state: RootState) => state.EventReducer)
+    const user = useSelector((state: RootState) => state.UserReducer)
+    const auth = useSelector((state: RootState) => state.AuthReducer)
     
     console.log("eventId, ",Number(eventId))
 
     const [_dateTime, setDateTime] = useState<any>();
     const [_eventname, setEventName] = useState<string>('');
     const [_memo, setMemo] = useState<string>('');
-    const [_eventId, setEventId] = useState<number>(0); 
-
-
-    const newEvent: IEvent = {
-        dateTime: _dateTime,
-        eventName: _eventname,
-        memo: _memo,
-        userId: 'e961b9f4-9292-438e-b902-d7cfacd852cc'
-    }
-
-    console.log("==> ",_eventId)
+    
 
     const onSubmitForm = () => {
 
-        dispatch(editEvent(_eventId, newEvent))
+        if(user.success && auth.logingIn){
+
+            let newEvent: IEvent = {
+                dateTime: _dateTime,
+                eventName: _eventname,
+                memo: _memo,
+                userId: user.userInfo?.id
+            }
+            console.log("event ID ==> ",eventId)
+            console.log(newEvent)
+
+            dispatch(editEvent(Number(eventId), newEvent))
+        }
     }
 
     useEffect(() => {
         
-        setEventId(Number(eventId))
-        dispatch(getEventDetail(Number(eventId)))
+        if(count === 0){
+            dispatch(getEventDetail(Number(eventId)))
+        }
+        if(event.updateSuccess ){
+            history.push('/events')
+        }
+        
+        setCount(1)
 
         return () => {
         }
 
-    }, [setEventId, dispatch])
+    }, [dispatch, event])
         
     return (
         <div>
             <Link to="/events">
                 <a>Back</a>
             </Link>
-            {event.loading &&
+            {!event.updateSuccess &&
                 <p>Loading ...</p>
             }
             <div>

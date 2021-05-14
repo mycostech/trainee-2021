@@ -11,10 +11,10 @@ function EventList(){
 
     let dispatch = useDispatch()
 
-
-
     
     const event = useSelector((state: RootState) => state.EventReducer.eventList) || []
+    const user = useSelector((state: RootState) => state.UserReducer)
+    const auth = useSelector((state: RootState) => state.AuthReducer)
 
     const onDelete = (id?: number) => {
         if(id){
@@ -24,7 +24,11 @@ function EventList(){
 
     React.useEffect(() => {
         
-        dispatch(getEventList('e961b9f4-9292-438e-b902-d7cfacd852cc'))
+        if(user.success&& auth.logingIn){
+            console.log('uid : ',user.userInfo?.id)
+            dispatch(getEventList(user.userInfo?.id))
+        }
+        
 
         return(
             console.log('terminate')
@@ -39,7 +43,6 @@ function EventList(){
                 return(
                 <>
                     <div>
-                        <div>Id: {e.id}</div>
                         <div>date time: {e.dateTime}</div>
                         <div>event name: {e.eventName}</div>
                         <div>memo: {e.memo}</div>

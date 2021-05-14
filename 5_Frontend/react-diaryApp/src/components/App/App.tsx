@@ -4,23 +4,41 @@ import './App.scss';
 import { 
   Route,
   Link, 
-  Switch
+  Switch,
+  useHistory
 } from "react-router-dom";
 
 
-import { getEventList } from '../../Action/EventAction'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../Reducer'
 import AddEventForm from '../AddEventForm/AddEventForm';
 import EventList from '../EventList/EventList';
 import EventDetail from '../EventDetail/EventDetail';
 import EditEventForm from '../EditEventForm/EditEventForm';
+import Login from '../Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../Reducer';
+import { logout } from '../../Action/UserAction';
+import MyProfile from '../MyProfile/MyProfile';
 
 
 function App() {
 
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const auth = useSelector((state: RootState) => state.AuthReducer)
+  const user = useSelector((state: RootState) => state.UserReducer)
+
+  const onLogout = () => {
+    console.log("log out btn !!")
+    dispatch(logout())
+  }
+
   React.useEffect(() => {
+
+    console.log("auth login ==> ",auth.logingIn)
+
+    // if(!auth.logingIn && !user.success){
+    //   history.push('/')
+    // }
 
     return(
       console.log('terminate')
@@ -33,29 +51,52 @@ function App() {
     <div className="App"> 
 
       <div className="header-container">
+
+        <div className="profileImage-container">
+          <MyProfile/>
+        </div>
+
         <h1>My diary App</h1>
           <nav>
             <ul>
-              <li>
-                <Link to="/events">
-                  <a>My Events</a>
-                </Link>
-              </li>
-              <li>
-                <Link to="/addEvent">
-                  <a>New Event</a>
-                </Link>
-              </li>
+              {!auth.logingIn ?
+                <>
+                  <li>
+                    <Link to="/login">
+                      <a>Login</a>
+                    </Link>
+                  </li>
+                </>
+                :
+                <>
+                  <li>
+                    <Link to="/events">
+                      <a>My Events</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/addEvent">
+                      <a>New Event</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={onLogout}>Logout</button>
+                  </li>
+                </>
+              }
+              
             </ul>
           </nav>
       </div>
 
       <Switch>
-        {/* <Route path="/">
-          <EventList/>
-        </Route> */}
+        <Route path="/login">
+          <Login/>
+        </Route>
         <Route path="/events">
-          <EventList/>
+          {auth.logingIn &&
+            <EventList/>
+          }
         </Route>
 
         <Route path="/addEvent">

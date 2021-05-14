@@ -6,30 +6,33 @@ import axios from 'axios'
 const API = process.env.REACT_APP_APP_URL
 
 
-const getEventList = (uid: string) => async(dispatch: Dispatch<IEventAction>) => {
+const getEventList = (uid?: string) => async(dispatch: Dispatch<IEventAction>) => {
     
-    let api = API + `api/event/${uid}`
-    dispatch({type: IEventActionType.GET_ALL_EVENT_START})
-    
-    try{
-
-        let result:any = await axios.get<any>(api)
-        console.log("result ",result)
-
-        dispatch({
-            type: IEventActionType.GET_ALL_EVENT_SUCESS,
-            payload: result.data
-        })
-
-    }
-    catch (err){
-        console.log("get event list err : ",err)
+    if(uid !== undefined){
+        let api = API + `api/event/${uid}`
+        dispatch({type: IEventActionType.GET_ALL_EVENT_START})
         
-        dispatch({
-            type: IEventActionType.GET_ALL_EVENT_ERROR,
-            payload: err
-        })
+        try{
+
+            let result:any = await axios.get<any>(api)
+            console.log("result ",result)
+
+            dispatch({
+                type: IEventActionType.GET_ALL_EVENT_SUCESS,
+                payload: result.data
+            })
+
+        }
+        catch (err){
+            console.log("get event list err : ",err)
+            
+            dispatch({
+                type: IEventActionType.GET_ALL_EVENT_ERROR,
+                payload: err
+            })
+        }
     }
+    
     
 }
 
@@ -79,6 +82,8 @@ const addEvent = (newEvent: IEvent) => async(dispatch: any) => {
                 type: IEventActionType.ADD_NEW_EVENT_SUCESS,
                 payload: res.data,
             })
+
+            dispatch({type: IEventActionType.ADD_NEW_EVENT_END})
         })
     }
     catch(err){
@@ -92,6 +97,7 @@ const addEvent = (newEvent: IEvent) => async(dispatch: any) => {
 
 const editEvent = (eventId: number,newEvent: IEvent) => async(dispatch: any) => {
     let api = API + `api/event/${eventId}`
+    console.log('++ ',api)
     dispatch({ type: IEventActionType.UPDATE_EVENT_START })
     
     try{
@@ -106,6 +112,8 @@ const editEvent = (eventId: number,newEvent: IEvent) => async(dispatch: any) => 
                 type: IEventActionType.UPDATE_EVENT_SUCCESS,
                 payload: res.data
             })
+
+            dispatch({type: IEventActionType.UPDATE_EVENT_END})
         })
     }
     catch(err){

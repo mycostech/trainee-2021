@@ -14,21 +14,27 @@ function AddEventForm(){
     const [_memo, setMemo] = useState<string>('')
     
     const dispatch = useDispatch()
+
     const event = useSelector((state: RootState) => state.EventReducer)
+    const user = useSelector((state: RootState) => state.UserReducer)
+    const auth = useSelector((state: RootState) => state.AuthReducer)
+
     const history = useHistory()
 
     const onSubmitForm = () => {
 
-        console.log('Subbit event form')
+        if(user.success && auth.logingIn){
+            console.log('Subbit event form')
 
-        let newEvent:IEvent = {
-            dateTime: _dateTime,
-            eventName: _eventName,
-            memo: _memo,
-            userId: 'e961b9f4-9292-438e-b902-d7cfacd852cc'
+            let newEvent:IEvent = {
+                dateTime: _dateTime,
+                eventName: _eventName,
+                memo: _memo,
+                userId: user.userInfo?.id
+            }
+
+            dispatch(addEvent(newEvent))
         }
-
-        dispatch(addEvent(newEvent))
 
     }
 
@@ -37,10 +43,9 @@ function AddEventForm(){
     React.useEffect(() => {
         
         if(event.addSuccess){
-
             history.push('/events')
         }
-        
+
     },[event])
 
 
