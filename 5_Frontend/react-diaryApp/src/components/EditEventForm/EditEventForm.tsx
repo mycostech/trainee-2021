@@ -63,7 +63,7 @@ function EditEventForm(){
             <Link to="/events">
                 <a>Back</a>
             </Link>
-            {!event.updateSuccess &&
+            {event.loading &&
                 <p>Loading ...</p>
             }
             <div>
