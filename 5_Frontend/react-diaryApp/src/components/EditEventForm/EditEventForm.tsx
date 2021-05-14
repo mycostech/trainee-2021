@@ -21,8 +21,8 @@ function EditEventForm(){
     console.log("eventId, ",Number(eventId))
 
     const [_dateTime, setDateTime] = useState<any>();
-    const [_eventname, setEventName] = useState<string>('');
-    const [_memo, setMemo] = useState<string>('');
+    const [_eventname, setEventName] = useState<string | undefined>('');
+    const [_memo, setMemo] = useState<string | undefined>('');
     
 
     const onSubmitForm = () => {
@@ -45,6 +45,11 @@ function EditEventForm(){
     useEffect(() => {
         
         if(count === 0){
+
+            setDateTime(event.event?.dateTime)
+            setEventName(event.event?.eventName)
+            setMemo(event.event?.memo)
+
             dispatch(getEventDetail(Number(eventId)))
         }
         if(event.updateSuccess ){
@@ -56,7 +61,7 @@ function EditEventForm(){
         return () => {
         }
 
-    }, [dispatch, event])
+    }, [setDateTime, setEventName, setMemo, setCount, dispatch, event])
         
     return (
         <div>
@@ -66,16 +71,11 @@ function EditEventForm(){
             {event.loading &&
                 <p>Loading ...</p>
             }
-            <div>
-                <h3>old info</h3>
-                <p>date time: {event.event?.dateTime}</p>
-                <p>event name: {event.event?.eventName}</p>
-                <p>memo: {event.event?.memo}</p>
-            </div>
+
             <h3>New info</h3>
             <div>
                 <label>date time</label>
-                <input type="datetime-local" onChange={
+                <input type="datetime-local" value={_dateTime} onChange={
                     e => {
                         setDateTime(e.target.value)
                     }
@@ -83,7 +83,7 @@ function EditEventForm(){
             </div>
             <div>
                 <label>Event Name</label>
-                <input type="text" onChange={
+                <input type="text" value={_eventname} onChange={
                     e => {
                         setEventName(e.target.value)
                     }
@@ -91,7 +91,7 @@ function EditEventForm(){
             </div>
             <div>
                 <label>Memo</label>
-                <textarea onChange={
+                <textarea value={_memo} onChange={
                     e => {
                         setMemo(e.target.value)
                     }

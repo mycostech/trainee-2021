@@ -1,8 +1,8 @@
 export interface IEvent {
     id?: number;
-    dateTime: any;
-    eventName: string;
-    memo: string;
+    dateTime?: any;
+    eventName?: string;
+    memo?: string;
     userId?: string;
     
 }
