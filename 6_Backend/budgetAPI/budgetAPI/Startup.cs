@@ -39,23 +39,43 @@ namespace budgetAPI
             services.AddDbContext<budgetDBv2Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("BudgetApp")));
 
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<ITransactionService, TransactionService>();
-        services.AddScoped<ITransactionDetailService, TransactionDetailService>();
-        services.AddScoped<ICategoryService, CategoryService>();
-        services.AddScoped<ITypeService, TypeService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ITransactionDetailService, TransactionDetailService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITypeService, TypeService>();
+
+            // ต่อหน้าบ้าน
+            services.AddCors(options =>
+                options.AddPolicy("default",
+                    builder =>
+                        builder.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        // .AllowAnyOrigin()
+                        // .WithOrigins("http://localhost:3000", "http://45.79.23.120:3001", "http://45.79.23.120:3002")
+                        .SetIsOriginAllowed(origin => true)
+                        .AllowCredentials()));
+            // ต่อหน้าบ้าน
+
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            // ต่อหน้าบ้าน
+            app.UseCors("default");
+            // ต่อหน้าบ้าน
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "budgetAPI v1"));
+
             }
+            
 
             app.UseHttpsRedirection();
 
@@ -67,6 +87,10 @@ namespace budgetAPI
             {
                 endpoints.MapControllers();
             });
+
+         
+
+
         }
     }
 }

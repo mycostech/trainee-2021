@@ -14,12 +14,13 @@ export enum UserActionType {
     GET_ALL_USER = "GET_ALL_USER",
     ADD_NEW_USER = "ADD_NEW_USER",
     UPDATE_USER = "UPDATE_USER",
-    DELETE_USER = "DELETE_USER"
+    DELETE_USER = "DELETE_USER",
+    SHOW_LOADING = "SHOW_LOADING"
 }
 
 export type UserAction = UserActionType
 
 export interface UserActionInterface {
     type: UserActionType;
-    payload: any;
+    payload?: any;
 }

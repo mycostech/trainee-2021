@@ -4,6 +4,8 @@ import axios from 'axios'
 
 const getAllUser = () => async(dispatch: Dispatch<UserActionInterface>) =>  {
     let result:any = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    
+
     console.log( result)
 
     dispatch({
@@ -26,7 +28,14 @@ const addNewUser = (newUser: User) => async(dispatch: any) => {
     })
 }
 
+const showLoading = () => async(dispatch : Dispatch<UserActionInterface>) => {
+    dispatch({
+        type: UserActionType.SHOW_LOADING
+    })
+}
+
 export {  
     getAllUser,
-    addNewUser
+    addNewUser,
+    showLoading
 }

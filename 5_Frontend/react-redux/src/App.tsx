@@ -8,6 +8,7 @@ import Form from './Form'
 function App() {
   let dispatch = useDispatch()
   let user = useSelector((state: RootState) => state.UserReducer)
+  // let loading = useSelector((state: RootState) => state.UserReducer.loading)
 
   React.useEffect(() => {
     dispatch(getAllUser())
@@ -17,13 +18,15 @@ function App() {
     console.log('user : ', user)
   }, [user])
 
+  //console.log('loading', loading)
   return (
     <div className="App">
       <Form/>
+
       <hr/>
       {
         user.userList.map(m => {
-          console.log(m)
+          //console.log(m)
           return (
             <>
               <p key={m.id}>

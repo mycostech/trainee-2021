@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
-import { UserReducer } from './UserStore'
+import { UserReducer } from './UserReducer'
 import {createLogger} from 'redux-logger'
 
 const rootReducer = combineReducers({
