@@ -51,7 +51,7 @@ namespace ScheduleApi.Services
                     Category = schDetail.Category
                 }
             };
-
+            schedule.SchId = max;
             _context.Schedules.Add(sch);
 
             _context.ScheduleDetails.Add(sch.ScheduleDetail);
@@ -102,6 +102,7 @@ namespace ScheduleApi.Services
                     Category = schDetail.Category
                 }
             };
+            s.SchId = max;
             _context.Schedules.Add(sch);
 
             _context.ScheduleDetails.Add(sch.ScheduleDetail);
