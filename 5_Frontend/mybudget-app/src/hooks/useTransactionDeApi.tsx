@@ -39,7 +39,14 @@ const useTransactionDeApi = () => {
         }, [setTransactionDe]
     )
 
-    return [transactionDe, get_transactionDe, post_transactionDe, type, get_type, delete_transactionDe] as const
+    const put_transactionDe = useCallback(
+        async (tranid:number, trandeid:number, newTranDe: TransactionDe) => {
+            const result = await transactionDeApi.putTransactionDe(tranid, trandeid, newTranDe)
+            setTransactionDe(td => [...td, result.data])
+        }, [setTransactionDe]
+    )
+
+    return [transactionDe, get_transactionDe, post_transactionDe, type, get_type, delete_transactionDe, put_transactionDe] as const
 }
 
 

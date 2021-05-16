@@ -20,7 +20,16 @@ const useTransactionApi = () => {
         }, [setTransaction]
     )
 
-    return [transaction, get_transaction, post_transaction] as const
+    const delete_transaction = useCallback(
+        async (tranid:number) => {
+            const result = await transactionApi.deleteTransaction(tranid)
+            setTransaction(tr => tr.filter(t => {
+                return t.transactionId !== result.data.transactionId
+            }))
+        }, [setTransaction]
+    )
+
+    return [transaction, get_transaction, post_transaction, delete_transaction] as const
 }
 
 

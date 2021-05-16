@@ -11,6 +11,10 @@ const transactionApi = {
 
     postTransaction: (newTran: Transaction) => {
         return axios.post<Transaction>(`${API_URL}Transactions`, {...newTran})
+    },
+
+    deleteTransaction: (tranid:number) => {
+        return axios.delete<Transaction>(`${API_URL}Transactions/${tranid}`)
     }
 
 }

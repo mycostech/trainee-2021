@@ -7,15 +7,16 @@ import TransactionDeDetail from "../Detail/TransactionDeDetail"
 
 // รับค่าที่ส่งมาจาก TransactionList
 interface TransactionDetail{
-    tran: Transaction 
+    tran: Transaction
+    delTran: any
 }
 
-function TransactionDetail({tran}: TransactionDetail){
+function TransactionDetail({tran, delTran}: TransactionDetail){
     //console.log("==> ",tran)
     const tranId = tran.transactionId   
     //console.log("==>",tranId)
 
-    const [transactionDe, get_transactionDe, post_transactionDe, type, get_type, delete_transactionDe] = useTransactionDeApi()
+    const [transactionDe, get_transactionDe, post_transactionDe, type, get_type, delete_transactionDe, put_transactionDe] = useTransactionDeApi()
 
     const DEFAULT_TRANSACTIONDE: TransactionDe = {
         transactionDeId: 0,
@@ -72,6 +73,16 @@ function TransactionDetail({tran}: TransactionDetail){
         <br/>
         </form>
 
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            //console.log("-->", tranId)
+            delTran(tranId)
+        }}>
+
+            <button type="submit">DELETE</button>
+
+        </form>
+
         <div>     
             TransactionId: {tran.transactionId} <br/>
             Date: {tran.date} <br/>
@@ -81,7 +92,8 @@ function TransactionDetail({tran}: TransactionDetail){
 
         <div>
             {transactionDe.map ((td,key) => {
-                return <TransactionDeDetail trande={td} key={key} delete_transactionDe={delete_transactionDe}/>
+                return <TransactionDeDetail trande={td} key={key} delete_transactionDe={delete_transactionDe}
+                put_transactionDe={put_transactionDe} newTranDe={newTranDe} type={type} setNewTranDe={setNewTranDe} DEFAULT_TRANSACTIONDE={DEFAULT_TRANSACTIONDE} tranId={tranId}/> //ส่ง delete_transactionDe ไปให้ จะได้ reuse state แก้ปัญหากดลบแล้วต้องกดรีเฟรช
             })}
         </div>
         </>

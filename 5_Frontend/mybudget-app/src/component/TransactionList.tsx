@@ -17,7 +17,7 @@ function TransactionList() {
 
     const [newTran, setNewTran] = useState<Transaction>(DEFAULT_TRANSACTION)
     
-    const [transaction, get_transaction, post_transaction] = useTransactionApi() //เรียกใช้จาก useTransactionApi
+    const [transaction, get_transaction, post_transaction, delete_transaction] = useTransactionApi() //เรียกใช้จาก useTransactionApi
     const userid = 31
     
     useEffect(() => {
@@ -45,7 +45,7 @@ function TransactionList() {
 
         <div>
             {transaction.map ((t,key) => {
-                return <TransactionDetail tran={t} key={key}/> //tran={t} key={t.TransactionId} ส่งไปให้ TransactionDetail
+                return <TransactionDetail tran={t} key={key} delTran={delete_transaction}/> //tran={t} key={t.TransactionId} ส่งไปให้ TransactionDetail
             })}
         </div>
        
