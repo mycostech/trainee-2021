@@ -27,10 +27,12 @@ function UserScheduleForm({
             {newSchedule.title!=='' &&
                 addUserSchedule(userId, newSchedule) 
                 setNewSchedule(DEFAULT_SCHEDULE)
+                e.preventDefault()
             }               
 
             {newSchedule.title==='' &&
                 alert('Try Again.')
+                e.preventDefault()
             }
         }}>
             <h2>Add</h2>

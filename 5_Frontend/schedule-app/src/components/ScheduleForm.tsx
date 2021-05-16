@@ -26,10 +26,12 @@ function ScheduleForm({
                 //e.preventDefault()
                     addSchedule(newSchedule) 
                     setNewSchedule(DEFAULT_SCHEDULE)
+                    e.preventDefault()
             }               
 
             {newSchedule.title==='' &&
                 alert('Try Again.')
+                e.preventDefault()
             }
         }}>
             <h3>Add</h3>

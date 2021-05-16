@@ -9,7 +9,9 @@ const DEFAULT_USER = {
     userId: 0,
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    phoneNumber: undefined,
+    dob: undefined
 }
 
 function UserForm({
@@ -22,9 +24,11 @@ function UserForm({
             {newUser.firstName!=='' && newUser.lastName!=='' && newUser.email!=='' &&
                 addUser(newUser)
                 setNewUser(DEFAULT_USER)
+                e.preventDefault()
             }
             {newUser.firstName==='' && newUser.lastName==='' && newUser.email==='' &&
                 alert('Try again.')
+                e.preventDefault()
             }
 
         }}>

@@ -6,6 +6,7 @@ import SchedulesDetail from "./SchedulesDetail/SchedulesDetail";
 import Button from "./Buttons/PageButton"
 import UserScheduleForm from "./UserScheduleForm";
 import User from "../models/User";
+import { abort } from "process";
 
 interface UserScheduleListProps {
     getUserSchedule: any
@@ -38,7 +39,7 @@ function UserScheduleList({
     useEffect(() => {
         getUserSchedule(id)
         getAllScheduleDetail()
-    }, [id, schedule, user])
+    }, [id, schedule, user, getUserSchedule])
 
     const [add,setAdd] = useState<boolean>(false)
     

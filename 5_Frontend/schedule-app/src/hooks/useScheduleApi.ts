@@ -56,6 +56,7 @@ const useScheduleApi = () => {
             setLoading(true)
             const newSchedule = await scheduleApi.postSchedule(s)
             console.log("addSchedule : ", newSchedule)
+            // setSchedules(schedules => [...schedules,newSchedule.data])
             setSchedule(newSchedule.data)
             setLoading(false)
         },
@@ -67,6 +68,7 @@ const useScheduleApi = () => {
             setLoading(true)
             const newSchedule = await scheduleApi.postUserSchedule(id,s)
             console.log("addSchedule : ", newSchedule)
+            // setSchedules(schedules => [...schedules,newSchedule.data])
             setSchedule(newSchedule.data)
             setLoading(false)
         },

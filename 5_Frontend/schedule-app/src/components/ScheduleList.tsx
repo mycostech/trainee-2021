@@ -15,6 +15,7 @@ interface ScheduleListProps {
     deleteSchedule: any 
     updateFunc: any
     user: User
+    users: User[]
 }
 
 function ScheduleList({
@@ -26,13 +27,15 @@ function ScheduleList({
     schedule,
     deleteSchedule,
     updateFunc,
-    user
+    user,
+    users
+    
 }: ScheduleListProps) {
 
     useEffect(() => {
         getAllSchedules()
         getAllScheduleDetail()
-    }, [getAllSchedules, schedule, user])
+    }, [getAllSchedules, schedule, user, users])
 
     return (
         <div>

@@ -54,7 +54,7 @@ function App() {
               {overall &&
                 <>
                   <UserList getAllUsers={getAllUsers} loading={userLoading} users={users} user={user} deleteUser={deleteUser} updateUser={updateUser}/>
-                  <ScheduleList getAllSchedules={getAllSchedules} getAllScheduleDetail={getAllScheduleDetail} loading={scheduleLoading} schedules={schedules} scheduleDetail={scheduleDetails} schedule={schedule} deleteSchedule={deleteSchedule} updateFunc={updateSchedule} user={user}/>
+                  <ScheduleList getAllSchedules={getAllSchedules} getAllScheduleDetail={getAllScheduleDetail} loading={scheduleLoading} schedules={schedules} scheduleDetail={scheduleDetails} schedule={schedule} deleteSchedule={deleteSchedule} updateFunc={updateSchedule} user={user} users={users}/>
                   <Button handleClick={() => setAddSch(prev => !prev)} buttonText='Add New Schedule'/>
                   {addSch && 
                     <ScheduleForm addSchedule={addSchedule}/>
