@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import useTransactionDeApi from "../../hooks/useTransactionDeApi"
 import TransactionDe from "../../models/TransactionDe"
 import Type from "../../models/Type"
+import "../../css/budget.css"
 interface TransactionDeDetail{
     trande: TransactionDe
     delete_transactionDe: any //รับมาจาก Transaction Detail (state api อยู่ที่นั่น)
@@ -28,16 +29,16 @@ function TransactionDeDetail({trande, delete_transactionDe, put_transactionDe, n
 
     return(
         <>
-        <div style={{color: "blue"}}>
+        <div className="box" >
             TransactionDeId: {trande.transactionDeId} <br/>
             Amount: {trande.amount} <br/>
             Note: {trande.note} <br/>
             TransactionId: {trande.transactionId} <br/>
             TypeId: {trande.typeId}           
-        </div>
 
+            <br/>
         
-        <button onClick={(e) => {
+        <button className="delete-button" onClick={(e) => {
             e.preventDefault()       
             delete_transactionDe(trande.transactionId, trande.transactionDeId)
             //setDelTranDe(delete_transactionDe)
@@ -45,9 +46,11 @@ function TransactionDeDetail({trande, delete_transactionDe, put_transactionDe, n
 
         }}>DELETE</button>
 
+        </div>
+
         {/* {----------------------------------------------------------------------------} */}
 
-        <form onSubmit={(e) => {
+        {/* <form onSubmit={(e) => {
             e.preventDefault()
             put_transactionDe(tranId, trande.transactionDeId, newTranDe)
             console.log("===>", tranId)
@@ -83,12 +86,13 @@ function TransactionDeDetail({trande, delete_transactionDe, put_transactionDe, n
 
         <button type="submit">EDIT</button>
         <br/>
-        </form>
+        </form> */}
 
+        <br/>
 
 
     
-        <hr/>
+   
         </>
     )
 }

@@ -4,6 +4,7 @@ import useTransactionDeApi from "../../hooks/useTransactionDeApi"
 import Transaction from "../../models/Transaction"
 import TransactionDe from "../../models/TransactionDe"
 import TransactionDeDetail from "../Detail/TransactionDeDetail"
+import "../../css/budget.css"
 
 // รับค่าที่ส่งมาจาก TransactionList
 interface TransactionDetail{
@@ -37,6 +38,7 @@ function TransactionDetail({tran, delTran}: TransactionDetail){
     return (
         <>
         
+        <div className="big-box">
         <form onSubmit={(e) => {
             e.preventDefault()
             post_transactionDe(newTranDe)
@@ -69,9 +71,19 @@ function TransactionDetail({tran, delTran}: TransactionDetail){
             </select>
         </div>
 
-        <button type="submit">NEW</button>
+        <button type="submit" className="new-button">NEW</button>
+        <br/>
         <br/>
         </form>
+
+        
+
+        <div>     
+            TransactionId: {tran.transactionId} <br/>
+            Date: {tran.date} <br/>
+            UserId: {tran.userId}
+            
+        </div>
 
         <form onSubmit={(e) => {
             e.preventDefault()
@@ -79,22 +91,22 @@ function TransactionDetail({tran, delTran}: TransactionDetail){
             delTran(tranId)
         }}>
 
-            <button type="submit">DELETE</button>
+            <button type="submit" className="delete-button">DELETE !</button>
+            {/* <hr/> */}
+            <br/>
+            <br/>
 
         </form>
-
-        <div>     
-            TransactionId: {tran.transactionId} <br/>
-            Date: {tran.date} <br/>
-            UserId: {tran.userId}
-            <hr/>
-        </div>
 
         <div>
             {transactionDe.map ((td,key) => {
                 return <TransactionDeDetail trande={td} key={key} delete_transactionDe={delete_transactionDe}
                 put_transactionDe={put_transactionDe} newTranDe={newTranDe} type={type} setNewTranDe={setNewTranDe} DEFAULT_TRANSACTIONDE={DEFAULT_TRANSACTIONDE} tranId={tranId}/> //ส่ง delete_transactionDe ไปให้ จะได้ reuse state แก้ปัญหากดลบแล้วต้องกดรีเฟรช
             })}
+        </div>
+
+
+        
         </div>
         </>
     )

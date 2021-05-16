@@ -1,0 +1,67 @@
+.new-tran-btn {
+    background-color: #E37B58;
+    color: white;
+    border: 0px;
+    height: 40px;
+    width: 200px;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.new-tran{
+    background-color: #F9B43D;
+    margin: 30px auto;
+    padding: 20px;
+    width: 40%;
+    border-radius: 40px;
+}
+
+.big-box{
+    background-color: rgb(255, 245, 211);
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.new-button{
+    background-color: #6CA7B0;
+    border: 0px;
+    border-radius: 15px;
+    /* padding: 7px; */
+    width: 80px;
+    height: 25px;
+    margin-top: 10px;
+    color: white;
+}
+
+.delete-button{
+    background-color: #E37B58;
+    border: 0px;
+    border-radius: 15px;
+    /* padding: 7px; */
+    width: 80px;
+    height: 25px;
+    margin-top: 5px;
+    color: white;
+}
+
+input{
+    border: 3px;
+    border-color: gray;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 3px;
+}
+
+.box{
+    background-color: #ffffff;
+    border-radius: 40px;
+    padding: 15px;
+    width: 75%;
+    margin: auto;
+
+}
+

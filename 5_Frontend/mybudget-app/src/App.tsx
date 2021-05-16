@@ -12,8 +12,8 @@ function App() {
     <div className="App">
     {/* <h2>Users</h2>
     <UserList/> */}
-
-    <h2>My Transaction</h2>
+    <br/>
+    <h1>* My Budget *</h1>
     <TransactionList/>
     </div>
     </>

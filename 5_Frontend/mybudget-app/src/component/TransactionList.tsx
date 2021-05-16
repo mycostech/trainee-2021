@@ -3,6 +3,7 @@ import transactionApi from "../api/transactionApi"
 import useTransactionApi from "../hooks/useTransactionApi"
 import Transaction from "../models/Transaction"
 import TransactionDetail from "./Detail/TransactionDetail"
+import "../css/budget.css"
 
 
 
@@ -28,7 +29,7 @@ function TransactionList() {
     return(
         <>
 
-        <form onSubmit={(e) => {
+        <form className="new-tran" onSubmit={(e) => {
             e.preventDefault()
             post_transaction(newTran)
             setNewTran(DEFAULT_TRANSACTION)           
@@ -38,8 +39,8 @@ function TransactionList() {
                 DATE: <input type="date" value={newTran.date} 
                 onChange={(e) => {setNewTran(pre => ({...pre, date: (e.target.value)}))}}/>
             </div>
-            <button type="submit">ADD NEW TRANSACTION</button>
-            <hr/>
+            <button className="new-tran-btn" type="submit">ADD NEW TRANSACTION</button>
+            {/* <hr/> */}
         </form>
         
 
