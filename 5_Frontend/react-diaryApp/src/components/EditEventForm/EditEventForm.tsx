@@ -10,9 +10,7 @@ function EditEventForm(){
 
     const history = useHistory();
     const {eventId} = useParams<{eventId?: string}>();
-    
     const dispatch = useDispatch()
-    const [count, setCount] = useState<number>(0);
 
     const event = useSelector((state: RootState) => state.EventReducer)
     const user = useSelector((state: RootState) => state.UserReducer)
@@ -20,6 +18,7 @@ function EditEventForm(){
     
     console.log("eventId, ",Number(eventId))
 
+    const [count, setCount] = useState<number>(0);
     const [_dateTime, setDateTime] = useState<any>();
     const [_eventname, setEventName] = useState<string | undefined>('');
     const [_memo, setMemo] = useState<string | undefined>('');
@@ -27,7 +26,7 @@ function EditEventForm(){
 
     const onSubmitForm = () => {
 
-        if(user.success && auth.logingIn){
+        if(user.getsuccess && auth.logingIn){
 
             let newEvent: IEvent = {
                 dateTime: _dateTime,
@@ -46,12 +45,15 @@ function EditEventForm(){
         
         if(count === 0){
 
+            dispatch(getEventDetail(Number(eventId)))
+
+            console.log("event name ==> ",_eventname)
             setDateTime(event.event?.dateTime)
             setEventName(event.event?.eventName)
             setMemo(event.event?.memo)
-
-            dispatch(getEventDetail(Number(eventId)))
+            
         }
+
         if(event.updateSuccess ){
             history.push('/events')
         }
@@ -59,47 +61,53 @@ function EditEventForm(){
         setCount(1)
 
         return () => {
+            
+            console.log("edit terminate")
         }
 
     }, [setDateTime, setEventName, setMemo, setCount, dispatch, event])
         
     return (
-        <div>
-            <Link to="/events">
-                <a>Back</a>
-            </Link>
-            {event.loading &&
-                <p>Loading ...</p>
-            }
+        <div>{count == 1 &&
+            <>
+                <Link to="/events">
+                    <a>Back</a>
+                </Link>
+                {event.loading &&
+                    <p>Loading ...</p>
+                }
 
-            <h3>New info</h3>
-            <div>
-                <label>date time</label>
-                <input type="datetime-local" value={_dateTime} onChange={
-                    e => {
-                        setDateTime(e.target.value)
-                    }
-                }/>
-            </div>
-            <div>
-                <label>Event Name</label>
-                <input type="text" value={_eventname} onChange={
-                    e => {
-                        setEventName(e.target.value)
-                    }
-                }/>
-            </div>
-            <div>
-                <label>Memo</label>
-                <textarea value={_memo} onChange={
-                    e => {
-                        setMemo(e.target.value)
-                    }
-                }></textarea>
-            </div>
-            <div>
-                <button onClick={onSubmitForm}>Submit</button>
-            </div>
+                <h3>New info</h3>
+                <div>
+                    <label>date time</label>
+                    <input type="datetime-local" value={_dateTime} onChange={
+                        e => {
+                            setDateTime(e.target.value)
+                        }
+                    }/>
+                </div>
+                <div>
+                    <label>Event Name</label>
+                    <input type="text" value={_eventname} onChange={
+                        e => {
+                            setEventName(e.target.value)
+                        }
+                    }/>
+                </div>
+                <div>
+                    <label>Memo</label>
+                    <textarea value={_memo} onChange={
+                        e => {
+                            setMemo(e.target.value)
+                        }
+                    }></textarea>
+                </div>
+                <div>
+                    <button onClick={onSubmitForm}>Submit</button>
+                </div>
+            </>
+        }
+            
         </div>
     )
 }

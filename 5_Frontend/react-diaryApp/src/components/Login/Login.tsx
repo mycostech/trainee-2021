@@ -9,25 +9,27 @@ import { useHistory } from 'react-router-dom';
 function Login(){
 
     const dispatch = useDispatch()
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
     const history = useHistory()
 
     const auth = useSelector((state: RootState) => state.AuthReducer)
     const user = useSelector((state: RootState) => state.UserReducer)
 
-    const loginForm: ILoginForm = {
-        email: email,
-        password: password
-    }
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     const onSubmitLogin = () => {
+        
+        const loginForm: ILoginForm = {
+            email: email,
+            password: password
+        }
+
         dispatch(login(loginForm)) 
     }
 
     useEffect(() => {
         
-        if(auth.logingIn && user.success){
+        if(auth.logingIn && user.getsuccess){
             console.log('auth login ==> ',auth.user)
             history.push('/events')
         }

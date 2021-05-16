@@ -17,7 +17,7 @@ export function AuthReducer(state: IAuthState = initailState, action: IAuthActio
         case IAuthActionType.LOGIN_REQUEST:
             return{
                 loading: true,
-                logingIn: true,
+                logingIn: false,
                 error: undefined
             }
 

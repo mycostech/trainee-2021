@@ -22,6 +22,11 @@ const getEventList = (uid?: string) => async(dispatch: Dispatch<IEventAction>) =
                 payload: result.data
             })
 
+            dispatch({
+                type: IEventActionType.GET_ALL_EVENT_END,
+                payload: result.data
+            })
+
         }
         catch (err){
             console.log("get event list err : ",err)

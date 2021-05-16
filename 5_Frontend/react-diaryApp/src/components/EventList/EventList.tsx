@@ -24,7 +24,7 @@ function EventList(){
 
     React.useEffect(() => {
         
-        if(user.success&& auth.logingIn){
+        if(user.getsuccess&& auth.logingIn){
             console.log('uid : ',user.userInfo?.id)
             dispatch(getEventList(user.userInfo?.id))
         }
@@ -33,6 +33,7 @@ function EventList(){
         return(
             console.log('terminate')
         )
+        
     }, [dispatch])
 
     return(

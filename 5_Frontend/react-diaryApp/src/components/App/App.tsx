@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Reducer';
 import { logout } from '../../Action/UserAction';
 import MyProfile from '../MyProfile/MyProfile';
+import Register from '../Register/Register';
 
 
 function App() {
@@ -59,11 +60,16 @@ function App() {
         <h1>My diary App</h1>
           <nav>
             <ul>
-              {!auth.logingIn ?
+              {!auth.logingIn && !user.getsuccess ?
                 <>
                   <li>
                     <Link to="/login">
                       <a>Login</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/register">
+                      <a>Register</a>
                     </Link>
                   </li>
                 </>
@@ -90,6 +96,9 @@ function App() {
       </div>
 
       <Switch>
+        <Route path="/register">
+          <Register/>
+        </Route>
         <Route path="/login">
           <Login/>
         </Route>

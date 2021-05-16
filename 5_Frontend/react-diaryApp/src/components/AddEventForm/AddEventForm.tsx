@@ -23,7 +23,7 @@ function AddEventForm(){
 
     const onSubmitForm = () => {
 
-        if(user.success && auth.logingIn){
+        if(user.getsuccess && auth.logingIn){
             console.log('Subbit event form')
 
             let newEvent:IEvent = {

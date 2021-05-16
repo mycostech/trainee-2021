@@ -30,6 +30,14 @@ export function EventReducer(state: IEventsState = initailState, action: IEventA
                 eventList: payload,
                 getSuccess: true
             }
+
+        case IEventActionType.GET_ALL_EVENT_END:
+            return{
+                ...state,
+                loading: false,
+                eventList: payload,
+                getSuccess: false
+            }
         case IEventActionType.GET_ALL_EVENT_ERROR:
             return {
                 ...state,

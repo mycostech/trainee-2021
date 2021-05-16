@@ -4,7 +4,8 @@ const initailState: IUserState = {
     userInfo: undefined,
     loading: false,
     error: undefined,
-    success: false
+    getsuccess: false,
+    addsuccess: false
 }
 
 export function UserReducer(state: IUserState = initailState, action: IUserAction): IUserState{
@@ -16,7 +17,7 @@ export function UserReducer(state: IUserState = initailState, action: IUserActio
         case IUserActionType.GET_USER_START:
             return {
                 ...state,
-                userInfo: payload,
+                getsuccess: false,
                 loading: true,
                 error: undefined
             }
@@ -27,7 +28,7 @@ export function UserReducer(state: IUserState = initailState, action: IUserActio
                 ...state,
                 userInfo: payload,
                 loading: false,
-                success: true
+                getsuccess: true
             }
 
         case IUserActionType.GET_USER_ERROR:
@@ -35,7 +36,37 @@ export function UserReducer(state: IUserState = initailState, action: IUserActio
                 ...state,
                 userInfo: payload,
                 loading: true,
-                success: false
+                getsuccess: false
+            }
+
+        case IUserActionType.ADD_USER_START:
+            return{
+                ...state,
+                addsuccess: false,
+                loading: true,
+                error: undefined
+            }
+        
+        case IUserActionType.ADD_USER_SUCCESS:
+            return {
+                ...state,
+                userInfo: payload,
+                loading: false,
+                addsuccess: true
+            }
+            
+        case IUserActionType.ADD_USER_END:
+            return{
+                ...state,
+                addsuccess: false
+            }
+
+        case IUserActionType.ADD_USER_ERROR:
+            return {
+                ...state,
+                error: payload,
+                loading: false,
+                addsuccess: false
             }
 
         default:
