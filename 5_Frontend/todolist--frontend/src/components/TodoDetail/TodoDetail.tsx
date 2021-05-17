@@ -7,9 +7,9 @@ interface UserDetailProps {
 }
 
 function UserDetail({
-    user
+    user 
 }: UserDetailProps) {
-
+    console.log("sss", user)
     const [toggleShow, setToggleShow] = useState(false)
     return (
         <div className="user-detail"
@@ -18,14 +18,16 @@ function UserDetail({
             // onClick={() => setToggleShow(!toggleShow)}
         >
             <div style={{
-                flex: 1
+                
+                flex: 2
             }}>
-                Date: {user.DateTime}
+                Date: {user.date}
             </div>
             <div style={{
-                flex: 1
+        
+                flex: 2
             }}>
-                TasKname: {user.Taskname}
+                TasKname: {user.taskname}
             </div>
 
             
