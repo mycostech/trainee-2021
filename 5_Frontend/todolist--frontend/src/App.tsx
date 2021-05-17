@@ -1,20 +1,23 @@
 import React from 'react';
 import './App.css';
-import UserForm from './components/UserForm';
-
-import UserList from './components/UserList'
-import useUserApi from './hooks/useUserApi';
+import UserForm from './components/TodoPost';
+import UserList from './components/TodoList'
+import useUserApi from './hooks/useTodoApi';
+import useTodoApi from './hooks/useTodoApi';
 
 function App() {
-  const [users, loading, getAllUser, insertUser] = useUserApi()
+  const [users, loading, getAllUser, insertUser] = useTodoApi()
 
   return (
     <div className="App">
       <UserForm insertUser={insertUser} />
-      <UserList getUsers={getAllUser}
-      loading={loading} users={users} />
+      <UserList getTodo={getAllUser}
+      loading={loading} todo={users} />
     </div>
   );
 }
 
 export default App;
+
+  
+
