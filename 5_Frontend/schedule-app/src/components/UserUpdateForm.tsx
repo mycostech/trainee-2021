@@ -15,8 +15,9 @@ function UserUpdateForm({
     return (
         <form onSubmit={(e) => {
             {newUser.firstName!=='' && newUser.lastName!=='' && newUser.email!=='' &&
-                // e.preventDefault()
+                e.preventDefault()
                 updateUser(user.userId, newUser)
+                alert('Update User Completed.')
                 setNewUser(user)
             }
             {newUser.firstName==='' && newUser.lastName==='' && newUser.email==='' &&

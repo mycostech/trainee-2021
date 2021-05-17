@@ -11,6 +11,7 @@ const DEFAULT_SCHEDULE = {
     scheduleDetail: {
         schId: 0,
         schDate: new Date(),
+        note: undefined,
         category: 'N' 
     }
 }
@@ -25,6 +26,7 @@ function ScheduleForm({
             {newSchedule.title!=='' && 
                 //e.preventDefault()
                     addSchedule(newSchedule) 
+                    alert('Add Schedule Completed.')
                     setNewSchedule(DEFAULT_SCHEDULE)
                     e.preventDefault()
             }               
@@ -80,7 +82,7 @@ function ScheduleForm({
             </div>
 
             <div>
-                <button type="submit" >
+                <button type="submit">
                     Add
                 </button>
             </div>

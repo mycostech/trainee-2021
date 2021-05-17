@@ -27,9 +27,10 @@ function ScheduleUpdateForm({
     return (
         <form onSubmit={(e) => {
             {newSchedule.title!=='' && 
-                //e.preventDefault()
+                e.preventDefault()
                 updateSchedule(sch.schId, newSchedule) 
-                //setNewSchedule(DEFAULT_SCHEDULE)
+                alert('Update Schedule Completed.')
+                setNewSchedule(DEFAULT_SCHEDULE)
             }               
 
             {newSchedule.title==='' &&

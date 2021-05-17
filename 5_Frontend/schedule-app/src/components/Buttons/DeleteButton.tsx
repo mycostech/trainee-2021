@@ -9,6 +9,7 @@ function DeleteButton({deleteFunc, id}: DeleteButtonProps) {
     return (
 
         <button onClick={() => {
+            alert('Delete Completed.')
             deleteFunc(id)
         }}>
             DELETE

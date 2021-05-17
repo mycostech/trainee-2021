@@ -25,7 +25,8 @@ function UserScheduleForm({
     return (
         <form onSubmit={(e) => {
             {newSchedule.title!=='' &&
-                addUserSchedule(userId, newSchedule) 
+                addUserSchedule(userId, newSchedule)
+                alert('Add Schedule Completed.') 
                 setNewSchedule(DEFAULT_SCHEDULE)
                 e.preventDefault()
             }               

@@ -23,6 +23,7 @@ function UserForm({
         <form onSubmit={(e) => {
             {newUser.firstName!=='' && newUser.lastName!=='' && newUser.email!=='' &&
                 addUser(newUser)
+                alert('Add User Completed.')
                 setNewUser(DEFAULT_USER)
                 e.preventDefault()
             }

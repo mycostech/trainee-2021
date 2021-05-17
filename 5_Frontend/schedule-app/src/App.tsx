@@ -37,9 +37,7 @@ function App() {
           <Button handleClick={() => setPage('Schedules')} buttonText='Schedules'/>
           <Button handleClick={() => setPage('Schedule Category')} buttonText='Schedule Category'/>
           <Button handleClick={() => setPage('User')} buttonText='User'/> */}
-
-          <Button handleClick={() => {setStay(false); setLogin('Login');}} buttonText={login} cssClass='btn-right'/>
-
+        
         {!stay &&
             <>
               <LoginForm setStay={setStay} setId={setUserId} setLogin={setLogin} getAllUsers={getAllUsers} users={users}/>
@@ -65,6 +63,7 @@ function App() {
         }
         {stay &&
           <>
+            <Button handleClick={() => {setStay(false); setLogin('Login'); alert('Logout Completed');}} buttonText={login} cssClass='btn-right'/>
             <UserPick getUser={getUser} loading={userLoading} user={user} id={userId} deleteUser={deleteUser} updateUser={updateUser}/>
             <UserScheduleList getUserSchedule={getUserSchedule} getAllScheduleDetail={getAllScheduleDetail} loading={scheduleLoading} schedules={schedules} scheduleDetails={scheduleDetails} schedule={schedule} deleteSchedule={deleteSchedule} id={userId} updateFunc={updateSchedule} addUserSchedule={addUserSchedule} user={user}/>
             {/* <Button handleClick={() => setAdd(prev => !prev)} buttonText='+'/>
