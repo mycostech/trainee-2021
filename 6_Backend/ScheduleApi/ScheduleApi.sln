@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleApi", "ScheduleApi\ScheduleApi.csproj", "{219EFE4B-0798-4586-9488-399D72911C32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceduleApiTest", "SceduleApiTest\SceduleApiTest.csproj", "{84326368-0690-48BC-8D42-DA7F25681502}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SceduleApiTest", "SceduleApiTest\SceduleApiTest.csproj", "{84326368-0690-48BC-8D42-DA7F25681502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleApiTest.Services", "ScheduleApiTest.Services\ScheduleApiTest.Services.csproj", "{4108722F-BBD0-4546-9B65-67B2F35781ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{84326368-0690-48BC-8D42-DA7F25681502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84326368-0690-48BC-8D42-DA7F25681502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84326368-0690-48BC-8D42-DA7F25681502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4108722F-BBD0-4546-9B65-67B2F35781ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4108722F-BBD0-4546-9B65-67B2F35781ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4108722F-BBD0-4546-9B65-67B2F35781ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4108722F-BBD0-4546-9B65-67B2F35781ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

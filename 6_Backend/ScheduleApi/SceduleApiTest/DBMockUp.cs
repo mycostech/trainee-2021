@@ -19,36 +19,32 @@ namespace SceduleApiTest
                 Dob = new DateTime(2000,01,01)
             });  
             
-            dbContext.Schedules.Add(new ScheduleContract
+            dbContext.Schedules.Add(new Schedule
             {
                 SchId = 10000000,
                 Title = "Default",
                 UserId = 1000
             });
 
-            dbContext.ScheduleDetails.Add(new ScheduleDetailContract
+            dbContext.ScheduleDetails.Add(new ScheduleDetail
             {
                 SchId = 10000000,
                 SchDate = new DateTime(2000, 01, 01),
-                BeginTime = new TimeSpan(0,0,0),
-                EndTime = new TimeSpan(0,0,0),
                 Note = "default",
                 Category = "D"
             });
 
-            dbContext.Schedules.Add(new ScheduleContract
+            dbContext.Schedules.Add(new Schedule
             {
                 SchId = 10000002,
                 Title = "Natural",
                 UserId = null
             });
 
-            dbContext.ScheduleDetails.Add(new ScheduleDetailContract
+            dbContext.ScheduleDetails.Add(new ScheduleDetail
             {
                 SchId = 10000002,
                 SchDate = new DateTime(2021, 01, 01),
-                BeginTime = null,
-                EndTime = null,
                 Note = null,
                 Category = "N"
             });
