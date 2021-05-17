@@ -1,0 +1,14 @@
+/Users/macbook/Projects/diaryApp-backend/AutoTest/obj/Debug/AutoTest.csprojAssemblyReference.cache
+/Users/macbook/Projects/diaryApp-backend/AutoTest/obj/Debug/AutoTest.csproj.CoreCompileInputs.cache
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/AutoTest.dll
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/AutoTest.pdb
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/nunit.framework.dll
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/WebDriver.dll
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/WebDriver.Support.dll
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/nunit.framework.pdb
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/nunit.framework.xml
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/WebDriver.xml
+/Users/macbook/Projects/diaryApp-backend/AutoTest/bin/Debug/WebDriver.Support.xml
+/Users/macbook/Projects/diaryApp-backend/AutoTest/obj/Debug/AutoTest.csproj.CopyComplete
+/Users/macbook/Projects/diaryApp-backend/AutoTest/obj/Debug/AutoTest.dll
+/Users/macbook/Projects/diaryApp-backend/AutoTest/obj/Debug/AutoTest.pdb
