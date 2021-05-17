@@ -9,20 +9,22 @@ interface TodoListProp {
     todo: todo[]
 }
 function TodoList({
-    get,
+    getTodo,
     loading,
     todo,
 }: TodoListProp) {
 
     useEffect(() => {
-        getDate()
-    }, [gettodo])
+        getTodo()
+    }, [getTodo])
 
     return (
         <div>
             {loading ? <Loading /> :
                 todo.map(m => {
-                    return <TodoDetial note={m} key={m.id} />
+                    //
+                    
+                    return <TodoDetial user={m} key={m.id} />
                 })
             }
         </div>
