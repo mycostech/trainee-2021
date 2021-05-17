@@ -15,7 +15,7 @@ namespace unit_test
         private IWebDriver _driver = new ChromeDriver();
 
         [Test]
-        public void EnterInformation()
+        public void push()
         {
             Thread.Sleep(3000);
             _driver.Manage().Window.Maximize();
