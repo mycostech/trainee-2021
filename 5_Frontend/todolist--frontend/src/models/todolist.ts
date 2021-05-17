@@ -1,8 +1,8 @@
 
 interface todo {
     id?: number
-    DateTime?: string
-    Taskname?: string
+    date?: string
+    taskname?: string
     
 }
 
