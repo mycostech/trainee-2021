@@ -6,7 +6,7 @@ import NotePost from './components/NotePost';
 import useNoteApi from './hooks/useNoteApi';
 
 function App() {
-  const [users, loading, getAllUser, insertUser, ,] = useNoteApi()
+  const [users, loading, getAllUser, insertUser, deleteUser, updateUser] = useNoteApi()
   return (
 
     <div >

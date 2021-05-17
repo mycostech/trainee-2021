@@ -19,8 +19,8 @@ function NotePost({
     const today = new Date();
     var date = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
     var result = date.toISOString().split('T')[0];
-    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-    var dateTime = result + 'T' + time;
+    const time = today.getHours() + ":" + today.getMinutes()
+    var dateTime = result + 'T' + "00:44";
 
     return (
         <Form onSubmit={(e) => {

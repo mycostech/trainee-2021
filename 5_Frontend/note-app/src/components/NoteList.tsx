@@ -18,6 +18,7 @@ function NoteList({
     notes,
     
 }: NoteListProp) {
+    
 
     useEffect(() => {
         getNotes()

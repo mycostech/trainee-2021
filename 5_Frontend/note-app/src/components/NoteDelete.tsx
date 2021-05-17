@@ -17,7 +17,7 @@ function UserForm({
             <Form onSubmit={(e) => {
                 e.preventDefault()
                 deleteUser(deleteUsers)
-                console.log(deleteUsers)
+                // console.log(deleteUsers)
             }}>
                 <Col md={{ span: 3}}>
                     <Button size="sm" variant="danger" type="submit" onClick={() => deleteUsers}>

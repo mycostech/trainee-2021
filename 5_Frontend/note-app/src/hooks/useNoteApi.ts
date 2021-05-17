@@ -7,7 +7,6 @@ const useNoteApi = () => {
     const [users, setUsers] = useState<Note[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
-
     const getAllUsers = useCallback(
         async () => {
             setLoading(true)
@@ -24,7 +23,6 @@ const useNoteApi = () => {
             await noteApi.postUser(postNote)
             // (edit) , identity(0,0)
             const result = await noteApi.getUsers()
-            console.log(result.data)
             setUsers(result.data)
             setLoading(false)
         },
@@ -34,10 +32,13 @@ const useNoteApi = () => {
     const deleteUser = useCallback(
         async (deleteNote: any) => {
             setLoading(true)
+            console.log(deleteNote)
             const remove = await noteApi.deleteUser(deleteNote.id)
             // (edit) delete column
-            //setUsers(users => [...users, deleteNote.data])
-            const newList = users.filter((line) => line.id !== deleteNote.id)
+            const result = await noteApi.getUsers()
+            const a = result.data
+            const newList = a.filter((line) => line.id !== deleteNote.id)
+            console.log(newList)
             setUsers(newList)
             setLoading(false)
         },
