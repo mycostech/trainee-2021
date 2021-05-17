@@ -10,6 +10,8 @@ import "../../css/budget.css"
 interface TransactionDetail{
     tran: Transaction
     delTran: any
+
+
 }
 
 function TransactionDetail({tran, delTran}: TransactionDetail){
@@ -89,10 +91,11 @@ function TransactionDetail({tran, delTran}: TransactionDetail){
             e.preventDefault()
             //console.log("-->", tranId)
             delTran(tranId)
+
+            
         }}>
 
-            <button type="submit" className="delete-button">DELETE !</button>
-            {/* <hr/> */}
+            <button type="submit" className="delete-tran-btn">DELETE TRANSACTION</button>
             <br/>
             <br/>
 
@@ -101,7 +104,7 @@ function TransactionDetail({tran, delTran}: TransactionDetail){
         <div>
             {transactionDe.map ((td,key) => {
                 return <TransactionDeDetail trande={td} key={key} delete_transactionDe={delete_transactionDe}
-                put_transactionDe={put_transactionDe} newTranDe={newTranDe} type={type} setNewTranDe={setNewTranDe} DEFAULT_TRANSACTIONDE={DEFAULT_TRANSACTIONDE} tranId={tranId}/> //ส่ง delete_transactionDe ไปให้ จะได้ reuse state แก้ปัญหากดลบแล้วต้องกดรีเฟรช
+                put_transactionDe={put_transactionDe} type={type} tranId={tranId}/> //ส่ง delete_transactionDe ไปให้ จะได้ reuse state แก้ปัญหากดลบแล้วต้องกดรีเฟรช
             })}
         </div>
 

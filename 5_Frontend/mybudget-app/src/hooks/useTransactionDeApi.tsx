@@ -17,8 +17,14 @@ const useTransactionDeApi = () => {
 
     const post_transactionDe = useCallback(
         async (newTranDe:TransactionDe) => {
-            const result = await transactionDeApi.postTransactionDe(newTranDe)
-            setTransactionDe(td => [...td, result.data])
+            try{
+                const result = await transactionDeApi.postTransactionDe(newTranDe)
+                setTransactionDe(td => [...td, result.data])
+                // window.alert("SUCCESS");
+            }catch(err){
+                window.alert(err + "\nPlease input all form.");
+            }
+
         }, [setTransactionDe]
     )
 
@@ -40,9 +46,15 @@ const useTransactionDeApi = () => {
     )
 
     const put_transactionDe = useCallback(
-        async (tranid:number, trandeid:number, newTranDe: TransactionDe) => {
-            const result = await transactionDeApi.putTransactionDe(tranid, trandeid, newTranDe)
-            setTransactionDe(td => [...td, result.data])
+        async (tranid:number, trandeid:number, editTranDe: TransactionDe) => {
+            try{
+                const result = await transactionDeApi.putTransactionDe(tranid, trandeid, editTranDe)
+                //setTransactionDe(td => [...td, result.data])
+                window.location.reload(true);
+            }catch(err){
+                window.alert(err + "\nPlease edit all form.");
+            }
+            
         }, [setTransactionDe]
     )
 

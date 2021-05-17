@@ -22,8 +22,8 @@ const transactionDeApi = {
         return axios.delete<TransactionDe>(`${API_URL}Transactions/${tranid}/${trandeid}`)
     },
 
-    putTransactionDe: (tranid:number, trandeid:number, newTranDe: TransactionDe) => {
-        return axios.put<TransactionDe>(`${API_URL}Transactions/TransactionDetail/${tranid}/${trandeid}`, {...newTranDe})
+    putTransactionDe: (tranid:number, trandeid:number, editTranDe: TransactionDe) => {
+        return axios.put<TransactionDe>(`${API_URL}Transactions/TransactionDetail/${tranid}/${trandeid}`, {...editTranDe})
     }
 }
 

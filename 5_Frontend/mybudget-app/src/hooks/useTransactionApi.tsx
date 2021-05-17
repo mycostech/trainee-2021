@@ -15,17 +15,27 @@ const useTransactionApi = () => {
 
     const post_transaction = useCallback(
         async (newTran:Transaction) => {
-            const result = await transactionApi.postTransaction(newTran)
-            setTransaction(t => [...t, result.data])
+            try{
+                const result = await transactionApi.postTransaction(newTran)
+                setTransaction(t => [...t, result.data])
+            }catch(err){
+                window.alert(err + "\nPlease choose date.");
+            }
+
         }, [setTransaction]
     )
 
     const delete_transaction = useCallback(
         async (tranid:number) => {
-            const result = await transactionApi.deleteTransaction(tranid)
-            setTransaction(tr => tr.filter(t => {
+            try{
+                const result = await transactionApi.deleteTransaction(tranid)
+                setTransaction(tr => tr.filter(t => {
                 return t.transactionId !== result.data.transactionId
             }))
+            }catch(err){
+                window.alert(err + "\nPlease delete your all transaction detail before.");
+            }
+            
         }, [setTransaction]
     )
 
