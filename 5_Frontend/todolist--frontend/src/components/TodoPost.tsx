@@ -5,8 +5,8 @@ interface UserFormProps {
 }
 
 const DEFAULT_USER = {
-    Date: '',
-    Taskname: ''
+    datetime: '',
+    taskname: ''
 }
 function UserForm({
     insertUser
@@ -26,7 +26,7 @@ function UserForm({
                      * JS: newUser ? newUser.name : ''
                      */
                 }
-                name: <input type="text" value={newUser?.DateTime} onChange={(e) => {
+                name: <input type="text" value={newUser?.date} onChange={(e) => {
                     /**
                      * 
                      * 
@@ -41,7 +41,7 @@ function UserForm({
                 }} />
             </div>
             <div>
-                email: <input type="text" value={newUser?.Taskname} onChange={(e) => {
+                email: <input type="text" value={newUser?.taskname} onChange={(e) => {
                     setNewUser(pre => ({
                         ...pre,
                         email: e.target.value
