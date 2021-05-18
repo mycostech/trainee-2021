@@ -70,41 +70,49 @@ function EditEventForm(){
     return (
         <div>{count == 1 &&
             <>
-                <Link to="/events">
-                    <a>Back</a>
-                </Link>
-                {event.loading &&
-                    <p>Loading ...</p>
-                }
 
-                <h3>New info</h3>
-                <div>
-                    <label>date time</label>
+                <div className="container">
+
+                    <div className="link">
+                        <Link to="/events">
+                            <a>Back</a>
+                        </Link>
+                    </div>
+
+                    <h2>Edit Event</h2>
+                    
+                    <hr/>
+
+                    <div>
+                        {event.loading &&
+                            <p>Loading ...</p>
+                        }
+                    </div>
+
+                    <div>Date Time</div>
+
                     <input type="datetime-local" value={_dateTime} onChange={
-                        e => {
-                            setDateTime(e.target.value)
-                        }
+                        e => {setDateTime(e.target.value)}
                     }/>
-                </div>
-                <div>
-                    <label>Event Name</label>
+
+                    <div>Event name</div>
+                    
                     <input type="text" value={_eventname} onChange={
-                        e => {
-                            setEventName(e.target.value)
-                        }
+                    e => { setEventName(e.target.value)}
                     }/>
-                </div>
-                <div>
-                    <label>Memo</label>
+
+                    <div>Memo</div>
+
                     <textarea value={_memo} onChange={
-                        e => {
-                            setMemo(e.target.value)
-                        }
+                    e => {setMemo(e.target.value)}
                     }></textarea>
+
+                    <div>
+                        <button onClick={onSubmitForm}>Submit</button>
+                    </div>
+
                 </div>
-                <div>
-                    <button onClick={onSubmitForm}>Submit</button>
-                </div>
+                
             </>
         }
             

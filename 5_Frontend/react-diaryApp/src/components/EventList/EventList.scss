@@ -1,0 +1,28 @@
+.content {
+    padding: 0px 90px 0px 90px;
+}
+.events{
+    margin-bottom: 10px;
+}
+
+.events .action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action div {
+    margin-right: 30px;
+}
+
+.events .event-detail {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+}
+.events .event-detail div{
+    margin-right: 30px;
+}
+
+.detail div {
+    margin-bottom: 20px;
+}

@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react'
+import Moment from 'react-moment'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom';
 
 import { deleteEvent, getEventList } from '../../Action/EventAction'
 import { RootState } from '../../Reducer'
 
+import './EventList.scss';
 
 function EventList(){
 
@@ -37,29 +39,49 @@ function EventList(){
     }, [dispatch])
 
     return(
-        <div>
+        <div className="content">
             {
             event.map(e => {
-
                 return(
                 <>
-                    <div>
-                        <div>date time: {e.dateTime}</div>
-                        <div>event name: {e.eventName}</div>
-                        <div>memo: {e.memo}</div>
+                    <div className="container events">
 
-                        <li>
-                            <Link to={`/detail/${e.id}`}>View</Link>
-                        </li>
+                        <div className="event-detail">
+                            <div className="detail">
+                                <div>
+                                    <Moment format='LL'>{e.dateTime}</Moment>
+                                </div>
+                                
+                                <div>
+                                    <Moment format='LT'>{e.dateTime}</Moment>
+                                </div>
+                            </div>
+                            <div className="detail">
+                                <div>
+                                    {e.eventName}
+                                </div>
+                                <div>
+                                    {e.memo}
+                                </div>
+                            </div>
+                        </div>
 
-                        <Link to={`/edit/${e.id}`}>
-                            <button>Edit</button>
-                        </Link>
-
-                       
-                        <button onClick={() => onDelete(e.id)}>Del</button>
-                
-                        <hr></hr>
+                        <div className="action">
+                            <div>
+                                <Link to={`/detail/${e.id}`}>
+                                    <a>View</a>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link to={`/edit/${e.id}`}>
+                                    <a>Edit</a>
+                                </Link>
+                            </div>
+                            <div>
+                                <a onClick={() => onDelete(e.id)}>Del</a>
+                            </div>
+                        </div>
+            
                     </div>
                 </>
                 )
@@ -70,3 +92,4 @@ function EventList(){
 }
 
 export default EventList
+

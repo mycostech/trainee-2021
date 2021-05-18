@@ -31,6 +31,7 @@ function App() {
   const onLogout = () => {
     console.log("log out btn !!")
     dispatch(logout())
+    history.push('/login')
   }
 
   React.useEffect(() => {
@@ -53,9 +54,21 @@ function App() {
 
       <div className="header-container">
 
-        <div className="profileImage-container">
-          <MyProfile/>
-        </div>
+        { auth.logingIn && user.getsuccess &&
+
+        <>
+          <div className="logout-btn-container">
+            <button  onClick={onLogout}>Logout</button>
+          </div>
+        
+          <div className="profileImage-container">
+            <MyProfile name={user.userInfo?.nickname }/>
+          </div>
+
+        </>
+      
+        
+        }
 
         <h1>My diary App</h1>
           <nav>
@@ -84,9 +97,6 @@ function App() {
                     <Link to="/addEvent">
                       <a>New Event</a>
                     </Link>
-                  </li>
-                  <li>
-                    <button onClick={onLogout}>Logout</button>
                   </li>
                 </>
               }

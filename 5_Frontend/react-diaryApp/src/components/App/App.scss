@@ -1,11 +1,17 @@
-$primary_color: #FFFF;
-$darkfont_color: #565656;
-$highlightfont_color: #2d63f6;
+
+$dark_color: rgb(42, 41, 41);
+$light_color: white;
+
 $success_color: #3CC47C;
 $danger_color: #FF3B3F;
 
 .App{
   padding: 0% 10% 0% 10%;
+}
+
+.logout-btn-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .header-container {
@@ -14,6 +20,7 @@ $danger_color: #FF3B3F;
 
 .header-container h1{
   text-align: center;
+  text-shadow: 5px 5px $dark_color;
 }
 
 .header-container nav{
@@ -23,18 +30,27 @@ $danger_color: #FF3B3F;
 
 .header-container nav ul{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   list-style-type: none;
+  overflow: hidden;
 }
 
 .header-container nav ul li {
-  text-decoration: none;
-  cursor: pointer;
+  padding: 30px;
 }
 
-.header-container nav ul li:hover {
-  text-decoration: underline;
-  color: $highlightfont_color;
+.header-container nav ul a {
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 2px solid $light_color;
+  transition: 0.5s;
+  padding: 14px 16px ;
+  color: $dark_color;
+}
+
+.header-container nav ul li a:hover {
+  border-bottom: 2px solid $dark_color;
+  color: $light_color;
 }
 
 .profileImage-container {

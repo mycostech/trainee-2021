@@ -1,11 +1,16 @@
+import { IUser } from "../../model/IUserType"
 
 
-function MyProfile(){
+interface MyProfile {
+    name?: string 
+}
+
+function MyProfile({name}: MyProfile){
 
     return(
         <div>
             <div>
-                <h3>Hello ! </h3>
+                <h3>Hello ! {name}</h3>
             </div>
         </div>
     )

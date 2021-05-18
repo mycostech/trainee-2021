@@ -5,6 +5,7 @@ import { register } from "../../Action/UserAction";
 import { IRegisterForm } from "../../model/IRegisterForm";
 import { RootState } from "../../Reducer";
 
+import './Register.scss'
 
 function Register(){
 
@@ -59,62 +60,60 @@ function Register(){
 
     return(
         <div>
-            <div className="userInfo-container">
+            <div className="container">
+
+                <h2>User Info</h2>
+                <hr/>
+                
+                <div>Firstname</div>
                 <div>
-                    <label>Firstname</label>
                     <input type="text" placeholder="Firstname" onChange={(e) => {
-                        setFname(e.target.value)
+                    setFname(e.target.value)
                     }}/>
                 </div>
-
+                <div>Lastname</div>
                 <div>
-                    <label>Lastname</label>
                     <input type="text" placeholder="lastname" onChange={(e) => {
-                        setLname(e.target.value)
+                    setLname(e.target.value)
                     }}/>
                 </div>
-
+                <div>Nickname</div>
                 <div>
-                    <label>Nickname</label>
                     <input type="text" placeholder="nickname" onChange={(e) => {
-                        setNickname(e.target.value)
+                    setNickname(e.target.value)
                     }}/>
                 </div>
-
+                <div>Birthdate</div>  
                 <div>
-                    <label>Birthdate</label>
                     <input type="date" onChange={(e) => {
-                        setBirthdate(e.target.value)
+                    setBirthdate(e.target.value)
                     }}/>
                 </div>
-            </div>
 
-            <div className="loginInfo-container">
-                <div>
-                    <label>Email</label>
+                <hr/>
+                <div>Email</div>
+                <div>        
                     <input type="email" placeholder="Email" onChange={(e) => {
-                        setEmail(e.target.value)
+                    setEmail(e.target.value)
                     }}/>
                 </div>
-
+                <div>Password</div>
                 <div>
-                    <label>Password</label>
                     <input type="password" placeholder="Password" onChange={(e) => {
-                        setPassword(e.target.value)
+                    setPassword(e.target.value)
                     }}/>
-                </div>
-
+                </div>               
+                <div>Confirm Password</div>
                 <div>
-                    <label>Confirm Password</label>
                     <input type="password" placeholder="Confirm Password" onChange={(e) => {
-                        setCfpassword(e.target.value)
+                    setCfpassword(e.target.value)
                     }}/>
-                </div>
+                </div>  
+           
+                <button onClick={onSubmitForm}>Register</button>
             </div>
 
-            <div className="btn-container">
-                <button onClick={onSubmitForm}>Submit</button>
-            </div>
+    
         </div>
     )
 }

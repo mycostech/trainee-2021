@@ -6,6 +6,8 @@ import { RootState } from '../../Reducer';
 
 import { useHistory } from 'react-router-dom';
 
+import './Login.scss'
+
 function Login(){
 
     const dispatch = useDispatch()
@@ -41,22 +43,23 @@ function Login(){
     }, [auth])
 
     return(
-        <div>
+        <div className="container">
+         
+            <div>Email</div>
             <div>
-                <label>Email: </label>
                 <input type="text" placeholder="email@example.com" onChange={(e) => {
                     setEmail(e.target.value)
                 }}/>
             </div>
+            <div>password</div>
             <div>
-                <label>Password: </label>
                 <input type="password" placeholder="passwod" onChange={(e) => {
                     setPassword(e.target.value)
                 }}/>
             </div>
-            <div>
-                <button onClick={onSubmitLogin}>Submit</button>
-            </div>
+
+            <button onClick={onSubmitLogin}>Login</button>
+     
         </div>
     )
 }

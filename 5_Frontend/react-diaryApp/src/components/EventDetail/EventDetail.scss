@@ -1,0 +1,28 @@
+$bg_color: rgb(241, 146, 87);
+
+
+
+
+.eventDetail-container{
+    margin: 50px;
+}
+
+
+
+.eventDetail-container .title{
+    font-size: larger;
+    margin-right: 20px;
+    background-color: $bg_color;
+    border-radius: 10px;
+    color: white;
+
+}
+.eventDetail-container div {
+    display: flex;
+    padding: 20px;
+}
+
+.eventDetail-container .memo {
+    border: 2px solid black;
+    padding: 30px;
+}

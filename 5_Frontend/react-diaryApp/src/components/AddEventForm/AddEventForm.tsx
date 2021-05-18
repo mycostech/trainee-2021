@@ -6,6 +6,7 @@ import { addEvent } from '../../Action/EventAction';
 import { IEvent } from '../../model/IEventType';
 import { RootState } from '../../Reducer'
 
+import './AddEventForm.scss'
 
 function AddEventForm(){
 
@@ -50,40 +51,50 @@ function AddEventForm(){
 
 
     return (
-        <div>
-            <Link to="/events">
-                <a>Back</a>
-            </Link>
-            <div>
+        <div className="container">
+
+            <div className="link">
+                <Link to="/events">
+                    <a>Back</a>
+                </Link>
+            </div>
+
+
+            <h2>New Event</h2>
+            <hr/>
+
+            <div className="loading-container">
                 {event.loading &&
                     <p>Loading ...</p>
                 }
             </div>
-            <div>
-                <label>date time</label>
-                <input type="datetime-local"
-                    onChange={
-                        e => {setDateTime(e.target.value)}
+
+            <div>Date Time</div>
+            
+            <input type="datetime-local"
+                onChange={
+                    e => {setDateTime(e.target.value)}
+                }
+            />
+
+            <div>Event name</div>
+
+            <input type="text" placeholder="Event Name"
+                onChange= {
+                    e => setEventName(e.target.value)
                     }
-                />
-            </div>
-            <div>
-                <label>Event name</label>
-                <input type="text" placeholder="Event Name"
-                    onChange= {
-                        e => setEventName(e.target.value)
-                    }
-                />
-            </div>
-            <div>
-                <label>Memo</label>
-                <textarea onChange={
-                    e => setMemo(e.target.value)
-                }></textarea>
-            </div>
+            />
+
+            <div>Memo</div>
+
+            <textarea onChange={
+                e => setMemo(e.target.value)}>    
+            </textarea>
+
             <div>
                 <button onClick={onSubmitForm}>Submit</button>
-            </div>    
+            </div>
+
         </div>
     )
 }

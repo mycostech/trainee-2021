@@ -1,13 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap');
 
-$light_color: #FFFF;
-$darkfont_color: #565656;
-
+$bg_color: rgb(241, 146, 87);
+$btn_color: rgb(232, 102, 10);
+$light_color: white;
+$dark_color: black;
+$gray_color: gray;
 
 body {
   top: 0;
   margin: 0;
   font-family: 'Recursive', sans-serif;
-  background-color: $light_color;
-  color: $darkfont_color;
+  color: $dark_color;
+  background-color: $bg_color;
 }
+
+h1 {
+  color: $light_color;
+}
+
+h3 {
+  color: $dark_color;
+  margin-bottom: 10px;
+}
+
+
+input{
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  margin: 25px 15px ;
+  width: 300px;
+}
+
+textarea {
+  margin-top: 20px;
+  width: 300px;
+  height: 50px;
+  padding: 20px;
+}
+
+.link {
+  text-align: left;
+}
+
+button {
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  margin: 25px 15px ;
+  background-color: $btn_color;
+  color: $light_color;
+}
+button:hover{
+  color: $light_color;
+  background-color: $dark_color;
+  cursor: pointer;
+  transition: 0.8s;
+}
+.container {
+  background-color: $light_color;
+  padding: 50px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: $dark_color;
+  cursor: pointer;
+}
+
+a:hover {
+  color: $btn_color;
+  text-decoration: underline;
+  cursor: pointer;
+}
+

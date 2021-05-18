@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../Reducer';
 import { getEventDetail } from '../../Action/EventAction';
 
+import './EventDetail.scss'
+import Moment from 'react-moment';
 
 function EventDetail(){
     
@@ -26,15 +28,27 @@ function EventDetail(){
 
     console.log(event)
     return(
-        <div>
-            <Link to="/events">
-                <a>Back</a>
-            </Link>
+        <div className="container event-detail">
+            <div className="link">
+                <Link to="/events">
+                    <a>Back</a>
+                </Link>
+            </div>
 
-            <div>
-                <div>event name: {event.event?.eventName}</div>
-                <div>date time: {event.event?.dateTime}</div>
-                <div>memo: {event.event?.memo}</div>
+            <h3>{event.event?.eventName}</h3>
+            
+            <div className="eventDetail-container">
+ 
+                <div>       
+                    <span>
+                        <Moment format='LL'>{event.event?.dateTime}</Moment>
+                    </span>
+      
+                </div>
+
+                <div className="memo">
+                    {event.event?.memo}
+                </div>
             </div>
             
         </div>
